@@ -1,4 +1,4 @@
-.agileits_w3layouts_banner_nav {
+.head-container {
   margin: 0 auto;
   width: 100%;
   position: absolute;
@@ -9,6 +9,17 @@
 }
 
 /*-- nav --*/
+.navbar {
+  margin-bottom: 0;
+}
+
+.navbar-collapse {
+  padding: 0;
+}
+
+.navbar-right {
+  margin-right: 0;
+}
 
 .navbar-header.navbar-left {
   margin-top: 8px;
@@ -39,8 +50,8 @@
   border: none;
   padding: 1em 0 0em 0;
   .navbar-nav {
-    >li {
-      >a {
+    > li {
+      > a {
         color: #fff;
         font-weight: 400;
         letter-spacing: 2px;
@@ -97,31 +108,17 @@
         }
       }
     }
-    >.open {
+    > .open {
       a,
       a:hover,
       a:focus {
         color: #262c38;
         background: none;
       }
-      &.active>a:focus {
+      &.active > a:focus {
         background: transparent;
         color: #fff;
       }
     }
   }
 }
-
-.navbar {
-  margin-bottom: 0;
-}
-
-.navbar-collapse {
-  padding: 0;
-}
-
-.navbar-right {
-  margin-right: 0;
-}
-
-.navbar-nav {}
