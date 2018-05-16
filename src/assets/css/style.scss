@@ -1,13 +1,52 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  font-family: "Open Sans", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+p {
+  margin: 0;
+  letter-spacing: 1px;
+  color: #777777;
+  line-height: 1.8em;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  color: #777777;
+}
+
+p,
+ul,
+ol {
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
 .head-container {
   margin: 0 auto;
   width: 100%;
-  position: absolute;
   z-index: 99;
   text-align: center;
   padding: 0em;
   background: rgba(0, 0, 0, 0.52);
+  position: fixed;
 }
-
+.body-container {
+  padding-top: 7em;
+}
 /*-- nav --*/
 .navbar {
   margin-bottom: 0;
