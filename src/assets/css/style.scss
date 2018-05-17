@@ -1,8 +1,8 @@
 body {
-  margin: 0;
-  padding: 0;
-  background: #fff;
-  font-family: "Open Sans", sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    font-family: "Open Sans", sans-serif;
 }
 
 h1,
@@ -11,153 +11,153 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0;
-  font-family: "Montserrat", sans-serif;
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
 }
 
 p {
-  margin: 0;
-  letter-spacing: 1px;
-  color: #777777;
-  line-height: 1.8em;
+    margin: 0;
+    letter-spacing: 1px;
+    color: #777777;
+    line-height: 1.8em;
 }
 
 ul {
-  margin: 0;
-  padding: 0;
-  color: #777777;
+    margin: 0;
+    padding: 0;
+    color: #777777;
 }
 
 p,
 ul,
 ol {
-  font-size: 14px;
-  letter-spacing: 1px;
+    font-size: 14px;
+    letter-spacing: 1px;
 }
 
 .head-container {
-  margin: 0 auto;
-  width: 100%;
-  z-index: 99;
-  text-align: center;
-  padding: 0em;
-  background: rgba(0, 0, 0, 0.52);
-  position: fixed;
+    margin: 0 auto;
+    width: 100%;
+    z-index: 99;
+    text-align: center;
+    padding: 0em;
+    background: rgba(0, 0, 0, 0.52);
+    position: fixed;
 }
 .body-container {
-  padding-top: 7em;
+    padding-top: 7em;
 }
 /*-- nav --*/
 .navbar {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .navbar-collapse {
-  padding: 0;
+    padding: 0;
 }
 
 .navbar-right {
-  margin-right: 0;
+    margin-right: 0;
 }
 
 .navbar-header.navbar-left {
-  margin-top: 8px;
-  .navbar-brand {
-    padding: 0;
-    font-size: 1.2em;
-    font-weight: 600;
-    line-height: 37px;
-    letter-spacing: 1px;
-    font-family: "Raleway", sans-serif;
-    color: #ffc107;
-    &:hover,
-    &:focus {
-      color: #ffc107;
+    margin-top: 8px;
+    .navbar-brand {
+        padding: 0;
+        font-size: 1.2em;
+        font-weight: 600;
+        line-height: 37px;
+        letter-spacing: 1px;
+        font-family: "Raleway", sans-serif;
+        color: #ffc107;
+        &:hover,
+        &:focus {
+            color: #ffc107;
+        }
+        span {
+            color: #fff;
+            font-weight: 800;
+            padding: 0px 10px;
+            border: 3px solid #ffc107;
+            background: #ffc107;
+        }
     }
-    span {
-      color: #fff;
-      font-weight: 800;
-      padding: 0px 10px;
-      border: 3px solid #ffc107;
-      background: #ffc107;
-    }
-  }
 }
 
 .navbar-default {
-  background: none;
-  border: none;
-  padding: 1em 0 0em 0;
-  .navbar-nav {
-    > li {
-      > a {
-        color: #fff;
-        font-weight: 400;
-        letter-spacing: 2px;
-        margin: 0 1.5em;
-        padding: 1.6em 0em;
-        text-transform: uppercase;
-        &:hover {
-          color: #ffc107;
+    background: none;
+    border: none;
+    padding: 1em 0 0em 0;
+    .navbar-nav {
+        > li {
+            > a {
+                color: #fff;
+                font-weight: 400;
+                letter-spacing: 2px;
+                margin: 0 1.5em;
+                padding: 1.6em 0em;
+                text-transform: uppercase;
+                &:hover {
+                    color: #ffc107;
+                }
+                &:focus {
+                    color: #ffc107;
+                    outline: none;
+                }
+                &.effect {
+                    overflow: hidden;
+                    &:before {
+                        left: -1px;
+                        bottom: 0;
+                        width: 100%;
+                        height: 4px;
+                        background: #ffc107;
+                        content: "";
+                        position: absolute;
+                        transition: transform 0.5s ease;
+                        transform: translateX(-100%);
+                        -webkit-transform: translateX(-100%);
+                        -moz-transform: translateX(-100%);
+                        -o-transform: translateX(-100%);
+                        -ms-transform: translateX(-100%);
+                    }
+                    &:hover:before {
+                        transform: translateX(0);
+                        -webkit-transform: translateX(0);
+                        -moz-transform: translateX(0);
+                        -o-transform: translateX(0);
+                        -ms-transform: translateX(0);
+                    }
+                }
+            }
+            &.active {
+                a,
+                a:hover,
+                a:focus {
+                    color: #ffc107;
+                    background: none;
+                }
+                a:before {
+                    background: #ffc107;
+                    transform: translateX(0);
+                    -webkit-transform: translateX(0);
+                    -moz-transform: translateX(0);
+                    -o-transform: translateX(0);
+                    -ms-transform: translateX(0);
+                }
+            }
         }
-        &:focus {
-          color: #ffc107;
-          outline: none;
+        > .open {
+            a,
+            a:hover,
+            a:focus {
+                color: #262c38;
+                background: none;
+            }
+            &.active > a:focus {
+                background: transparent;
+                color: #fff;
+            }
         }
-        &.effect {
-          overflow: hidden;
-          &:before {
-            left: -1px;
-            bottom: 0;
-            width: 100%;
-            height: 4px;
-            background: #ffc107;
-            content: "";
-            position: absolute;
-            transition: transform 0.5s ease;
-            transform: translateX(-100%);
-            -webkit-transform: translateX(-100%);
-            -moz-transform: translateX(-100%);
-            -o-transform: translateX(-100%);
-            -ms-transform: translateX(-100%);
-          }
-          &:hover:before {
-            transform: translateX(0);
-            -webkit-transform: translateX(0);
-            -moz-transform: translateX(0);
-            -o-transform: translateX(0);
-            -ms-transform: translateX(0);
-          }
-        }
-      }
-      &.active {
-        a,
-        a:hover,
-        a:focus {
-          color: #ffc107;
-          background: none;
-        }
-        a:before {
-          background: #ffc107;
-          transform: translateX(0);
-          -webkit-transform: translateX(0);
-          -moz-transform: translateX(0);
-          -o-transform: translateX(0);
-          -ms-transform: translateX(0);
-        }
-      }
     }
-    > .open {
-      a,
-      a:hover,
-      a:focus {
-        color: #262c38;
-        background: none;
-      }
-      &.active > a:focus {
-        background: transparent;
-        color: #fff;
-      }
-    }
-  }
 }

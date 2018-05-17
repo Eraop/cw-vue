@@ -1,13 +1,12 @@
 <template>
   <div class="main-container" id="main">
-    <cw-header router-name="About"></cw-header>
+    <cw-header router-name="about"></cw-header>
     <div class="body-container">
-      <p> 关于 Eraop 关于 Eraop</p>
+      <p> 关于 CW - VUE</p>
     </div>
   </div>
 </template>
-<script>
-
+<script scoped>
 export default {
   name: "About"
 }

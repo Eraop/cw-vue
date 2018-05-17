@@ -10,21 +10,21 @@
 						<span class="icon-bar"></span>
 					</button>
 					<h1>
-						<a class="navbar-brand" href="index.html">ERAOP {{routerName}}</a>
+						<a class="navbar-brand" href="index.html">Eraop</a>
 					</h1>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
-					<nav class="link-effect-2" id="link-effect-2">
+					<nav class="col-xs-12">
 						<ul class="nav navbar-nav">
-							<li :class="routerName=='Home'?'active':''">
+							<li :class="routerName=='home'?'active':''">
 								<router-link class="effect" to="/">Home</router-link>
 							</li>
-							<li :class="routerName=='About'?'active':''">
+							<li :class="routerName=='about'?'active':''">
 								<router-link class="effect" to="/about">About</router-link>
 							</li>
-							<li :class="routerName=='contact'?'active':''">
-								<a class="effect">Mail Us</a>
+							<li :class="routerName=='contactus'?'active':''">
+								<router-link class="effect" to="/contactus">Contact Us</router-link>
 							</li>
 						</ul>
 					</nav>
