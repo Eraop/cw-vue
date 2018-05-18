@@ -4,12 +4,12 @@
     <slider-banner></slider-banner>
     <!-- About us -->
     <div class="section-container">
-      <div class="section-container-head">
-        <h3 class="section-container-head-title">What We
-          <span>Do?</span>
-        </h3>
-      </div>
       <div class="container">
+        <div class="section-container-head">
+          <h3 class="section-container-head-title text-black">What We
+            <span class="text-dark">Do?</span>
+          </h3>
+        </div>
         <div class="d-flex">
           <div class="d-flex-left">
             <h4>CrossFit and TrainHard GYM </h4>
@@ -55,6 +55,68 @@
       </div>
     </div>
     <!-- //About us -->
+    <div class="section-container background-fixed point-section">
+      <div class="container">
+        <div class="section-container-head">
+          <h3 class="section-container-head-title text-white">Our
+            <span>Classes</span>
+          </h3>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="point-grid">
+              <h5>Sunday, 13.00</h5>
+              <h4>AEROBIC CAPACITY</h4>
+              <h6>Trainer: Andrew Ross</h6>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="point-grid">
+              <h5>Monday, 13.00</h5>
+              <h4>GYMNASTICS PRO</h4>
+              <h6>Trainer: Steve Smith</h6>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="point-grid">
+              <h5>Tuesday, 13.00</h5>
+              <h4>BEGINNERS LEVEL</h4>
+              <h6>Trainer: Jessy Raider</h6>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-container team-section">
+      <div class="container">
+        <div class="section-container-head">
+          <h3 class="section-container-head-title">Our
+            <span>Testimonials</span>
+          </h3>
+        </div>
+        <div class="row">
+          <div class="team-grid pull-left">
+            <img src="/static/images/1.png" class="img-circle">
+            <h3>Eraop</h3>
+            <p>Cras tortor ipsum, gravida vitae finibus non, bibendum quis turpis. Cras semper accumsan metus, et aliquet diam vestibulum ut. </p>
+          </div>
+          <div class="team-grid pull-left">
+            <img src="/static/images/3.png" class="img-circle">
+            <h3>Thompson</h3>
+            <p>Cras tortor ipsum, gravida vitae finibus non, bibendum quis turpis. Cras semper accumsan metus, et aliquet diam vestibulum ut. </p>
+          </div>
+          <div class="team-grid pull-left">
+            <img src="/static/images/2.png" class="img-circle">
+            <h3>Mary watson</h3>
+            <p>Cras tortor ipsum, gravida vitae finibus non, bibendum quis turpis. Cras semper accumsan metus, et aliquet diam vestibulum ut. </p>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+    <cw-footer></cw-footer>
   </div>
 </template>
 <script scoped>
@@ -83,14 +145,14 @@ export default {
 
     .section-container-head-title {
       font-size: 3em;
-      color: #262c38;
+      // color: #262c38;
       letter-spacing: 1px;
       position: relative;
       font-weight: 600;
       text-align: center;
 
       span {
-        color: #545151;
+        // color: #545151;
         font-weight: 200;
       }
     }
@@ -127,13 +189,69 @@ export default {
     }
   }
   .d-flex-right {
-    // background: url('../assets/images/wel.jpg') no-repeat;
     background: url(/static/images/wel.jpg) no-repeat;
     background-size: cover;
     background-position: center;
     flex: 1;
     -ms-flex: 1;
   }
+  .point-grid {
+    background: rgba(82, 82, 82, 0.5);
+    padding: 4em 4em;
+    transition: 0.5s all;
+    text-align: center;
+
+    h5 {
+      font-style: italic;
+      color: #ffc107;
+      font-size: 16px;
+      letter-spacing: 1px;
+    }
+    h6 {
+      font-style: italic;
+      color: #fff;
+      font-size: 16px;
+      letter-spacing: 1px;
+    }
+    h4 {
+      color: #fff;
+      font-size: 20px;
+      line-height: 1.8em;
+      letter-spacing: 1px;
+      margin: 0.5em 0;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+  }
+  .team-grid {
+    width: 380px;
+    text-align: center;
+    padding: 40px 10px;
+    margin-right: 10px;
+    background: #000;
+    h3 {
+      text-transform: uppercase;
+      color: #ffc107;
+      font-size: 19px;
+      font-weight: 600;
+      margin: 20px 0 0;
+    }
+    p {
+      font-size: 14px;
+      color: #999;
+      margin: 10px 0;
+      line-height: 24px;
+    }
+  }
+}
+.point-section {
+  background: url(/static/images/banner_5.jpg) no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -ms-background-size: cover;
+  padding: 5em 0;
 }
 </style>
 

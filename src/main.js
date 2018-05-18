@@ -11,10 +11,10 @@ require("bootstrap");
 
 // 引入组件
 import header from "./components/Header.vue";
-
+import footer from "./components/Footer";
 // 声明全局 全局
 Vue.component("cw-header", header);
-
+Vue.component("cw-footer", footer);
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
