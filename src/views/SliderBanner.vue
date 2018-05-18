@@ -31,23 +31,23 @@
 </template>
 <script>
 var list = [{
-    imageUrl: 'static/images/banner_2.jpg',
+    imageUrl: '/static/images/banner_2.jpg',
     imageTitle: 'Exceptional Life Fitness',
     imageDescription: 'TrainHard is the right place to start new life as an athletic, strong and healthy person with a strong will.'
 }, {
-    imageUrl: 'static/images/banner_1.jpg',
+    imageUrl: '/static/images/banner_1.jpg',
     imageTitle: 'Become Strong And Healthy',
     imageDescription: 'TrainHard is the right place to start new life as an athletic, strong and healthy person with a strong will.'
 }, {
-    imageUrl: 'static/images/banner_3.jpg',
+    imageUrl: '/static/images/banner_3.jpg',
     imageTitle: 'Build Your Body With Us',
     imageDescription: 'TrainHard is the right place to start new life as an athletic, strong and healthy person with a strong will.'
 }, {
-    imageUrl: 'static/images/banner_4.jpg',
+    imageUrl: '/static/images/banner_4.jpg',
     imageTitle: 'Exceptional Life Fitness',
     imageDescription: 'TrainHard is the right place to start new life as an athletic, strong and healthy person with a strong will.'
 }, {
-    imageUrl: 'static/images/banner_5.jpg',
+    imageUrl: '/static/images/banner_5.jpg',
     imageTitle: 'Build Your Body With Us',
     imageDescription: 'TrainHard is the right place to start new life as an athletic, strong and healthy person with a strong will.'
 }]
@@ -61,14 +61,11 @@ export default {
 }
 </script>
  <style lang="scss" scoped>
-.carousel-inner {
-  .item {
-    img {
-      width: 100%;
-      height: 800px;
-    }
-  }
+.carousel-inner .item img {
+  width: 100%;
+  height: 800px;
 }
+
 .carousel-caption {
   position: absolute;
   z-index: 9;
@@ -101,5 +98,201 @@ a.carousel-control {
     display: none;
   }
 }
+</style>
+<style lang="scss" scoped>
+/*--responsive--*/
+@media (max-width: 1440px) {
+  .carousel-caption p {
+    width: 46%;
+  }
+}
+@media (max-width: 1366px) {
+}
+@media (max-width: 1280px) {
+  .carousel-caption {
+    top: 40%;
+
+    h3 {
+      font-size: 4.5em;
+      letter-spacing: 3px;
+    }
+    p {
+      width: 50%;
+    }
+  }
+  .carousel-inner .item img {
+    height: 650px;
+  }
+}
+@media (max-width: 1080px) {
+  .carousel-caption {
+    top: 41%;
+
+    h3 {
+      font-size: 3.8em;
+      letter-spacing: 2px;
+    }
+    p {
+      letter-spacing: 4px;
+      margin: 1em auto;
+      font-size: 1em;
+      width: 64%;
+    }
+  }
+  .carousel-inner .item img {
+    height: 526px;
+  }
+}
+@media (max-width: 1050px) {
+  .carousel-caption {
+    top: 41%;
+
+    h3 {
+      font-size: 3.8em;
+      letter-spacing: 2px;
+    }
+    p {
+      letter-spacing: 4px;
+      margin: 1em auto;
+      font-size: 1em;
+      width: 64%;
+    }
+  }
+}
+@media (max-width: 1024px) {
+  .carousel-caption {
+    top: 39%;
+
+    h3 {
+      font-size: 3.5em;
+    }
+  }
+}
+@media (min-width: 992px) {
+}
+@media (max-width: 991px) {
+  .carousel-caption {
+    top: 37%;
+    h3 {
+      font-size: 3em;
+      letter-spacing: 2px;
+    }
+    p {
+      width: 90%;
+    }
+  }
+}
+@media (max-width: 900px) {
+  .carousel-caption {
+    top: 41%;
+  }
+}
+@media (max-width: 800px) {
+  .carousel-caption {
+    top: 38%;
+  }
+}
+@media (max-width: 768px) {
+}
+@media (max-width: 767px) {
+  .carousel-caption {
+    top: 32%;
+
+    h3 {
+      font-size: 3em;
+      letter-spacing: 2px;
+    }
+  }
+}
+@media (max-width: 736px) {
+}
+@media (max-width: 667px) {
+  .carousel-caption {
+    top: 38%;
+
+    h3 {
+      font-size: 2.8em;
+      letter-spacing: 1px;
+    }
+    p {
+      letter-spacing: 3px;
+      margin: 1em 0 0em auto;
+      font-size: 1em;
+    }
+  }
+  .carousel-inner .item img {
+    height: 428px;
+  }
+}
+@media (max-width: 640px) {
+  .carousel-caption {
+    top: 38%;
+  }
+}
+@media (max-width: 600px) {
+  .carousel-caption {
+    h3 {
+      font-size: 2.5em;
+      letter-spacing: 1px;
+    }
+  }
+}
+@media (max-width: 568px) {
+  .carousel-caption {
+    top: 38%;
+    p {
+      letter-spacing: 2px;
+      margin: 1em auto;
+      font-size: 1em;
+    }
+  }
+}
+@media (max-width: 480px) {
+  .carousel-caption {
+    top: 38%;
+    h3 {
+      font-size: 2.2em;
+      letter-spacing: 1px;
+    }
+    p {
+      letter-spacing: 2px;
+      margin: 0.3em 0 0em auto;
+      font-size: 0.9em;
+    }
+  }
+  .carousel-inner .item img {
+    height: 320px;
+  }
+}
+@media (max-width: 440px) {
+  .carousel-inner .item img {
+    height: 279px;
+  }
+}
+@media (max-width: 414px) {
+  .carousel-caption {
+    top: 40%;
+    h3 {
+      font-size: 1.5em;
+      letter-spacing: 1px;
+    }
+  }
+}
+@media (max-width: 384px) {
+  .carousel-caption {
+    top: 39%;
+  }
+}
+@media (max-width: 375px) {
+}
+@media (max-width: 320px) {
+  .carousel-caption {
+    top: 25%;
+  }
+  .carousel-inner .item img {
+    height: 243px;
+  }
+}
+/*--//responsive--*/
 </style>
 
