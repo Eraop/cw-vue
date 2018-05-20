@@ -16,7 +16,8 @@ $colors: (
   danger: (base: #dc3545, foucs: #bd2130),
   info: (base: #17a2b8, foucs: #117a8b)
 );
-// 生成颜色
+
+/* 生成颜色*/
 @each $name, $color in $colors {
   .text-#{$name} {
     color: map-get($color, base) !important;
@@ -29,6 +30,58 @@ $colors: (
   }
 }
 
+$sizes: (
+  5,
+  10,
+  15,
+  20,
+  25,
+  30
+);
+@each $size in $sizes {
+  .padding-#{$size} {
+    padding: $size + px;
+  }
+  .padding-v-#{$size} {
+    padding: $size + px 0;
+  }
+  .padding-h-#{$size} {
+    padding: 0 $size + px;
+  }
+  .padding-left-#{$size} {
+    padding-left: $size + px;
+  }
+  .padding-top-#{$size} {
+    padding-top: $size + px;
+  }
+  .padding-right-#{$size} {
+    padding-right: $size + px;
+  }
+  .padding-bottom-#{$size} {
+    padding-bottom: $size + px;
+  }
+  .margin-#{$size} {
+    margin: $size + px;
+  }
+  .margin-v-#{$size} {
+    margin: $size + px 0;
+  }
+  .margin-h-#{$size} {
+    margin: 0 $size + px;
+  }
+  .margin-left-#{$size} {
+    margin-left: $size + px;
+  }
+  .margin-top-#{$size} {
+    margin-top: $size + px;
+  }
+  .margin-right-#{$size} {
+    margin-right: $size + px;
+  }
+  .margin-bottom-#{$size} {
+    margin-bottom: $size + px;
+  }
+}
 body {
   margin: 0;
   padding: 0;
@@ -68,4 +121,7 @@ ol {
 }
 .background-scroll {
   background-attachment: scroll !important;
+}
+.bold {
+  font-weight: bold;
 }

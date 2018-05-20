@@ -10,21 +10,21 @@
 						<span class="icon-bar"></span>
 					</button>
 					<h1>
-						<a class="navbar-brand" href="index.html">Eraop</a>
+						<router-link class="navbar-brand" :to="{name:'home'}">Eraop</router-link>
 					</h1>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+				<div class="collapse navbar-collapse navbar-right" id="nav">
 					<nav class="col-xs-12">
 						<ul class="nav navbar-nav">
-							<li :class="routerName=='home'?'active':''">
-								<router-link class="effect" to="/">Home</router-link>
+							<li>
+								<router-link ref="tab" class="effect" :to="{name:'home'}" exact>Home</router-link>
 							</li>
-							<li :class="routerName=='about'?'active':''">
-								<router-link class="effect" to="/about">About</router-link>
+							<li>
+								<router-link ref="tab" class="effect" :to="{name:'about'}">About</router-link>
 							</li>
-							<li :class="routerName=='contactus'?'active':''">
-								<router-link class="effect" to="/contactus">Contact Us</router-link>
+							<li>
+								<router-link ref="tab" class="effect" :to="{name:'contactus'}">Contact Us</router-link>
 							</li>
 						</ul>
 					</nav>
@@ -36,10 +36,8 @@
 <script>
 export default {
 	data() {
-		return {
-		}
-	},
-	props: ["routerName"]
+	}
+
 }
 </script>
 <style lang="scss">

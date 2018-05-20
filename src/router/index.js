@@ -8,7 +8,20 @@ Vue.use(Router);
 
 export default new Router({
   mode: "history",
+  linkActiveClass: "active",
   routes: [
+    // {
+    //   path: "/",
+    //   redirect: "/home"
+    // },
+    // {
+    //   path: "/",
+    //   name: "h",
+    //   component: Home,
+    //   meta: {
+    //     auth: false
+    //   }
+    // },
     {
       path: "/",
       name: "home",

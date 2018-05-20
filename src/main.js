@@ -3,7 +3,6 @@
 import Vue from "vue";
 import App from "./App";
 import router from "./router";
-// import "jquery/dist/jquery.min.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import $ from "jquery";
 window.jQuery = $;
@@ -11,10 +10,13 @@ require("bootstrap");
 
 // 引入组件
 import header from "./components/Header.vue";
-import footer from "./components/Footer";
+import footer from "./components/Footer.vue";
+import http from './api/index.js';
+Vue.prototype.$http = http;
 // 声明全局 全局
 Vue.component("cw-header", header);
 Vue.component("cw-footer", footer);
+
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */

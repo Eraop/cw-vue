@@ -1,6 +1,5 @@
 <template>
-  <div class="main-container" id="main">
-    <cw-header router-name="home"></cw-header>
+  <div id="mainHome">
     <slider-banner></slider-banner>
     <!-- About us -->
     <div class="section-container">
@@ -93,7 +92,7 @@
       <div class="container">
         <div class="section-container-head">
           <h3 class="section-container-head-title">Our
-            <span>Testimonials</span>
+            <span>Team</span>
           </h3>
         </div>
         <div class="row">
@@ -116,7 +115,7 @@
         </div>
       </div>
     </div>
-    <cw-footer></cw-footer>
+
   </div>
 </template>
 <script scoped>

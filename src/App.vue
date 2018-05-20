@@ -1,6 +1,10 @@
 <template>
-  <div id="app">
-    <router-view/>
+  <div class="main-container" id="app">
+    <cw-header></cw-header>
+    <div class="body-container">
+      <router-view/>
+    </div>
+    <cw-footer></cw-footer>
   </div>
 </template>
 
