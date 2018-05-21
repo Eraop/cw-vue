@@ -3,25 +3,14 @@ import Router from "vue-router";
 import Home from "@/views/Home";
 import About from "@/views/About";
 import ContactUs from "@/views/ContactUs";
+import News from "@/views/News";
 
 Vue.use(Router);
 
 export default new Router({
-  mode: "history",
+  // mode: "history",
   linkActiveClass: "active",
-  routes: [
-    // {
-    //   path: "/",
-    //   redirect: "/home"
-    // },
-    // {
-    //   path: "/",
-    //   name: "h",
-    //   component: Home,
-    //   meta: {
-    //     auth: false
-    //   }
-    // },
+  routes: [ 
     {
       path: "/",
       name: "home",
@@ -42,6 +31,14 @@ export default new Router({
       path: "/contactus",
       name: "contactus",
       component: ContactUs,
+      meta: {
+        auth: false
+      }
+    },
+    {
+      path: "/news",
+      name: "news",
+      component: News,
       meta: {
         auth: false
       }

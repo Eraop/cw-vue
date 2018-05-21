@@ -18,13 +18,16 @@
 					<nav class="col-xs-12">
 						<ul class="nav navbar-nav">
 							<li>
-								<router-link ref="tab" class="effect" :to="{name:'home'}" exact>Home</router-link>
+								<router-link class="effect" :to="{name:'home'}" exact>Home</router-link>
 							</li>
 							<li>
-								<router-link ref="tab" class="effect" :to="{name:'about'}">About</router-link>
+								<router-link class="effect" :to="{name:'about'}">About</router-link>
 							</li>
 							<li>
-								<router-link ref="tab" class="effect" :to="{name:'contactus'}">Contact Us</router-link>
+								<router-link class="effect" :to="{name:'news'}">News</router-link>
+							</li>
+							<li>
+								<router-link class="effect" :to="{name:'contactus'}">Contact Us</router-link>
 							</li>
 						</ul>
 					</nav>
