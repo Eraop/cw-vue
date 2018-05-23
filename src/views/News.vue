@@ -1,5 +1,5 @@
 <template>
-  <div id="mainNews ">
+  <div id="mainNews">
     <div class="main-banner"></div>
     <div class="inner-padding">
       <div class="container">
@@ -10,20 +10,36 @@
         </div>
         <div class="section-container-content text-center">
           <h3 class="text-warning bold margin-v-15"></h3>
-          <p class="bold">Coming soon...</p>
+          <p class="bold">Coming soon...{{res}}</p>
         </div>
         <div class="clearfix"> </div>
+        <button class="btn btn-primary" @click="getNews">获取信息</button>
       </div>
     </div>
   </div>
 </template>
 <script scoped>
 export default {
-  name: "News"
+  name: "News",
+  data() {
+    return {
+      res: ""
+    }
+  },
+  methods: {
+    getNews() {
+      debugger
+      return this.$http.get('/news/list', function (res) {
+        debugger
+        alert(res)
+        console.log(res);
+        this.res = res;
+      })
+    }
+  }
 }
 </script>
-<style lang="scss" scoped> 
-
+<style lang="scss" scoped>
 .main-banner {
   background: url(/static/images/banner_5.jpg) no-repeat 0px 0px;
   background-size: cover;
@@ -33,7 +49,7 @@ export default {
   -ms-background-size: cover;
   min-height: 350px;
 }
-.inner-padding   {
+.inner-padding {
   padding: 10em 0;
 
   .section-container-head {

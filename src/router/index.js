@@ -4,6 +4,7 @@ import Home from "@/views/Home";
 import About from "@/views/About";
 import ContactUs from "@/views/ContactUs";
 import News from "@/views/News";
+import NotFound from "@/views/NotFound";
 
 Vue.use(Router);
 
@@ -42,6 +43,10 @@ export default new Router({
       meta: {
         auth: false
       }
+    },
+    {
+      path: "*",
+      component: NotFound
     }
   ]
 });

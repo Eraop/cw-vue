@@ -2,8 +2,9 @@
 
 import axios from "axios";
 import qs from "qs";
+axios.defaults.withCredentials = true;
 
-var root = "";
+var root = "http://localhost:5678";
 
 axios.interceptors.request.use(
   config => {
@@ -87,6 +88,7 @@ function apiAxios(method, url, params, success, failure) {
     withCredentials: false
   })
     .then(function(res) {
+      debugger
       if (res.data.success === true) {
         if (success) {
           success(res.data);

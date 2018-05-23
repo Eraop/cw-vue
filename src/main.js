@@ -11,8 +11,12 @@ require("bootstrap");
 // 引入组件
 import header from "./components/Header.vue";
 import footer from "./components/Footer.vue";
-import http from './api/index.js';
-Vue.prototype.$http = http;
+// import http from './api/index.js';
+// Vue.prototype.$http = http;
+import axios from "axios";
+axios.defaults.baseURL = "http://localhost:5678";
+axios.defaults.withCredentials = false;
+Vue.prototype.$http = axios;
 // 声明全局 全局
 Vue.component("cw-header", header);
 Vue.component("cw-footer", footer);

@@ -3,14 +3,16 @@
 		<div class="container">
 			<nav class="navbar navbar-default">
 				<div class="navbar-header navbar-left">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav">
 						<span class="sr-only">Toggle navigation</span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
 					<h1>
-						<router-link class="navbar-brand" :to="{name:'home'}">Eraop</router-link>
+						<router-link class="navbar-brand" :to="{name:'home'}">
+							<img class="logo" src="/static/images/logo.png" alt="Eraop">
+						</router-link>
 					</h1>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -38,11 +40,14 @@
 </template>
 <script>
 export default {
-	data() {
-	}
-
 }
 </script>
 <style lang="scss">
 @import "../assets/css/style.scss";
 </style>
+<style lang="scss" scoped>
+.logo {
+  height: 50px;
+}
+</style>
+
