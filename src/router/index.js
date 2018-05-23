@@ -5,13 +5,14 @@ import About from "@/views/About";
 import ContactUs from "@/views/ContactUs";
 import News from "@/views/News";
 import NotFound from "@/views/NotFound";
+import NewsDetail from "@/views/NewsDetail";
 
 Vue.use(Router);
 
 export default new Router({
   // mode: "history",
   linkActiveClass: "active",
-  routes: [ 
+  routes: [
     {
       path: "/",
       name: "home",
@@ -42,7 +43,14 @@ export default new Router({
       component: News,
       meta: {
         auth: false
-      }
+      },
+      children: [
+        {
+          path: "detail/:id",
+          name: "news_detail",
+          component: NewsDetail
+        }
+      ]
     },
     {
       path: "*",

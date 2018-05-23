@@ -7,7 +7,6 @@ var pool = mysql.createPool({
   port: "3306",
   database: "wf"
 });
-
 function query(sql, callback) {
   pool.getConnection(function(err, connection) {
     if (err) {
@@ -16,6 +15,20 @@ function query(sql, callback) {
     }
     // Use the connection
     connection.query(sql, function(err, rows) {
+      callback(err, rows);
+      connection.release(); //释放链接
+    });
+  });
+}
+
+function query(sql, queryString, callback) {
+  pool.getConnection(function(err, connection) {
+    if (err) {
+      reject(err);
+      return;
+    }
+    // Use the connection
+    connection.query(sql, queryString, function(err, rows) {
       callback(err, rows);
       connection.release(); //释放链接
     });

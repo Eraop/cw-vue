@@ -97,20 +97,23 @@ function apiAxios(method, url, params, success, failure) {
         if (failure) {
           failure(res.data);
         } else {
-          window.alert("error: " + JSON.stringify(res.data));
+          alert("error: " + JSON.stringify(res.data));
         }
       }
     })
     .catch(function(err) {
       let res = err.response;
       if (err) {
-        window.alert("api error, HTTP CODE: " + res.status);
+        alert("api error, HTTP CODE: " + res.status);
       }
     });
 }
 
 // 返回在vue模板中的调用接口
 export default {
+  get: function(url, success, failure) {
+    return apiAxios("GET", url, null, success, failure);
+  },
   get: function(url, params, success, failure) {
     return apiAxios("GET", url, params, success, failure);
   },

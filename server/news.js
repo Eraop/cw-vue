@@ -23,27 +23,21 @@ router.get("/list", function(req, res, next) {
       console.log("[SELECT ERROR] - ", err.message);
       return;
     }
-
-    console.log("--------------------------SELECT----------------------------");
-    console.log(result);
-    // jsonWrite(res, result);
     res.send(result);
-    console.log(
-      "------------------------------------------------------------\n\n"
-    );
   });
 });
 
-// 向前台返回JSON方法的简单封装
-var jsonWrite = function(res, result) {
-  if (typeof result === "undefined") {
-    res.json({
-      code: "1",
-      msg: "操作失败"
-    });
-  } else {
-    res.json(result);
-  }
-};
-
+router.get("/detail/:id", function(req, res, next) {
+  //查
+  db.query("SELECT * FROM cms_article where id=?", [req.params.id], function(
+    err,
+    result
+  ) {
+    if (err) {
+      console.log("[SELECT ERROR] - ", err.message);
+      return;
+    }
+    res.send(result);
+  });
+});
 module.exports = router;
