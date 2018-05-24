@@ -38,6 +38,14 @@ export default new Router({
       }
     },
     {
+      path: "/news/detail/:id",
+      name: "newsdetail",
+      component: NewsDetail,
+      meta: {
+        auth: false
+      }
+    },
+    {
       path: "/news",
       name: "news",
       component: News,
@@ -54,6 +62,7 @@ export default new Router({
     },
     {
       path: "*",
+      name: "notfound",
       component: NotFound
     }
   ]

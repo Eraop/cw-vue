@@ -32,10 +32,17 @@
                 <td>{{item.create_date}}</td>
                 <td>{{item.last_update}}</td>
                 <td>
-                  <router-link tag="a" target="_blank" :to="{name:'news_detail',params:{id:item.id}}">查看</router-link>
+                  <router-link tag="a" target="_blank" :to="{name:'newsdetail',params:{id:item.id}}">查看</router-link>
                 </td>
               </tr>
             </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="6">
+                  <cw-pager :total="total" :current-page='current' @page-change="pageChange"></cw-pager>
+                </td>
+              </tr>
+            </tfoot>
           </table>
         </div>
       </div>
@@ -47,14 +54,29 @@ export default {
   name: "News",
   data() {
     return {
+      // 记录总条数
+      total: 150,
+      // 每页显示条数
+      pageSize: 10,
+      // 当前的页数
+      current: 1,
       list: []
     }
   },
   created: function () {
     var $this = this;
-    return $this.$http.get('/news/list').then(function (res) {
+    return $this.$http.get('/news/list', {
+      query: {
+        pageIndex: this.pageIndex,
+        pageSize: this.pageSize
+      }
+    }).then(function (res) {
+      debugger
       if (res.status == 200) {
-        $this.list = res.data;
+        $this.list = res.data.items;
+        $this.total = res.data.total;
+        $this.pageSize = res.data.pageSize;
+        $this.current = res.data.pageIndex;
       }
     });
   }, methods: {

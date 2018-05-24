@@ -2,14 +2,12 @@
     <div id="mainNewsDetail">
         <div class="inner-padding">
             <div class="container">
-                <div class="section-container-head">
-                    <h3>About
-                        <span>Us</span>
-                    </h3>
+                <div class="section-container-head text-center">
+                    <h3 class="news-detail-title text-dark bold">{{model.title}} </h3>
+                    <div class="text-dark margin-v-10">创建时间：{{model.create_date}}</div>
                 </div>
                 <div class="section-container-content text-center">
-                    <h3 class="text-warning bold margin-v-15">Who We Are</h3>
-                    <p class="bold">Masagni dolores eoquie int Basmodi temporant, ut laboreas dolore magnam aliquam kuytase uaeraquis autem vel eum iure reprehend.Unicmquam eius, Basmodi temurer sehsMunim.Masagni dolores eoquie int Basmodi temporant, ut laboreas dolore magnam aliquam kuytase uaeraquis autem vel eum iure reprehend.</p>
+                    <p v-html="model.content"></p>
                 </div>
                 <div class="clearfix"> </div>
             </div>
@@ -23,6 +21,19 @@ export default {
         return {
             model: ""
         }
+    },
+    created: function () {
+        var $this = this;
+        return $this.$http.get('/news/detail/' + $this.$route.params.id).then(function (res) {
+            if (res.status == 200) {
+                if (res.data !== "") {
+                    $this.model = res.data;
+                }
+                else {
+                    $this.$router.push({ name: "notfound" });
+                }
+            }
+        });
     }
 }
 </script>
@@ -35,5 +46,19 @@ export default {
   -o-background-size: cover;
   -ms-background-size: cover;
   min-height: 350px;
+}
+.inner-padding {
+  padding: 10em 0;
+
+  .section-container-head {
+    margin-bottom: 2em;
+    &:after {
+      border-top: 1px solid #343a40;
+      display: block;
+      width: 100%;
+      content: "";
+      margin: 8px auto 0;
+    }
+  }
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div id="notFound">
         <div class="container text-center">
-            <h1 class="text-warning">404</h1>
+            <h1 class="text-dark">404</h1>
             <p class="margin-v-15">
                 <strong>(╥╯^╰╥) 页面被人偷走......</strong>
             </p>

@@ -11,6 +11,7 @@ require("bootstrap");
 // 引入组件
 import header from "./components/Header.vue";
 import footer from "./components/Footer.vue";
+import pager from "./components/Pager.vue";
 // import http from './api/index.js';
 // Vue.prototype.$http = http;
 import axios from "axios";
@@ -21,8 +22,8 @@ Vue.prototype.$http = axios;
 Vue.component("cw-header", header);
 Vue.component("cw-footer", footer);
 
+Vue.component("cw-pager", pager);
 Vue.config.productionTip = false;
-
 
 /* eslint-disable no-new */
 new Vue({
