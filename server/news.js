@@ -20,35 +20,35 @@ var mysql = require("mysql");
 router.get("/list", function(req, res, next) {
   //查
   var start = 0;
+  var size = 0;
   if (req.query.pageIndex !== undefined && req.query.pageSize !== undefined) {
-    start = (req.query.pageIndex - 1) * req.query.pageSize;
+    size = parseInt(req.query.pageSize);
+    start = (req.query.pageIndex - 1) * size;
+  } else {
+    return;
   }
   var page = new PageModel();
-  db.query(
-    "SELECT * FROM cms_article limit ?,?",
-    [start, req.query.pageSize],
-    function(err, result) {
-      if (err) {
-        console.log("[SELECT ERROR] - ", err.message);
-        return;
-      }
-      page.pageIndex = req.query.pageIndex;
-      page.pageSize = req.query.pageSize;
-      page.items = result;
-
+  db.query("SELECT * FROM cms_article limit ?,?", [start, size], function(
+    err,
+    result
+  ) {
+    if (err) {
+      console.log("[SELECT ERROR] - ", err.message);
+      return;
     }
-  );
-  db.query(
-    "SELECT count(1) as sum FROM cms_article",
-    function(err, result) {
+    page.pageIndex = start;
+    page.pageSize = size;
+    page.items = result;
+
+    db.query("SELECT count(1) as sum FROM cms_article", function(err, result) {
       if (err) {
         console.log("[SELECT ERROR] - ", err.message);
         return;
       }
       page.total = result[0]["sum"];
-    }
-  );
-  res.send(page);
+      res.send(page);
+    });
+  });
 });
 
 router.get("/detail/:id", function(req, res, next) {

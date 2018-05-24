@@ -1,3 +1,10 @@
+/*
+ * @Author: Eraop 
+ * @Date: 2018-05-24 19:55:30 
+ * @Last Modified by: Eraop
+ * @Last Modified time: 2018-05-24 23:05:01
+ */
+
 <template>
     <nav>
         <ul class="pagination">
@@ -33,7 +40,7 @@ export default {
             default: 0
         },
         // 每页显示条数
-        display: {
+        pageSize: {
             type: Number,
             default: 10
         },
@@ -43,7 +50,7 @@ export default {
             default: 1
         },
         // 分页条数
-        pageSize: {
+        pageGroup: {
             type: Number,
             default: 5,
             coerce: function (v) {
@@ -54,11 +61,11 @@ export default {
     },
     computed: {
         page: function () { // 总页数
-            return Math.ceil(this.total / this.display);
+            return Math.ceil(this.total / this.pageSize);
         },
         grouplist: function () { // 获取分页页码
-            var len = this.page, temp = [], list = [], count = Math.floor(this.pageSize / 2), center = this.current;
-            if (len <= this.pageSize) {
+            var len = this.page, temp = [], list = [], count = Math.floor(this.pageGroup / 2), center = this.current;
+            if (len <= this.pageGroup) {
                 while (len--) {
                     temp.push({ text: this.page - len, val: this.page - len });
                 }
@@ -72,7 +79,7 @@ export default {
             var idx = temp.indexOf(center);
             (idx < count) && (center = center + count - idx);
             (this.current > this.page - count) && (center = this.page - count);
-            temp = temp.splice(center - count - 1, this.pageSize);
+            temp = temp.splice(center - count - 1, this.pageGroup);
             do {
                 var t = temp.shift();
                 list.push({
@@ -80,7 +87,7 @@ export default {
                     val: t
                 });
             } while (temp.length);
-            if (this.page > this.pageSize) {
+            if (this.page > this.pageGroup) {
                 (this.current > count + 1) && list.unshift({ text: '...', val: list[0].val - 1 });
                 (this.current < this.page - count) && list.push({ text: '...', val: list[list.length - 1].val + 1 });
             }
