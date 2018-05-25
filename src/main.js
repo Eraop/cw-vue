@@ -3,6 +3,8 @@
 import Vue from "vue";
 import App from "./App";
 import router from "./router";
+import axios from "axios";
+import moment from "moment";
 import "bootstrap/dist/css/bootstrap.min.css";
 import $ from "jquery";
 window.jQuery = $;
@@ -14,16 +16,23 @@ import footer from "./components/Footer.vue";
 import pager from "./components/Pager.vue";
 // import http from './api/index.js';
 // Vue.prototype.$http = http;
-import axios from "axios";
 axios.defaults.baseURL = "http://localhost:5678";
 axios.defaults.withCredentials = false;
 Vue.prototype.$http = axios;
-// 声明全局 全局
+// 全局组件
 Vue.component("cw-header", header);
 Vue.component("cw-footer", footer);
 
 Vue.component("cw-pager", pager);
 Vue.config.productionTip = false;
+
+// 全局过滤器
+Vue.filter("formatDate", function(value) {
+  return moment(value).format("YYYY-MM-DD");
+});
+Vue.filter("formatTime", function(value) {
+  return moment(value).format("YYYY-MM-DD hh:mm:ss");
+});
 
 /* eslint-disable no-new */
 new Vue({

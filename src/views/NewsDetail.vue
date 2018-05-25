@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="section-container-head text-center">
                     <h3 class="news-detail-title text-dark bold">{{model.title}} </h3>
-                    <div class="text-dark margin-v-10">创建时间：{{model.create_date}}</div>
+                    <div class="text-dark margin-v-10 text-right">创建时间：{{model.create_date | formatTime}}</div>
                 </div>
                 <div class="section-container-content text-center">
                     <p v-html="model.content"></p>
@@ -53,7 +53,7 @@ export default {
   .section-container-head {
     margin-bottom: 2em;
     &:after {
-      border-top: 1px solid #343a40;
+      border-top: 1px solid #d8d8d8;
       display: block;
       width: 100%;
       content: "";

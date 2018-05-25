@@ -7,21 +7,21 @@
 
 <template>
     <nav>
-        <ul class="pagination">
+        <ul class="pagination pull-right">
             <li :class="{'disabled': current == 1}">
-                <a @click="setCurrent(current - 1)"> &lt; </a>
+                <a @click="setCurrent(current - 1)"> 上一页 </a>
             </li>
-            <li :class="{'disabled': current == 1}">
-                <a @click="setCurrent(1)"> 首页 </a>
+            <li :class="{'active': current == 1}">
+                <a @click="setCurrent(1)"> 1 </a>
             </li>
             <li v-for="(p,index) in grouplist" :class="{'active': current == p.val}" :key="index">
                 <a @click="setCurrent(p.val)"> {{ p.text }} </a>
             </li>
-            <li :class="{'disabled': current == page}">
-                <a @click="setCurrent(page)"> 尾页 </a>
+            <li :class="{'active': current == page}">
+                <a @click="setCurrent(page)"> {{page}} </a>
             </li>
             <li :class="{'disabled': current == page}">
-                <a @click="setCurrent(current + 1)"> &gt; </a>
+                <a @click="setCurrent(current + 1)"> 下一页 </a>
             </li>
         </ul>
     </nav>
@@ -30,7 +30,8 @@
 export default {
     data() {
         return {
-            current: this.currentPage
+            current: this.currentPage,
+            middlePage: this.currentPage
         }
     },
     props: {
@@ -64,22 +65,23 @@ export default {
             return Math.ceil(this.total / this.pageSize);
         },
         grouplist: function () { // 获取分页页码
-            var len = this.page, temp = [], list = [], count = Math.floor(this.pageGroup / 2), center = this.current;
+            var len = this.page, temp = [], list = [], count = Math.floor(this.pageGroup / 2), center = this.middlePage;
             if (len <= this.pageGroup) {
                 while (len--) {
                     temp.push({ text: this.page - len, val: this.page - len });
                 }
-                ;
                 return temp;
             }
             while (len--) {
                 temp.push(this.page - len);
             }
-            ;
+            temp.shift();
+            temp.pop();
             var idx = temp.indexOf(center);
             (idx < count) && (center = center + count - idx);
             (this.current > this.page - count) && (center = this.page - count);
-            temp = temp.splice(center - count - 1, this.pageGroup);
+
+            temp = temp.splice(center - count - 2, this.pageGroup);
             do {
                 var t = temp.shift();
                 list.push({
@@ -98,6 +100,10 @@ export default {
         setCurrent: function (idx) {
             if (this.current != idx && idx > 0 && idx < this.page + 1) {
                 this.current = idx;
+                var step = Math.floor(this.pageGroup / 2);
+                if (idx >= this.middlePage + step || idx <= this.middlePage - step) {
+                    this.middlePage = idx;
+                }
                 this.$emit('page-change', this.current);
             }
         }
@@ -105,3 +111,31 @@ export default {
 }
 </script>
 
+<style lang="scss" scoped>
+.pagination {
+  > li {
+    > a {
+      cursor: pointer;
+      border: 0;
+      color: #6d6d6d;
+      background-color: transparent;
+      border-color: transparent;
+      &:hover {
+        color: #ffc107;
+      }
+    }
+    &.active {
+      a,
+      a:focus,
+      a:hover {
+        z-index: 3;
+        color: #ffc107;
+        font-weight: bold;
+        cursor: default;
+        background-color: transparent;
+        border-color: transparent;
+      }
+    }
+  }
+}
+</style>
