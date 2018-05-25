@@ -65,20 +65,7 @@ export default {
   },
   created: function () {
     this.getPage(this.pageIndex, this.pageSize);
-    // return $this.$http.get('/news/list', {
-    //   params: {
-    //     pageIndex: this.current,
-    //     pageSize: this.pageSize
-    //   }
-    // }).then(function (res) {
-    //   debugger
-    //   if (res.status == 200) {
-    //     $this.list = res.data.items;
-    //     $this.total = res.data.total;
-    //     $this.pageSize = res.data.pageSize;
-    //     $this.current = res.data.pageIndex;
-    //   }
-    // });
+
   }, methods: {
     pageChange: function (pageIndex) {
       this.getPage(pageIndex, this.pageSize);
@@ -95,6 +82,21 @@ export default {
           $this.pageIndex = res.data.pageIndex;
         }
       });
+
+      // return $this.$http.get('/news/list', {
+      //   params: {
+      //     pageIndex: this.current,
+      //     pageSize: this.pageSize
+      //   }
+      // }).then(function (res) {
+      //   debugger
+      //   if (res.status == 200) {
+      //     $this.list = res.data.items;
+      //     $this.total = res.data.total;
+      //     $this.pageSize = res.data.pageSize;
+      //     $this.current = res.data.pageIndex;
+      //   }
+      // });
     }
 
   }

@@ -6,14 +6,6 @@ var db = require("./db.js");
 var models = require("./models/models.js");
 var mysql = require("mysql");
 
-// var connection = mysql.createConnection({
-//   host: "localhost",
-//   user: "root",
-//   password: "123456",
-//   port: "3306",
-//   database: "wf"
-// });
-
 /**
  * 查询列表页
  */
