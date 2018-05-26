@@ -24,7 +24,7 @@ export default {
     },
     created: function () {
         var $this = this;
-        return $this.$http.get('/news/detail/' + $this.$route.params.id).then(function (res) {
+        return $this.$http.get('/api/news/detail/' + $this.$route.params.id).then(function (res) {
             if (res.status == 200) {
                 if (res.data !== "") {
                     $this.model = res.data;

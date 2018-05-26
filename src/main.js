@@ -14,11 +14,15 @@ require("bootstrap");
 import header from "./components/Header.vue";
 import footer from "./components/Footer.vue";
 import pager from "./components/Pager.vue";
-// import http from './api/index.js';
-// Vue.prototype.$http = http;
-axios.defaults.baseURL = "http://localhost:5678";
+
+//引入自定义配置
+import config from "./config.js";
+
+
+axios.defaults.baseURL = config.API_BASEURL;
 axios.defaults.withCredentials = false;
 Vue.prototype.$http = axios;
+Vue.prototype.PAGE_SIZE = config.PAGE_SIZE;
 // 全局组件
 Vue.component("cw-header", header);
 Vue.component("cw-footer", footer);

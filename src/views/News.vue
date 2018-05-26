@@ -45,7 +45,7 @@
             </tfoot>
           </table> -->
           <div v-for="(item,index) in list" :key="index" class="col-md-12 col-xs-12">
-            <router-link tag="a" target="_blank" :to="{name:'newsdetail',params:{id:item.id}}">
+            <router-link target="_blank" :to="{name:'newsdetail',params:{id:item.id}}">
               <div class="card">
                 <!--Article-->
                 <div class="card-body">
@@ -70,7 +70,7 @@
         </div>
         <div class="section-container-page">
           <div class="col-xs-12">
-            <cw-pager :total="total" :current-page='current' :page-size="pageSize" @page-change="pageChange"></cw-pager>
+            <cw-pager :total="total" :current-page='pageIndex' :page-size="pageSize" @page-change="pageChange"></cw-pager>
           </div>
         </div>
       </div>
@@ -85,7 +85,7 @@ export default {
       // 记录总条数
       total: 0,
       // 每页显示条数
-      pageSize: 5,
+      pageSize: this.PAGE_SIZE,
       // 当前的页数
       pageIndex: 1,
       list: []
@@ -97,10 +97,13 @@ export default {
   }, methods: {
     pageChange: function (pageIndex) {
       this.getPage(pageIndex, this.pageSize);
+      document.body.scrollTop = 0
+      document.documentElement.scrollTop = 0
     },
     getPage: function (pageIndex, pageSize) {
       var $this = this;
-      return $this.$http.get('/news/list?pageIndex=' + pageIndex + "&pageSize=" + this.pageSize).then(function (res) {
+      debugger
+      return $this.$http.get('/api/news/list?pageIndex=' + pageIndex + "&pageSize=" + this.pageSize).then(function (res) {
         if (res.status == 200) {
           $this.list = res.data.items;
           $this.total = res.data.total;
@@ -136,10 +139,10 @@ export default {
   -moz-background-size: cover;
   -o-background-size: cover;
   -ms-background-size: cover;
-  min-height: 350px;
+  min-height: 200px;
 }
 .inner-padding {
-  padding: 10em 0;
+  padding: 3em 0;
 
   .section-container-head {
     margin-bottom: 5em;

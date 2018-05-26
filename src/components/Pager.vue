@@ -7,7 +7,7 @@
 
 <template>
     <nav>
-        <ul class="pagination pull-right">
+        <ul class="pagination pull-right" :class="{'hidden':total<=0}">
             <li :class="{'disabled': current == 1}">
                 <a @click="setCurrent(current - 1)"> 上一页 </a>
             </li>

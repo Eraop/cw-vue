@@ -3,6 +3,7 @@ const app = express();
 
 app.use("*", function(req, res, next) {
   if (
+    req.headers.origin == "http://36.7.150.150:8002" ||
     req.headers.origin == "http://localhost:1234" ||
     req.headers.origin == "http://eraop.com" ||
     req.headers.origin == "http://wwww.eraop.com"
@@ -25,12 +26,12 @@ app.use("*", function(req, res, next) {
   }
 });
 
-app.get("/", function(req, res) {
+app.get("/api/", function(req, res) {
   res.send("Hello World");
 });
 
-app.use("/news", require("./news.js"));
+app.use("/api/news", require("./news.js"));
 
-app.listen("5678", () => {
-  console.log("success listen at port:5678......");
+app.listen("8002", () => {
+  console.log("success listen at port:8002......");
 });
