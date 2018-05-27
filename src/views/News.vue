@@ -44,7 +44,7 @@
               </tr>
             </tfoot>
           </table> -->
-          <div v-for="(item,index) in list" :key="index" class="col-md-12 col-xs-12">
+          <div v-for="(item,index) in list" :key="index" class="col-xs-12">
             <router-link target="_blank" :to="{name:'newsdetail',params:{id:item.id}}">
               <div class="card">
                 <!--Article-->
@@ -102,7 +102,6 @@ export default {
     },
     getPage: function (pageIndex, pageSize) {
       var $this = this;
-      debugger
       return $this.$http.get('/api/news/list?pageIndex=' + pageIndex + "&pageSize=" + this.pageSize).then(function (res) {
         if (res.status == 200) {
           $this.list = res.data.items;
@@ -176,8 +175,9 @@ export default {
   vertical-align: top;
   text-align: left;
   // height: 480px;
+  width: 100% ;
   margin: 20px 0;
-  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 5px 40px rgba(0, 0, 0, 0.08);
   white-space: normal;
   -webkit-transition: all 250ms cubic-bezier(0.02, 0.01, 0.47, 1);
   -moz-transition: all 250ms cubic-bezier(0.02, 0.01, 0.47, 1);
@@ -185,7 +185,7 @@ export default {
   color: #4b4f56;
   &:hover {
     box-shadow: 0 20px 30px rgba(0, 0, 0, 0.16);
-    transform: translate(0, -5px);
+    transform: translate(0, -1px);
     transition-delay: 0s !important;
     &::before {
       content: "";

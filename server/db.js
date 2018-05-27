@@ -1,7 +1,14 @@
 "use strict";
 var mysql = require("mysql");
+// var pool = mysql.createPool({
+//   host: "192.168.33.200",
+//   user: "root",
+//   password: "zxsoft0#",
+//   port: "3306",
+//   database: "wf"
+// });
 var pool = mysql.createPool({
-  host: "192.168.33.200",
+  host: "localhost",
   user: "root",
   password: "123456",
   port: "3306",

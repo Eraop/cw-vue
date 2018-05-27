@@ -2,7 +2,7 @@
  * @Author: Eraop 
  * @Date: 2018-05-24 19:55:30 
  * @Last Modified by: Eraop
- * @Last Modified time: 2018-05-24 23:05:01
+ * @Last Modified time: 2018-05-27 14:55:01
  */
 
 <template>
@@ -11,15 +11,15 @@
             <li :class="{'disabled': current == 1}">
                 <a @click="setCurrent(current - 1)"> 上一页 </a>
             </li>
-            <li :class="{'active': current == 1}">
+            <!-- <li :class="{'active': current == 1}">
                 <a @click="setCurrent(1)"> 1 </a>
-            </li>
+            </li> -->
             <li v-for="(p,index) in grouplist" :class="{'active': current == p.val}" :key="index">
                 <a @click="setCurrent(p.val)"> {{ p.text }} </a>
             </li>
-            <li :class="{'active': current == page}">
+            <!-- <li :class="{'active': current == page}">
                 <a @click="setCurrent(page)"> {{page}} </a>
-            </li>
+            </li> -->
             <li :class="{'disabled': current == page}">
                 <a @click="setCurrent(current + 1)"> 下一页 </a>
             </li>
@@ -75,8 +75,8 @@ export default {
             while (len--) {
                 temp.push(this.page - len);
             }
-            temp.shift();
-            temp.pop();
+            var firstPage = temp.shift();
+            var lastPage = temp.pop();
             var idx = temp.indexOf(center);
             (idx < count) && (center = center + count - idx);
             (this.current > this.page - count) && (center = this.page - count);
@@ -92,6 +92,8 @@ export default {
             if (this.page > this.pageGroup) {
                 (this.current > count + 1) && list.unshift({ text: '...', val: list[0].val - 1 });
                 (this.current < this.page - count) && list.push({ text: '...', val: list[list.length - 1].val + 1 });
+                list.unshift({ text: firstPage, val: firstPage });
+                list.push({ text: lastPage, val: lastPage });
             }
             return list;
         }

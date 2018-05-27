@@ -1,29 +1,14 @@
 const express = require("express");
 const app = express();
 
-app.use("*", function(req, res, next) {
-  if (
-    req.headers.origin == "http://36.7.150.150:8002" ||
-    req.headers.origin == "http://localhost:1234" ||
-    req.headers.origin == "http://eraop.com" ||
-    req.headers.origin == "http://wwww.eraop.com"
-  ) {
-    res.header("Access-Control-Allow-Origin", req.headers.origin);
-    //res.header('Access-Control-Allow-Origin', '*'); //这个表示任意域名都可以访问，这样写不能携带cookie了。
-    res.header(
-      "Access-Control-Allow-Headers",
-      "Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild"
-    );
-    res.header(
-      "Access-Control-Allow-Methods",
-      "PUT, POST, GET, DELETE, OPTIONS"
-    ); //设置方法
-  }
-  if (req.method == "OPTIONS") {
-    res.send(200); // 意思是，在正常的请求之前，会发送一个验证，是否可以请求。
-  } else {
-    next();
-  }
+//设置跨域访问
+app.all('*', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+  res.header("X-Powered-By",' 3.2.1')
+  res.header("Content-Type", "application/json;charset=utf-8");
+  next();
 });
 
 app.get("/api/", function(req, res) {
