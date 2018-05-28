@@ -54,9 +54,9 @@ export default new Router({
       },
       children: [
         {
-          path: "detail/:id",
-          name: "news_detail",
-          component: NewsDetail
+          path: "channel/:id",
+          name: "news_channel",
+          component: News
         }
       ]
     },

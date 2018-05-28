@@ -9,25 +9,28 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import $ from "jquery";
 window.jQuery = $;
 require("bootstrap");
+require("vue2-animate/dist/vue2-animate.min.css");
 
 // 引入组件
 import header from "./components/Header.vue";
 import footer from "./components/Footer.vue";
 import pager from "./components/Pager.vue";
+import loading from "./components/Loading.vue";
 
 //引入自定义配置
 import config from "./config.js";
-
 
 axios.defaults.baseURL = config.API_BASEURL;
 axios.defaults.withCredentials = false;
 Vue.prototype.$http = axios;
 Vue.prototype.PAGE_SIZE = config.PAGE_SIZE;
+Vue.prototype.THEME_COLOR = config.THEME_COLOR;
 // 全局组件
 Vue.component("cw-header", header);
 Vue.component("cw-footer", footer);
 
 Vue.component("cw-pager", pager);
+Vue.component("cw-loading", loading);
 Vue.config.productionTip = false;
 
 // 全局过滤器

@@ -12,65 +12,44 @@
           <h3 class="text-warning bold margin-v-15"></h3>
         </div>
         <div class="clearfix"> </div>
-        <div class="section-container-list">
-          <!-- <table class="table table-hover">
-            <thead>
-              <tr>
-                <th>序号</th>
-                <th>标题</th>
-                <th>作者</th>
-                <th>创建时间</th>
-                <th>编辑时间</th>
-                <th>操作</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="(item,index) in list" :key="index">
-                <th scope="row">{{index+1}}</th>
-                <td>{{item.title}}</td>
-                <td>{{item.user_id}}</td>
-                <td>{{item.create_date}}</td>
-                <td>{{item.last_update}}</td>
-                <td>
-                  <router-link tag="a" target="_blank" :to="{name:'newsdetail',params:{id:item.id}}">查看</router-link>
-                </td>
-              </tr>
-            </tbody>
-            <tfoot>
-              <tr>
-                <td colspan="6">
-                  <cw-pager :total="total" :current-page='current' :page-size="pageSize" @page-change="pageChange"></cw-pager>
-                </td>
-              </tr>
-            </tfoot>
-          </table> -->
-          <div v-for="(item,index) in list" :key="index" class="col-xs-12">
-            <router-link target="_blank" :to="{name:'newsdetail',params:{id:item.id}}">
-              <div class="card">
-                <!--Article-->
-                <div class="card-body">
-                  <!-- <div class="card-circle" style="background-image: url('/static/images/1.png')"></div> -->
-                  <div class="card-title">{{item.title}}</div>
-                  <div class="card-description">{{item.description}}</div>
-                </div>
-                <!-- <div class="card-hero">
-                  <div class="card-image" style="background-image: url(/static/images/1.jpg);">
-                  </div>
-                </div> -->
-                <div class="card-footer">
-                  <div class="card-footer-wrapper">
-                    <div class="card-tag pull-right">{{item.create_date | formatTime}}</div>
-                    <div class="card-medium"></div>
-                  </div>
-                </div>
-              </div>
-            </router-link>
+        <div class="row">
+          <div class="col-md-2">
+            <ul v-for="(item,index) in channels" :key="index" class="col-xs-12">
+              <li>{{item.name}}</li>
+            </ul>
           </div>
-          <div class="clearfix"></div>
-        </div>
-        <div class="section-container-page">
-          <div class="col-xs-12">
-            <cw-pager :total="total" :current-page='pageIndex' :page-size="pageSize" @page-change="pageChange"></cw-pager>
+          <div class="col-md-10">
+            <cw-loading :loading="loading"></cw-loading>
+            <div class="section-container-list" v-show="!loading">
+              <div v-for="(item,index) in list" :key="index" class="col-xs-12">
+                <router-link :to="{name:'newsdetail',params:{id:item.id}}" target="_blank">
+                  <div class="card">
+                    <!--Article-->
+                    <div class="card-body">
+                      <!-- <div class="card-circle" style="background-image: url('/static/images/1.png')"></div> -->
+                      <div class="card-title">{{item.title}}</div>
+                      <div class="card-description">{{item.description}}</div>
+                    </div>
+                    <!-- <div class="card-hero">
+                    <div class="card-image" style="background-image: url(/static/images/1.jpg);">
+                    </div>
+                  </div> -->
+                    <div class="card-footer">
+                      <div class="card-footer-wrapper">
+                        <div class="card-tag pull-right">{{item.create_date | formatTime}}</div>
+                        <div class="card-medium"></div>
+                      </div>
+                    </div>
+                  </div>
+                </router-link>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+            <div class="section-container-page">
+              <div class="col-xs-12">
+                <cw-pager :total="total" :current-page='pageIndex' :page-size="pageSize" @page-change="pageChange"></cw-pager>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -88,28 +67,52 @@ export default {
       pageSize: this.PAGE_SIZE,
       // 当前的页数
       pageIndex: 1,
-      list: []
-    }
+      channels: [],
+      list: [],
+      loading: true
+    };
   },
-  created: function () {
+  beforeCreate: function() {
+    var $this = this;
+    // this.getChannels();
+    this.$http.get("/api/news/channel").then(function(res) {
+      if (res.status == 200) {
+        $this.channels = res.data;
+      }
+    });
+  },
+  created: function() {
     this.getPage(this.pageIndex, this.pageSize);
-
-  }, methods: {
-    pageChange: function (pageIndex) {
+  },
+  mounted: function() {},
+  methods: {
+    pageChange: function(pageIndex) {
       this.getPage(pageIndex, this.pageSize);
-      document.body.scrollTop = 0
-      document.documentElement.scrollTop = 0
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
     },
-    getPage: function (pageIndex, pageSize) {
+    getPage: function(pageIndex, pageSize) {
+      this.loading = true;
       var $this = this;
-      return $this.$http.get('/api/news/list?pageIndex=' + pageIndex + "&pageSize=" + this.pageSize).then(function (res) {
-        if (res.status == 200) {
-          $this.list = res.data.items;
-          $this.total = res.data.total;
-          $this.pageSize = res.data.pageSize;
-          $this.pageIndex = res.data.pageIndex;
-        }
-      });
+      return $this.$http
+        .get("/api/news/list", {
+          params: {
+            pageIndex: $this.pageIndex,
+            pageSize: $this.pageSize,
+            channel: $this.$route.params.channel
+          }
+        })
+        .then(function(res) {
+          if (res.status == 200) {
+            $this.list = res.data.items;
+            $this.total = res.data.total;
+            $this.pageSize = res.data.pageSize;
+            $this.pageIndex = res.data.pageIndex;
+            setTimeout(function() {
+              $this.loading = false;
+            }, 1000);
+          }
+        });
 
       // return $this.$http.get('/news/list', {
       //   params: {
@@ -126,9 +129,8 @@ export default {
       //   }
       // });
     }
-
   }
-}
+};
 </script>
 <style lang="scss" scoped>
 .main-banner {
@@ -175,9 +177,9 @@ export default {
   vertical-align: top;
   text-align: left;
   // height: 480px;
-  width: 100% ;
+  width: 100%;
   margin: 20px 0;
-  box-shadow: 0 5px 40px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
   white-space: normal;
   -webkit-transition: all 250ms cubic-bezier(0.02, 0.01, 0.47, 1);
   -moz-transition: all 250ms cubic-bezier(0.02, 0.01, 0.47, 1);
