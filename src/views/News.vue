@@ -1,5 +1,5 @@
 <template>
-  <div id="mainNews">
+  <div id="mainNews" v-cloak>
     <div class="main-banner"></div>
     <div class="inner-padding">
       <div class="container">
@@ -8,46 +8,49 @@
             <span>News</span>
           </h3>
         </div>
-        <div class="section-container-content text-center">
-          <h3 class="text-warning bold margin-v-15"></h3>
-        </div>
-        <div class="clearfix"> </div>
-        <div class="row">
-          <div class="col-md-2">
-            <ul v-for="(item,index) in channels" :key="index" class="col-xs-12">
-              <li>{{item.name}}</li>
-            </ul>
-          </div>
-          <div class="col-md-10">
-            <cw-loading :loading="loading"></cw-loading>
-            <div class="section-container-list" v-show="!loading">
-              <div v-for="(item,index) in list" :key="index" class="col-xs-12">
-                <router-link :to="{name:'newsdetail',params:{id:item.id}}" target="_blank">
-                  <div class="card">
-                    <!--Article-->
-                    <div class="card-body">
-                      <!-- <div class="card-circle" style="background-image: url('/static/images/1.png')"></div> -->
-                      <div class="card-title">{{item.title}}</div>
-                      <div class="card-description">{{item.description}}</div>
-                    </div>
-                    <!-- <div class="card-hero">
+        <div class="section-container-content">
+          <div class="row">
+            <div id="channel_nav" :class="{'fixed-nav':fixedNav}">
+              <ul class="section-container-nav nav nav-pills nav-stacked">
+                <li role="presentation">
+                  <router-link :to="{name:'news'}" exact>All News</router-link>
+                </li>
+                <li role="presentation" v-for="(item,index) in channels" :key="index">
+                  <router-link :to="{name:'news_channel',params:{id:item.id}}">{{item.name}}</router-link>
+                </li>
+              </ul>
+            </div>
+            <div id="channel_news">
+              <cw-loading :loading="loading"></cw-loading>
+              <div class="section-container-list" v-show="!loading">
+                <div v-for="(item,index) in list" :key="index" class="col-xs-12">
+                  <router-link :to="{name:'newsdetail',params:{id:item.id}}" target="_blank">
+                    <div class="card">
+                      <!--Article-->
+                      <div class="card-body">
+                        <!-- <div class="card-circle" style="background-image: url('/static/images/1.png')"></div> -->
+                        <div class="card-title">{{item.title}}</div>
+                        <div class="card-description">{{item.description}}</div>
+                      </div>
+                      <!-- <div class="card-hero">
                     <div class="card-image" style="background-image: url(/static/images/1.jpg);">
                     </div>
                   </div> -->
-                    <div class="card-footer">
-                      <div class="card-footer-wrapper">
-                        <div class="card-tag pull-right">{{item.create_date | formatTime}}</div>
-                        <div class="card-medium"></div>
+                      <div class="card-footer">
+                        <div class="card-footer-wrapper">
+                          <div class="card-tag pull-right">{{item.create_date | formatTime}}</div>
+                          <div class="card-medium"></div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </router-link>
+                  </router-link>
+                </div>
+                <div class="clearfix"></div>
               </div>
-              <div class="clearfix"></div>
-            </div>
-            <div class="section-container-page">
-              <div class="col-xs-12">
-                <cw-pager :total="total" :current-page='pageIndex' :page-size="pageSize" @page-change="pageChange"></cw-pager>
+              <div class="section-container-page" v-show="!loading">
+                <div class="col-xs-12">
+                  <cw-pager :total="total" :current-page='pageIndex' :page-size="pageSize" @page-change="pageChange"></cw-pager>
+                </div>
               </div>
             </div>
           </div>
@@ -69,7 +72,8 @@ export default {
       pageIndex: 1,
       channels: [],
       list: [],
-      loading: true
+      loading: true,
+      fixedNav: false
     };
   },
   beforeCreate: function() {
@@ -82,16 +86,25 @@ export default {
     });
   },
   created: function() {
-    this.getPage(this.pageIndex, this.pageSize);
+    this.getPage();
   },
-  mounted: function() {},
+  watch: {
+    $route(to, from) {
+      this.getPage();
+    }
+  },
+  mounted: function() {
+    // 开启滚动监听
+    window.addEventListener("scroll", this.handleScroll);
+  },
   methods: {
     pageChange: function(pageIndex) {
-      this.getPage(pageIndex, this.pageSize);
+      this.pageIndex = pageIndex;
+      this.getPage();
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
     },
-    getPage: function(pageIndex, pageSize) {
+    getPage: function() {
       this.loading = true;
       var $this = this;
       return $this.$http
@@ -99,7 +112,7 @@ export default {
           params: {
             pageIndex: $this.pageIndex,
             pageSize: $this.pageSize,
-            channel: $this.$route.params.channel
+            channel_id: $this.$route.params.id
           }
         })
         .then(function(res) {
@@ -113,26 +126,33 @@ export default {
             }, 1000);
           }
         });
-
-      // return $this.$http.get('/news/list', {
-      //   params: {
-      //     pageIndex: this.current,
-      //     pageSize: this.pageSize
-      //   }
-      // }).then(function (res) {
-      //   debugger
-      //   if (res.status == 200) {
-      //     $this.list = res.data.items;
-      //     $this.total = res.data.total;
-      //     $this.pageSize = res.data.pageSize;
-      //     $this.current = res.data.pageIndex;
-      //   }
-      // });
+    },
+    // 滚动监听  滚动触发的效果写在这里
+    handleScroll: function() {
+      var scrollTop =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
+      var width =
+        document.body.clientWidth ||
+        document.body.offsetWidth ||
+        document.body.scrollWidth;
+      if (scrollTop >= 270 && width >= 768) {
+        this.fixedNav = true;
+      } else {
+        this.fixedNav = false;
+      }
     }
   }
 };
 </script>
 <style lang="scss" scoped>
+.fixed-nav {
+  position: fixed;
+  top: 100px;
+  z-index: 999;
+  width: 100%;
+}
 .main-banner {
   background: url(/static/images/banner_5.jpg) no-repeat 0px 0px;
   background-size: cover;
@@ -168,8 +188,46 @@ export default {
       }
     }
   }
-}
 
+  .section-container-nav {
+    a:focus,
+    a:hover {
+      text-decoration: none;
+      background-color: #fffadf;
+      border-radius: 0;
+    }
+    a.active {
+      color: #fff;
+      background-color: #ffc107;
+      border-radius: 0;
+    }
+  }
+}
+@media (max-width: 767px) {
+  #channel_nav {
+    width: 100%;
+    word-wrap: break-word;
+    float: left;
+    padding: 0 15px;
+  }
+  #channel_news {
+    margin-left: 0;
+  }
+
+  .nav-stacked > li {
+    float: left;
+  }
+}
+@media (min-width: 768px) {
+  #channel_nav {
+    width: 200px;
+    word-wrap: break-word;
+    float: left;
+  }
+  #channel_news {
+    margin-left: 200px;
+  }
+}
 .card {
   display: inline-block;
   position: relative;

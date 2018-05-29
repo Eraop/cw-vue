@@ -12,7 +12,7 @@ var pool = mysql.createPool({
   user: "root",
   password: "123456",
   port: "3306",
-  database: "wf"
+  database: "wf_vue"
 });
 function query(sql, callback) {
   pool.getConnection(function(err, connection) {
