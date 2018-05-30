@@ -25,7 +25,7 @@ router.get("/list", function(req, res, next) {
   var sql = "SELECT * FROM cms_article order by last_update,id desc limit ?,?";
   var param = [start, size];
   // 查询所属channel下的cms_article的总数
-  var countSql = "SELECT count(1) as sum FROM cms_article";
+  var countSql = "SELECT count(1) as sum FROM cms_article"; 
   var countParam = [];
 
   if (req.query.channel_id !== undefined) {
@@ -65,6 +65,7 @@ router.get("/channel", function(req, res, next) {
   });
 });
 
+// 获取news详细信息
 router.get("/detail/:id", function(req, res, next) {
   db.query(
     "SELECT * FROM cms_article where id= ? limit 1",

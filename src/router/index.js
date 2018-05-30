@@ -6,6 +6,7 @@ import ContactUs from "@/views/ContactUs";
 import News from "@/views/News";
 import NotFound from "@/views/NotFound";
 import NewsDetail from "@/views/NewsDetail";
+import Login from "@/views/Login";
 
 Vue.use(Router);
 
@@ -18,7 +19,18 @@ export default new Router({
       name: "home",
       component: Home,
       meta: {
+        title: "首页",
         auth: false
+      }
+    },
+    {
+      path: "/login",
+      name: "login",
+      component: Login,
+      meta: {
+        title: "登录",
+        auth: false,
+        hideheader: true  
       }
     },
     {
@@ -26,6 +38,7 @@ export default new Router({
       name: "about",
       component: About,
       meta: {
+        title: "关于我们",
         auth: false
       }
     },
@@ -34,6 +47,7 @@ export default new Router({
       name: "contactus",
       component: ContactUs,
       meta: {
+        title: "联系我们",
         auth: false
       }
     },
@@ -50,6 +64,7 @@ export default new Router({
       name: "news",
       component: News,
       meta: {
+        title: "新闻",
         auth: false
       },
       children: [
@@ -63,7 +78,11 @@ export default new Router({
     {
       path: "*",
       name: "notfound",
-      component: NotFound
+      component: NotFound,
+      meta: {
+        title: "错误页",
+        auth: false
+      }
     }
   ]
 });

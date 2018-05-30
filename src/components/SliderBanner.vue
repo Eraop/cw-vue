@@ -1,5 +1,5 @@
 <template>
-  <div id="homeCarousel" class="carousel slide" data-ride="carousel">
+  <div id="homeCarousel" class="carousel slide carousel-fade" data-ride="carousel">
     <!-- 轮播（Carousel）指标 -->
     <ol class="carousel-indicators">
       <li data-target="#homeCarousel" data-slide-to="0" class="active"></li>
@@ -19,46 +19,57 @@
       </div>
     </div>
     <!-- 轮播（Carousel）导航 -->
-    <a class="left carousel-control" href="#homeCarousel" role="button" data-slide="prev">
+    <!-- <a class="left carousel-control" href="#homeCarousel" role="button" data-slide="prev">
       <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
     </a>
     <a class="right carousel-control" href="#homeCarousel" role="button" data-slide="next">
       <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
-    </a>
+    </a> -->
   </div>
 </template>
 <script>
-var list = [{
-  imageUrl: '/static/images/banner_2.jpg',
-  imageTitle: 'Exceptional Life Fitness',
-  imageDescription: 'TrainHard is the right place to start new life as an athletic, strong and healthy person with a strong will.'
-}, {
-  imageUrl: '/static/images/banner_1.jpg',
-  imageTitle: 'Become Strong And Healthy',
-  imageDescription: 'TrainHard is the right place to start new life as an athletic, strong and healthy person with a strong will.'
-}, {
-  imageUrl: '/static/images/banner_3.jpg',
-  imageTitle: 'Build Your Body With Us',
-  imageDescription: 'TrainHard is the right place to start new life as an athletic, strong and healthy person with a strong will.'
-}, {
-  imageUrl: '/static/images/banner_4.jpg',
-  imageTitle: 'Exceptional Life Fitness',
-  imageDescription: 'TrainHard is the right place to start new life as an athletic, strong and healthy person with a strong will.'
-}, {
-  imageUrl: '/static/images/banner_5.jpg',
-  imageTitle: 'Build Your Body With Us',
-  imageDescription: 'TrainHard is the right place to start new life as an athletic, strong and healthy person with a strong will.'
-}]
+var list = [
+  {
+    imageUrl: "/static/images/banner_2.jpg",
+    imageTitle: "Exceptional Life Fitness",
+    imageDescription:
+      "TrainHard is the right place to start new life as an athletic, strong and healthy person with a strong will."
+  },
+  {
+    imageUrl: "/static/images/banner_1.jpg",
+    imageTitle: "Become Strong And Healthy",
+    imageDescription:
+      "TrainHard is the right place to start new life as an athletic, strong and healthy person with a strong will."
+  },
+  {
+    imageUrl: "/static/images/banner_3.jpg",
+    imageTitle: "Build Your Body With Us",
+    imageDescription:
+      "TrainHard is the right place to start new life as an athletic, strong and healthy person with a strong will."
+  },
+  {
+    imageUrl: "/static/images/banner_4.jpg",
+    imageTitle: "Exceptional Life Fitness",
+    imageDescription:
+      "TrainHard is the right place to start new life as an athletic, strong and healthy person with a strong will."
+  },
+  {
+    imageUrl: "/static/images/banner_5.jpg",
+    imageTitle: "Build Your Body With Us",
+    imageDescription:
+      "TrainHard is the right place to start new life as an athletic, strong and healthy person with a strong will."
+  }
+];
 export default {
   name: "SliderBanner",
   data() {
     return {
       list: list
-    }
+    };
   }
-}
+};
 </script>
  <style lang="scss" scoped>
 .carousel-inner .item img {
@@ -98,6 +109,28 @@ a.carousel-control {
     display: none;
   }
 }
+.carousel-fade .carousel-inner {
+  .item {
+    opacity: 0.4;
+    -webkit-transition-property: opacity;
+    -moz-transition-property: opacity;
+    -ms-transition-property: opacity;
+    -o-transition-property: opacity;
+    transition-property: opacity;
+  }
+
+  .active,
+  .next.left,
+  .prev.right {
+    opacity: 1;
+  }
+
+  .active.left,
+  .active.right {
+    left: 0;
+    opacity: 0;
+  }
+}
 </style>
 <style lang="scss" scoped>
 /*--responsive--*/
@@ -105,8 +138,6 @@ a.carousel-control {
   .carousel-caption p {
     width: 46%;
   }
-}
-@media (max-width: 1366px) {
 }
 @media (max-width: 1280px) {
   .carousel-caption {
@@ -168,8 +199,6 @@ a.carousel-control {
     }
   }
 }
-@media (min-width: 992px) {
-}
 @media (max-width: 991px) {
   .carousel-caption {
     top: 37%;
@@ -192,8 +221,6 @@ a.carousel-control {
     top: 38%;
   }
 }
-@media (max-width: 768px) {
-}
 @media (max-width: 767px) {
   .carousel-caption {
     top: 32%;
@@ -203,8 +230,6 @@ a.carousel-control {
       letter-spacing: 2px;
     }
   }
-}
-@media (max-width: 736px) {
 }
 @media (max-width: 667px) {
   .carousel-caption {
@@ -282,8 +307,6 @@ a.carousel-control {
   .carousel-caption {
     top: 39%;
   }
-}
-@media (max-width: 375px) {
 }
 @media (max-width: 320px) {
   .carousel-caption {

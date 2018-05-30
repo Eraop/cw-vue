@@ -16,26 +16,28 @@
 </template>
 <script scoped>
 export default {
-    name: "NewsDetail",
-    data() {
-        return {
-            model: ""
+  name: "NewsDetail",
+  data() {
+    return {
+      model: ""
+    };
+  },
+  created: function() {
+    var $this = this;
+    return $this.$http
+      .get("/api/news/detail/" + $this.$route.params.id)
+      .then(function(res) {
+        if (res.status == 200) {
+          if (res.data !== "") {
+            $this.model = res.data;
+            document.title = $this.model.title + " | Eraop";
+          } else {
+            $this.$router.push({ name: "notfound" });
+          }
         }
-    },
-    created: function () {
-        var $this = this;
-        return $this.$http.get('/api/news/detail/' + $this.$route.params.id).then(function (res) {
-            if (res.status == 200) {
-                if (res.data !== "") {
-                    $this.model = res.data;
-                }
-                else {
-                    $this.$router.push({ name: "notfound" });
-                }
-            }
-        });
-    }
-}
+      });
+  }
+};
 </script>
 <style lang="scss" scoped>
 .main-banner {

@@ -31,16 +31,25 @@
 							<li>
 								<router-link class="effect" :to="{name:'contactus'}">Contact Us</router-link>
 							</li>
+							<li>
+								<router-link class="effect" :to="{name:'login'}">Log In</router-link>
+							</li>
 						</ul>
 					</nav>
 				</div>
+				<!-- <div class="navbar-tools">
+					<ul class="nav navbar-nav">
+						<li>
+							<router-link class="effect" :to="{name:'login'}">Log In</router-link>
+						</li>
+					</ul>
+				</div> -->
 			</nav>
 		</div>
 	</div>
 </template>
 <script>
-export default {
-}
+export default {};
 </script> 
 <style lang="scss">
 @import "../assets/css/style.scss";

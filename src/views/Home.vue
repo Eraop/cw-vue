@@ -96,20 +96,26 @@
           </h3>
         </div>
         <div class="row">
-          <div class="team-grid pull-left">
-            <img src="/static/images/1.png" class="img-circle">
-            <h3>Eraop</h3>
-            <p>Cras tortor ipsum, gravida vitae finibus non, bibendum quis turpis. Cras semper accumsan metus, et aliquet diam vestibulum ut. </p>
+          <div class="col-xs-12 col-sm-4">
+            <div class="team-grid pull-left">
+              <img src="/static/images/1.png" class="img-circle">
+              <h3>Eraop</h3>
+              <p>Cras tortor ipsum, gravida vitae finibus non, bibendum quis turpis. Cras semper accumsan metus, et aliquet diam vestibulum ut. </p>
+            </div>
           </div>
-          <div class="team-grid pull-left">
-            <img src="/static/images/3.png" class="img-circle">
-            <h3>Thompson</h3>
-            <p>Cras tortor ipsum, gravida vitae finibus non, bibendum quis turpis. Cras semper accumsan metus, et aliquet diam vestibulum ut. </p>
+          <div class="col-xs-12 col-sm-4">
+            <div class="team-grid pull-left">
+              <img src="/static/images/3.png" class="img-circle">
+              <h3>Thompson</h3>
+              <p>Cras tortor ipsum, gravida vitae finibus non, bibendum quis turpis. Cras semper accumsan metus, et aliquet diam vestibulum ut. </p>
+            </div>
           </div>
-          <div class="team-grid pull-left">
-            <img src="/static/images/2.png" class="img-circle">
-            <h3>Mary watson</h3>
-            <p>Cras tortor ipsum, gravida vitae finibus non, bibendum quis turpis. Cras semper accumsan metus, et aliquet diam vestibulum ut. </p>
+          <div class="col-xs-12 col-sm-4">
+            <div class="team-grid pull-left">
+              <img src="/static/images/2.png" class="img-circle">
+              <h3>Mary watson</h3>
+              <p>Cras tortor ipsum, gravida vitae finibus non, bibendum quis turpis. Cras semper accumsan metus, et aliquet diam vestibulum ut. </p>
+            </div>
           </div>
           <div class="clearfix"></div>
         </div>
@@ -119,14 +125,14 @@
   </div>
 </template>
 <script scoped>
-import sliderBanner from "./SliderBanner.vue";
+import sliderBanner from "../components/SliderBanner.vue";
 
 export default {
   name: "Home",
   components: {
     sliderBanner
   }
-}
+};
 </script>
 <style lang="scss" scoped>
 .section-container {
@@ -223,10 +229,8 @@ export default {
     }
   }
   .team-grid {
-    width: 380px;
     text-align: center;
     padding: 40px 10px;
-    margin-right: 10px;
     background: #000;
     h3 {
       text-transform: uppercase;
@@ -256,10 +260,6 @@ export default {
 
 <style lang="scss" scoped>
 /*--responsive--*/
-@media (max-width: 1440px) {
-}
-@media (max-width: 1366px) {
-}
 @media (max-width: 1280px) {
   .section-container .section-container-head .section-container-head-title {
     font-size: 2.7em;
@@ -272,12 +272,6 @@ export default {
   .d-flex-left h4 {
     font-size: 25px;
   }
-}
-@media (max-width: 1050px) {
-}
-@media (max-width: 1024px) {
-}
-@media (min-width: 992px) {
 }
 @media (max-width: 991px) {
   .d-flex {
@@ -301,24 +295,10 @@ export default {
     }
   }
 }
-@media (max-width: 900px) {
-}
-@media (max-width: 800px) {
-}
-@media (max-width: 768px) {
-}
 @media (max-width: 767px) {
   .section-container .section-container-head .section-container-head-title {
     font-size: 2.5em;
   }
-}
-@media (max-width: 736px) {
-}
-@media (max-width: 667px) {
-}
-@media (max-width: 640px) {
-}
-@media (max-width: 600px) {
 }
 @media (max-width: 568px) {
   .section-container .section-container-head .section-container-head-title {
@@ -342,8 +322,6 @@ export default {
     }
   }
 }
-@media (max-width: 440px) {
-}
 @media (max-width: 414px) {
   .d-flex .d-flex-left {
     padding-right: 0;
@@ -365,8 +343,6 @@ export default {
   .section-container .section-container-head .section-container-head-title {
     font-size: 2em;
   }
-}
-@media (max-width: 375px) {
 }
 @media (max-width: 320px) {
   .section-container .section-container-head .section-container-head-title {

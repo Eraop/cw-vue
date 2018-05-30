@@ -1,7 +1,6 @@
 // 当前样式
 
 .d-flex {
-  display: -ms-flexbox;
   display: flex;
   display: -webkit-box;
   display: -moz-box;
@@ -44,7 +43,10 @@
 .navbar-collapse {
   padding: 0;
 }
-
+.navbar-tools {
+  position: relative;
+  right: 15px;
+}
 .navbar-right {
   margin-right: 0;
 }

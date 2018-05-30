@@ -24,7 +24,6 @@ axios.defaults.baseURL = config.API_BASEURL;
 axios.defaults.withCredentials = false;
 Vue.prototype.$http = axios;
 Vue.prototype.PAGE_SIZE = config.PAGE_SIZE;
-Vue.prototype.THEME_COLOR = config.THEME_COLOR;
 // 全局组件
 Vue.component("cw-header", header);
 Vue.component("cw-footer", footer);
@@ -39,6 +38,14 @@ Vue.filter("formatDate", function(value) {
 });
 Vue.filter("formatTime", function(value) {
   return moment(value).format("YYYY-MM-DD hh:mm:ss");
+});
+
+router.beforeEach((to, from, next) => {
+  /* 路由发生变化修改页面title */
+  if (to.meta.title) {
+    document.title = to.meta.title + " - " + config.META_TITLE;
+  }
+  next();
 });
 
 /* eslint-disable no-new */
