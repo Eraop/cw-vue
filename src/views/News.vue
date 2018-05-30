@@ -245,7 +245,7 @@ export default {
   color: #4b4f56;
   &:hover {
     box-shadow: 0 20px 30px rgba(0, 0, 0, 0.16);
-    transform: translate(0, -1px);
+    // transform: translate(0, -1px);
     transition-delay: 0s !important;
     &::before {
       content: "";
