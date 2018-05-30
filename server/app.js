@@ -16,7 +16,9 @@ app.get("/api/", function(req, res) {
 });
 
 app.use("/api/news", require("./news.js"));
+app.use("/api/auth", require("./auth/auth.js"));
 
 app.listen("8002", () => {
   console.log("success listen at port:8002......");
 });
+  

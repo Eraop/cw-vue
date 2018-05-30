@@ -12,12 +12,12 @@ var pool = mysql.createPool({
   user: "root",
   password: "123456",
   port: "3306",
-  database: "wf_vue"
+  database: "wf"
 });
 function query(sql, callback) {
   pool.getConnection(function(err, connection) {
     if (err) {
-      reject(err);
+      console.log("[SELECT ERROR] - ", err.message);
       return;
     }
     // Use the connection
@@ -31,7 +31,7 @@ function query(sql, callback) {
 function query(sql, queryString, callback) {
   pool.getConnection(function(err, connection) {
     if (err) {
-      reject(err);
+      console.log("[SELECT ERROR] - ", err.message);
       return;
     }
     // Use the connection

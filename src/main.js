@@ -9,7 +9,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import $ from "jquery";
 window.jQuery = $;
 require("bootstrap");
-require("vue2-animate/dist/vue2-animate.min.css");
 
 // 引入组件
 import header from "./components/Header.vue";

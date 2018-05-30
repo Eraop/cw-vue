@@ -1,37 +1,37 @@
 <template>
-    <div class="main-login" id="mainLogin">
-        <div class="items-group">
-            <div class="item">
-                <div class="block text">
-                    <span class="circleLight"></span>
-                    <!-- login form -->
-                    <div class="login-form">
-                        <div class="agile-row">
-                            <h1>登录</h1>
-                            <div class="login-agileits-top">
-                                <form action="#" method="post">
-                                    <p>User Name </p>
-                                    <input type="text" class="name" name="username" placeholder="User Name">
-                                    <p>Password</p>
-                                    <input type="password" class="password" name="Password" placeholder="********">
-                                    <label class="anim">
-                                        <input type="checkbox" class="checkbox">
-                                        <span> Remember me ?</span>
-                                    </label>
-                                    <input type="submit" value="Login">
-                                </form>
-                            </div>
-                            <div class="login-bottom">
-                                <h6>
-                                    <a href="#">Forgot password?</a>
-                                </h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <div class="main-login" id="mainLogin">
+    <div class="items-group">
+      <div class="item">
+        <div class="block text">
+          <span class="circleLight"></span>
+          <!-- login form -->
+          <div class="login-form">
+            <div class="agile-row">
+              <h1>登录</h1>
+              <div class="login-agileits-top">
+                <form action="#" method="post">
+                  <p>User Name </p>
+                  <input type="text" ref="name" class="name" name="username" placeholder="User Name">
+                  <p>Password</p>
+                  <input type="password" ref="password" class="password" name="Password" placeholder="********">
+                  <label class="anim">
+                    <input type="checkbox" class="checkbox">
+                    <span> Remember me ?</span>
+                  </label>
+                  <input type="submit" value="Login" @click="login">
+                </form>
+              </div>
+              <div class="login-bottom">
+                <h6>
+                  <a href="#">Forgot password?</a>
+                </h6>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </template> 
 <script>
 export default {
@@ -40,6 +40,22 @@ export default {
   },
   beforeDestroy: function() {
     document.body.removeAttribute("class", "login-body");
+  },
+  methods: {
+    login() {
+      var $this = this;
+      $this.$http
+        .post("/api/auth/login", {
+          name: $this.$refs.name.value,
+          password: $this.$refs.password.value
+        })
+        .then(function(res) {
+          debugger;
+          if (res.status == 200) {
+            console.log(res.data);
+          }
+        });
+    }
   }
 };
 </script>
