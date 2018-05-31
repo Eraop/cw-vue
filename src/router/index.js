@@ -7,6 +7,7 @@ import News from "@/views/News";
 import NotFound from "@/views/NotFound";
 import NewsDetail from "@/views/NewsDetail";
 import Login from "@/views/Login";
+import AdminIndex from "@/views/admin/Index";
 
 Vue.use(Router);
 
@@ -30,7 +31,7 @@ export default new Router({
       meta: {
         title: "登录",
         auth: false,
-        hideheader: true  
+        hideheader: true
       }
     },
     {
@@ -70,6 +71,23 @@ export default new Router({
       children: [
         {
           path: "channel/:id",
+          name: "news_channel",
+          component: News
+        }
+      ]
+    },
+    {
+      path: "/admin",
+      name: "admin",
+      component: AdminIndex,
+      meta: {
+        title: "后台管理",
+        auth: false,
+        hideheader: true
+      },
+      children: [
+        {
+          path: "menu",
           name: "news_channel",
           component: News
         }

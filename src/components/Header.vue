@@ -51,9 +51,6 @@
 <script>
 export default {};
 </script> 
-<style lang="scss">
-@import "../assets/css/style.scss";
-</style>
 <style lang="scss" scoped>
 .logo {
   height: 50px;

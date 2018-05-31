@@ -20,7 +20,7 @@ import loading from "./components/Loading.vue";
 import config from "./config.js";
 
 axios.defaults.baseURL = config.API_BASEURL;
-axios.defaults.withCredentials = false;
+axios.defaults.withCredentials = true;
 Vue.prototype.$http = axios;
 Vue.prototype.PAGE_SIZE = config.PAGE_SIZE;
 // 全局组件

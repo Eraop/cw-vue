@@ -11,10 +11,11 @@
 <script>
 export default {
   name: "App"
-}
+};
 </script>
-
-
+<style lang="scss">
+@import "./assets/css/style.scss";
+</style>
 <style lang="scss" scoped>
 /*--responsive--*/
 @media (max-width: 1440px) {

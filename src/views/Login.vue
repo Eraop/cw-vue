@@ -9,7 +9,7 @@
             <div class="agile-row">
               <h1>登录</h1>
               <div class="login-agileits-top">
-                <form action="#" method="post">
+                <div>
                   <p>User Name </p>
                   <input type="text" ref="name" class="name" name="username" placeholder="User Name">
                   <p>Password</p>
@@ -19,7 +19,7 @@
                     <span> Remember me ?</span>
                   </label>
                   <input type="submit" value="Login" @click="login">
-                </form>
+                </div>
               </div>
               <div class="login-bottom">
                 <h6>
@@ -44,6 +44,7 @@ export default {
   methods: {
     login() {
       var $this = this;
+      debugger;
       $this.$http
         .post("/api/auth/login", {
           name: $this.$refs.name.value,
@@ -51,8 +52,14 @@ export default {
         })
         .then(function(res) {
           debugger;
-          if (res.status == 200) {
-            console.log(res.data);
+          if (res.status == 200 && res.data) {
+            if (res.data.code === 0) {
+              $this.$router.push({ name: "admin" });
+            } else {
+              alert(res.data.msg);
+            }
+          } else {
+            alert("网络异常，稍后再试");
           }
         });
     }
@@ -88,13 +95,7 @@ export default {
       position: relative;
       opacity: 1;
       visibility: visible;
-      //   &:hover .block {
-      //     -webkit-box-shadow: 0px 0px 50px #333;
-      //     -moz-box-shadow: 0px 0px 50px #333;
-      //     -o-box-shadow: 0px 0px 50px #333;
-      //     -ms-box-shadow: 0px 0px 50px #333;
-      //     box-shadow: 0px 0px 50px #333;
-      //   }
+
       .block {
         -webkit-box-shadow: 0px 0px 50px #333;
         -moz-box-shadow: 0px 0px 50px #333;

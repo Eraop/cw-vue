@@ -4,6 +4,7 @@ var router = express.Router();
 //引入数据库包
 var db = require("./db.js");
 var models = require("./models/models.js");
+// import "./models/models.js";
 
 // 查询列表页
 router.get("/list", function(req, res, next) {
@@ -17,7 +18,7 @@ router.get("/list", function(req, res, next) {
   } else {
     return;
   }
-  var page = new PageModel();
+  var page = new models.PageModel();
   // 查询所属channel下的cms_article
   var sql = "SELECT * FROM cms_article order by last_update,id desc limit ?,?";
   var param = [start, size];
@@ -30,7 +31,8 @@ router.get("/list", function(req, res, next) {
     sql =
       "SELECT * FROM cms_article where channel_id = ? order by last_update,id desc limit ?,?";
     param = [channel_id, start, size];
-    countSql = "SELECT count(1) as sum FROM cms_article where channel_id = ? limit 1";
+    countSql =
+      "SELECT count(1) as sum FROM cms_article where channel_id = ? limit 1";
     countParam = [channel_id];
   }
   db.query(sql, param, function(err, result) {
@@ -46,7 +48,7 @@ router.get("/list", function(req, res, next) {
         console.log("[SELECT ERROR] - ", err.message);
         return;
       }
-      page.total = result["sum"];
+      page.total = result[0]["sum"];
       res.send(page);
     });
   });
