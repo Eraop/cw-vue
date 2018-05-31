@@ -3,8 +3,7 @@ var express = require("express");
 var router = express.Router();
 //引入数据库包
 var db = require("./db.js");
-var models = require("./models/models.js");
-// import "./models/models.js";
+var CommonModels = require("./models/CommonModels.js");
 
 // 查询列表页
 router.get("/list", function(req, res, next) {
@@ -18,7 +17,7 @@ router.get("/list", function(req, res, next) {
   } else {
     return;
   }
-  var page = new models.PageModel();
+  var page = new CommonModels.PageModel();
   // 查询所属channel下的cms_article
   var sql = "SELECT * FROM cms_article order by last_update,id desc limit ?,?";
   var param = [start, size];

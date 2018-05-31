@@ -8,10 +8,10 @@ var jsonParser = bodyParser.json();
 // var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 var admin_user = require("../admin/user.js");
-var models = require("../models/models.js");
+var CommonModels = require("../models/CommonModels.js");
 
 router.post("/login", jsonParser, function(req, res, next) {
-  var rm = new models.ReturnModel();
+  var rm = new CommonModels.ReturnModel();
   admin_user.getOne(req.body.name, req.body.password, function(data) {
     var user = data;
     if (user) {

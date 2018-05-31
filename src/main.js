@@ -40,13 +40,36 @@ Vue.filter("formatTime", function(value) {
 });
 
 router.beforeEach((to, from, next) => {
-  /* 路由发生变化修改页面title */
-  if (to.meta.title) {
-    document.title = to.meta.title + " - " + config.META_TITLE;
+  if (to.meta.auth) {
+    // 判断该路由是否需要登录权限
+    // 通过vuex state获取当前的token是否存在
+    if (store.state.token) {
+      if (to.meta.title) {
+        document.title = to.meta.title + " - " + config.META_TITLE;
+      }
+      next();
+    } else {
+      next({
+        name: "login",
+        query: { redirect: to.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由
+      });
+    }
   }
-  next();
+  /* 路由发生变化修改页面title */
 });
-
+// 登录拦截器
+axios.interceptors.request.use(
+  config => {
+    if (store.state.token) {
+      // 判断是否存在token，如果存在的话，则每个http header都加上token
+      config.headers.Authorization = `token ${store.state.token}`;
+    }
+    return config;
+  },
+  err => {
+    return Promise.reject(err);
+  }
+);
 /* eslint-disable no-new */
 new Vue({
   el: "#app",
