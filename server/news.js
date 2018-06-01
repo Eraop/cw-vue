@@ -48,7 +48,7 @@ router.get("/list", function(req, res, next) {
         return;
       }
       page.total = result[0]["sum"];
-      res.send(page);
+      res.json(page);
     });
   });
 });
@@ -59,7 +59,7 @@ router.get("/channel", function(req, res, next) {
       console.log("[SELECT ERROR] - ", err.message);
       return;
     }
-    res.send(result);
+    res.json(result);
   });
 });
 
@@ -73,7 +73,7 @@ router.get("/detail/:id", function(req, res, next) {
         console.log("[SELECT ERROR] - ", err.message);
         return;
       }
-      res.send(result.length > 0 ? result[0] : null);
+      res.json(result.length > 0 ? result[0] : null);
     }
   );
 });

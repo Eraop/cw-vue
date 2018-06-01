@@ -1,5 +1,6 @@
 "use strict";
 var mysql = require("mysql");
+var config = require("./config.js");
 // var pool = mysql.createPool({
 //   host: "192.168.33.200",
 //   user: "root",
@@ -7,13 +8,7 @@ var mysql = require("mysql");
 //   port: "3306",
 //   database: "wf"
 // });
-var pool = mysql.createPool({
-  host: "localhost",
-  user: "root",
-  password: "123456",
-  port: "3306",
-  database: "wf"
-});
+var pool = mysql.createPool(config.database);
 function query(sql, callback) {
   pool.getConnection(function(err, connection) {
     if (err) {

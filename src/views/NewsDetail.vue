@@ -1,18 +1,18 @@
 <template>
-    <div id="mainNewsDetail">
-        <div class="inner-padding">
-            <div class="container">
-                <div class="section-container-head text-center">
-                    <h3 class="news-detail-title text-dark bold">{{model.title}} </h3>
-                    <div class="text-dark margin-v-10 text-right">创建时间：{{model.create_date | formatTime}}</div>
-                </div>
-                <div class="section-container-content text-center">
-                    <p v-html="model.content"></p>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
+  <div id="mainNewsDetail">
+    <div class="inner-padding">
+      <div class="container">
+        <div class="section-container-head text-center">
+          <h3 class="news-detail-title text-dark bold">{{model.title}} </h3>
+          <div class="text-dark margin-v-10 text-right">创建时间：{{model.create_date | formatTime}}</div>
         </div>
+        <div class="section-container-content text-center">
+          <p v-html="model.content"></p>
+        </div>
+        <div class="clearfix"> </div>
+      </div>
     </div>
+  </div>
 </template>
 <script scoped>
 export default {
@@ -23,16 +23,15 @@ export default {
     };
   },
   created: function() {
-    var $this = this;
-    return $this.$http
-      .get("/api/news/detail/" + $this.$route.params.id)
-      .then(function(res) {
+    return this.$http
+      .get("/api/news/detail/" + this.$route.params.id)
+      .then(res => {
         if (res.status == 200) {
           if (res.data !== "") {
-            $this.model = res.data;
-            document.title = $this.model.title + " | Eraop";
+            this.model = res.data;
+            document.title = this.model.title + " | Eraop";
           } else {
-            $this.$router.push({ name: "notfound" });
+            this.$router.push({ name: "notfound" });
           }
         }
       });

@@ -13,6 +13,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 $THEME_COLOR: #ffc107;
+
 .loading-wrap {
   text-align: center;
   color: $THEME_COLOR;

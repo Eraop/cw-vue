@@ -9,7 +9,7 @@ var jsonParser = bodyParser.json();
 
 var admin_user = require("../admin/user.js");
 var CommonModels = require("../models/CommonModels.js");
-
+var tokenUtil = require("../auth/token.js");
 router.post("/login", jsonParser, function(req, res, next) {
   var rm = new CommonModels.ReturnModel();
   admin_user.getOne(req.body.name, req.body.password, function(data) {
@@ -17,6 +17,11 @@ router.post("/login", jsonParser, function(req, res, next) {
     if (user) {
       rm.code = 0;
       rm.msg = "登录成功";
+      var token = tokenUtil.createToken(user.username);
+      rm.data = {
+        username: user.username,
+        token: token
+      };
       req.session.loginUser = user.username;
       req.session.regenerate(function(err) {
         if (err) {
@@ -28,7 +33,7 @@ router.post("/login", jsonParser, function(req, res, next) {
       rm.code = 1;
       rm.msg = "账号或密码错误";
     }
-    res.send(rm);
+    res.json(rm);
   });
 });
 

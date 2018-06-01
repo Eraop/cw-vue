@@ -11,7 +11,7 @@ import AdminIndex from "@/views/admin/Index";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   // mode: "history",
   linkActiveClass: "active",
   routes: [
@@ -82,13 +82,13 @@ export default new Router({
       component: AdminIndex,
       meta: {
         title: "后台管理",
-        auth: false,
+        auth: true,
         hideheader: true
       },
       children: [
         {
           path: "menu",
-          name: "news_channel",
+          name: "admin_menu",
           component: News
         }
       ]
@@ -104,3 +104,31 @@ export default new Router({
     }
   ]
 });
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.auth) {
+    // 判断该路由是否需要登录权限
+    // 通过vuex state获取当前的token是否存在
+    debugger;
+    if (store.state.user.currentUser.UserToken) {
+      if (to.meta.title) {
+        document.title = to.meta.title + " - " + config.META_TITLE;
+      }
+      next();
+    } else {
+      next({
+        name: "login",
+        query: { redirect: to.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由
+      });
+    }
+  } else {
+    next();
+  }
+  /* 路由发生变化修改页面title */
+  // if (to.meta.title) {
+  //   document.title = to.meta.title + " - " + config.META_TITLE;
+  // }
+  // next();
+});
+
+export default router;

@@ -77,11 +77,10 @@ export default {
     };
   },
   beforeCreate: function() {
-    var $this = this;
     // this.getChannels();
-    this.$http.get("/api/news/channel").then(function(res) {
+    this.$http.get("/api/news/channel").then(res => {
       if (res.status == 200) {
-        $this.channels = res.data;
+        this.channels = res.data;
       }
     });
   },
@@ -106,23 +105,22 @@ export default {
     },
     getPage: function() {
       this.loading = true;
-      var $this = this;
-      return $this.$http
+      return this.$http
         .get("/api/news/list", {
           params: {
-            pageIndex: $this.pageIndex,
-            pageSize: $this.pageSize,
-            channel_id: $this.$route.params.id
+            pageIndex: this.pageIndex,
+            pageSize: this.pageSize,
+            channel_id: this.$route.params.id
           }
         })
-        .then(function(res) {
+        .then(res=>{
           if (res.status == 200) {
-            $this.list = res.data.items;
-            $this.total = res.data.total;
-            $this.pageSize = res.data.pageSize;
-            $this.pageIndex = res.data.pageIndex;
-            setTimeout(function() {
-              $this.loading = false;
+            this.list = res.data.items;
+            this.total = res.data.total;
+            this.pageSize = res.data.pageSize;
+            this.pageIndex = res.data.pageIndex;
+            setTimeout(() =>{
+              this.loading = false;
             }, 1000);
           }
         });

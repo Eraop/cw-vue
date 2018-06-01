@@ -1,6 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from "vue";
+import Vuex from "vuex";
 import App from "./App";
 import router from "./router";
 import axios from "axios";
@@ -18,9 +19,38 @@ import loading from "./components/Loading.vue";
 
 //引入自定义配置
 import config from "./config.js";
+//vuex
+import store from "./store/store.js";
 
 axios.defaults.baseURL = config.API_BASEURL;
 axios.defaults.withCredentials = true;
+
+//添加请求拦截器
+axios.interceptors.request.use(
+  config => {
+    debugger;
+    if (store.state.user.currentUser.UserToken) {
+      // 判断是否存在token,如果存在的话,则每个http header都加上token
+      config.headers["auth-token"] = store.state.user.currentUser.UserToken;
+    }
+    return config;
+  },
+  err => {
+    return Promise.reject(err);
+  }
+);
+
+//添加响应拦截器
+axios.interceptors.response.use(
+  function(response) {
+    //对响应数据做些事
+    return response;
+  },
+  function(error) {
+    //请求错误时做些事
+    return Promise.reject(error);
+  }
+);
 Vue.prototype.$http = axios;
 Vue.prototype.PAGE_SIZE = config.PAGE_SIZE;
 // 全局组件
@@ -39,41 +69,11 @@ Vue.filter("formatTime", function(value) {
   return moment(value).format("YYYY-MM-DD hh:mm:ss");
 });
 
-router.beforeEach((to, from, next) => {
-  if (to.meta.auth) {
-    // 判断该路由是否需要登录权限
-    // 通过vuex state获取当前的token是否存在
-    if (store.state.token) {
-      if (to.meta.title) {
-        document.title = to.meta.title + " - " + config.META_TITLE;
-      }
-      next();
-    } else {
-      next({
-        name: "login",
-        query: { redirect: to.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由
-      });
-    }
-  }
-  /* 路由发生变化修改页面title */
-});
-// 登录拦截器
-axios.interceptors.request.use(
-  config => {
-    if (store.state.token) {
-      // 判断是否存在token，如果存在的话，则每个http header都加上token
-      config.headers.Authorization = `token ${store.state.token}`;
-    }
-    return config;
-  },
-  err => {
-    return Promise.reject(err);
-  }
-);
 /* eslint-disable no-new */
 new Vue({
   el: "#app",
   router,
+  store,
   components: {
     App
   },

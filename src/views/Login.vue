@@ -39,29 +39,28 @@ export default {
     document.getElementsByTagName("body")[0].className = "login-body";
   },
   beforeDestroy: function() {
-    document.body.removeAttribute("class", "login-body");
+    document
+      .getElementsByTagName("body")[0]
+      .removeAttribute("class", "login-body");
   },
   methods: {
     login() {
-      var $this = this;
-      debugger;
-      $this.$http
-        .post("/api/auth/login", {
-          name: $this.$refs.name.value,
-          password: $this.$refs.password.value
+      this.$store
+        .dispatch("login", {
+          user_name: this.$refs.name.value,
+          user_pass: this.$refs.password.value
         })
-        .then(function(res) {
-          debugger;
+        .then(res => {
           if (res.status == 200 && res.data) {
             if (res.data.code === 0) {
-              $this.$router.push({ name: "admin" });
+              this.$router.push({ name: "admin" });
             } else {
               alert(res.data.msg);
             }
           } else {
             alert("网络异常，稍后再试");
           }
-        });
+        }); 
     }
   }
 };
