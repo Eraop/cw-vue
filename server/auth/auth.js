@@ -12,7 +12,7 @@ var CommonModels = require("../models/CommonModels.js");
 var tokenUtil = require("../auth/token.js");
 router.post("/login", jsonParser, function(req, res, next) {
   var rm = new CommonModels.ReturnModel();
-  admin_user.getOne(req.body.name, req.body.password, function(data) {
+  admin_user.findOne(req.body.name, req.body.password, function(data) {
     var user = data;
     if (user) {
       rm.code = 0;
@@ -22,6 +22,7 @@ router.post("/login", jsonParser, function(req, res, next) {
         username: user.username,
         token: token
       };
+      // TODO 获取角色
       req.session.loginUser = user.username;
       req.session.regenerate(function(err) {
         if (err) {

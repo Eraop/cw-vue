@@ -1,7 +1,7 @@
 "use strict";
 var db = require("../db.js");
 
-var getOne = function(name, password, callback) {
+var findOne = function(name, password, callback) {
   db.query(
     "SELECT * FROM core_user where enabled and !is_expired and !is_locked and username=? and password=? limit 1",
     [name, password],
@@ -14,4 +14,4 @@ var getOne = function(name, password, callback) {
   );
 };
 
-exports.getOne = getOne;
+exports.findOne = findOne;
