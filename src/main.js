@@ -28,10 +28,9 @@ axios.defaults.withCredentials = true;
 //添加请求拦截器
 axios.interceptors.request.use(
   config => {
-    debugger;
     if (store.state.user.currentUser.UserToken) {
       // 判断是否存在token,如果存在的话,则每个http header都加上token
-      config.headers["auth-token"] = store.state.user.currentUser.UserToken;
+      config.headers["x-access-token"] = store.state.user.currentUser.UserToken;
     }
     return config;
   },
@@ -42,9 +41,19 @@ axios.interceptors.request.use(
 
 //添加响应拦截器
 axios.interceptors.response.use(
-  function(response) {
+  function(res) {
     //对响应数据做些事
-    return response;
+    if (res.data.code === 403) {
+      store.commit("setUser", {
+        user_name: "",
+        user_token: ""
+      });
+      router.replace({
+        path: "login",
+        query: { redirect: router.currentRoute.fullPath }
+      });
+    }
+    return res;
   },
   function(error) {
     //请求错误时做些事
@@ -67,6 +76,31 @@ Vue.filter("formatDate", function(value) {
 });
 Vue.filter("formatTime", function(value) {
   return moment(value).format("YYYY-MM-DD hh:mm:ss");
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.auth) {
+    // 判断该路由是否需要登录权限
+    // 通过vuex state获取当前的token是否存在
+    if (store.state.user.currentUser.UserToken) {
+      if (to.meta.title) {
+        document.title = to.meta.title + " - " + config.META_TITLE;
+      }
+      next();
+    } else {
+      next({
+        name: "login",
+        query: { redirect: to.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由
+      });
+    }
+  } else {
+    next();
+  }
+  /* 路由发生变化修改页面title */
+  // if (to.meta.title) {
+  //   document.title = to.meta.title + " - " + config.META_TITLE;
+  // }
+  // next();
 });
 
 /* eslint-disable no-new */

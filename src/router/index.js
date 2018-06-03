@@ -57,7 +57,7 @@ const router = new Router({
       name: "newsdetail",
       component: NewsDetail,
       meta: {
-        auth: false
+        auth: true
       }
     },
     {
@@ -103,32 +103,6 @@ const router = new Router({
       }
     }
   ]
-});
-
-router.beforeEach((to, from, next) => {
-  if (to.meta.auth) {
-    // 判断该路由是否需要登录权限
-    // 通过vuex state获取当前的token是否存在
-    debugger;
-    if (store.state.user.currentUser.UserToken) {
-      if (to.meta.title) {
-        document.title = to.meta.title + " - " + config.META_TITLE;
-      }
-      next();
-    } else {
-      next({
-        name: "login",
-        query: { redirect: to.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由
-      });
-    }
-  } else {
-    next();
-  }
-  /* 路由发生变化修改页面title */
-  // if (to.meta.title) {
-  //   document.title = to.meta.title + " - " + config.META_TITLE;
-  // }
-  // next();
 });
 
 export default router;

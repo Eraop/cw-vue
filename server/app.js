@@ -18,11 +18,12 @@ app.all("*", function(req, res, next) {
     res.header("Access-Control-Allow-Origin", req.headers.origin);
     res.header(
       "Access-Control-Allow-Headers",
-      "auth-token,authorization,X-Requested-With,Content-Type"
+      "x-access-token,authorization,X-Requested-With,Content-Type"
     );
     res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
     res.header("Access-Control-Allow-Credentials", "true");
   }
+
   next();
 });
 
@@ -30,15 +31,21 @@ app.get("/api/", function(req, res) {
   res.send("Hello World");
 });
 
-app.get("/api/auth", function(req, res) {
-  var rm = new CommonModels.ReturnModel();
-  var token = tokenUtil.createToken("eraop");
-  rm.code = 0;
-  rm.msg = "登录成功";
-  rm.data = {
-    token: token
-  };
-  res.json(rm);
+app.get("/api/admin/*", function(req, res, next) {
+  tokenUtil.checkToken(req.headers["x-access-token"]).then(result => {
+    if (result && result.success) {
+      next();
+    } else {
+      var rm = new CommonModels.ReturnModel();
+      rm.code = 403;
+      rm.msg = "token信息错误";
+      res.json(rm);
+    }
+  });
+});
+
+app.get("/api/admin/menu", function(req, res, next) {
+  res.send("menu");
 });
 
 app.use("/api/news", require("./news.js"));

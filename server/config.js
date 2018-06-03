@@ -14,4 +14,4 @@ exports.database = {
 };
 
 exports.secret_key = "eraop";
-exports.expires_in = 60 * 60 * 24;
+exports.expires_in = 60;

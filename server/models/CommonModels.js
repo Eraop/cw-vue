@@ -16,7 +16,11 @@ class ReturnModel {
     this.data = data;
   }
 }
-
+// var ReturnResult  = {
+//   SUCCESS = new ReturnModel(200,"",""),
+//   FAILED = new ReturnModel(404,"用户名或密码错误",""),
+//   INVALID_AUTH = new ReturnModel(401,"未授权","")
+// }
 module.exports = {
   ReturnModel,
   PageModel
