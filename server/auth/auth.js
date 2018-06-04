@@ -8,7 +8,9 @@ var jsonParser = bodyParser.json();
 // var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 var admin_user = require("../admin/user.js");
+var admin_role = require("../admin/role.js");
 var CommonModels = require("../models/CommonModels.js");
+var LoginUser = require("../models/LoginUser.js");
 var tokenUtil = require("../auth/token.js");
 router.post("/login", jsonParser, function(req, res, next) {
   var rm = new CommonModels.ReturnModel();
@@ -22,14 +24,21 @@ router.post("/login", jsonParser, function(req, res, next) {
         username: user.username,
         token: token
       };
-      // TODO 获取角色
-      req.session.loginUser = user.username;
-      req.session.regenerate(function(err) {
-        if (err) {
+      // 获取角色
+      admin_role
+        .findRolesByUserId(user.id)
+        .then(res => {
+          LoginUser.roles = res;
+          LoginUser.username = user.username;
+          LoginUser.user = user;
+          LoginUser.token = token;
+          req.session.LoginUser = LoginUser;
+          })
+        .catch(err => {
+          console.log(err);
           rm.code = -1;
-          rm.msg = "系统异常，稍后再试";
-        }
-      });
+          rm.msg = "用户权限异常，请联系管理员";
+        });
     } else {
       rm.code = 1;
       rm.msg = "账号或密码错误";
@@ -37,5 +46,41 @@ router.post("/login", jsonParser, function(req, res, next) {
     res.json(rm);
   });
 });
+router.post("/refresh_token", function(req, res) {
+  var token = req.headers["x-access-token"];
+  // verify the existing token
+  var rm = new CommonModels.ReturnModel();
 
+  tokenUtil
+    .decodedToken(token)
+    .then(res => {
+      // check if the user still exists or if authorization hasn't been revoked
+      var LoginUser = req.session.LoginUser;
+      var valid = LoginUser && LoginUser.username === token;
+      if (LoginUser && LoginUser.username === res.username) {
+        var refreshed_token = tokenUtil.createToken(LoginUser.username);
+        rm.code = 200;
+        rm.msg = "token信息更新";
+        rm.data = {
+          token: refreshed_token
+        };
+        res.json(rm);
+      } else {
+        rm.code = 401;
+        rm.msg = "token信息错误";
+        return res.json(rm);
+      }
+    })
+    .catch(err => {
+      rm.code = 401;
+      rm.msg = "token信息错误";
+      res.json(rm);
+    });
+
+  // // if more than 14 days old, force login
+  // if (profile.iat - new Date() > 14) {
+  //   // iat == issued at
+  //   return res.send(401); // re-logging
+  // }
+});
 module.exports = router;

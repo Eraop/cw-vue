@@ -53,14 +53,19 @@ export default {
         .then(res => {
           if (res.status == 200 && res.data) {
             if (res.data.code === 0) {
-              this.$router.push({ name: "admin" });
+              var redirect = this.$route.query.redirect;
+              if (redirect) {
+                this.$router.push({ path: redirect });
+              } else {
+                this.$router.push({ name: "admin" });
+              }
             } else {
               alert(res.data.msg);
             }
           } else {
             alert("网络异常，稍后再试");
           }
-        }); 
+        });
     }
   }
 };

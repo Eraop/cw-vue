@@ -32,12 +32,29 @@ app.get("/api/", function(req, res) {
 });
 
 app.get("/api/admin/*", function(req, res, next) {
-  tokenUtil.checkToken(req.headers["x-access-token"]).then(result => {
+  var token = req.headers["x-access-token"];
+  var decoded = tokenUtil.decodedToken(token);
+  console.log(decoded.exp * 1000 - new Date() < 30 * 1000);
+  console.log(decoded.exp * 1000 - new Date());
+  if (
+    decoded &&
+    decoded.exp * 1000 > new Date() &&
+    decoded.exp * 1000 - new Date() < 30 * 1000
+  ) {
+    var LoginUser = req.session.LoginUser;
+    var valid = LoginUser && LoginUser.username === token;
+    if (LoginUser && LoginUser.username === decoded.username) {
+      token = tokenUtil.createToken(LoginUser.username);
+      LoginUser.token = token;
+      res.setHeader("x-access-token", token);
+    }
+  }
+  tokenUtil.checkToken(token).then(result => {
     if (result && result.success) {
       next();
     } else {
       var rm = new CommonModels.ReturnModel();
-      rm.code = 403;
+      rm.code = 401;
       rm.msg = "token信息错误";
       res.json(rm);
     }
