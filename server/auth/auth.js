@@ -29,12 +29,13 @@ router.post("/login", jsonParser, function(req, res, next) {
       // 获取角色
       admin_role
         .findRolesByUserId(user.id)
-        .then(res => {
-          LoginUser.roles = res;
+        .then(data => {
+          LoginUser.roles = data;
           LoginUser.username = user.username;
           LoginUser.user = user;
           LoginUser.token = token;
-          // req.session.LoginUser = LoginUser;
+          req.session.username = user.username;
+          console.log(req.session.cookie["connect.sid"]);
           redis_client.set(req.sessionID + ":username", user.username);
         })
         .catch(err => {

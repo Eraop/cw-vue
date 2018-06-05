@@ -2,8 +2,8 @@ const express = require("express");
 const app = express();
 var config = require("./config.js");
 var redis_client = require("./redis.js");
-var session = require("express-session");
 var cookieParser = require("cookie-parser");
+var session = require("express-session");
 app.use(
   session({
     secret: config.secret_key,
@@ -63,6 +63,9 @@ app.get("/api/", function(req, res) {
 
 app.get("/api/admin/*", function(req, res, next) {
   var token = req.headers["x-access-token"];
+  console.log(req.sessionID);
+  console.log(req.session.username);
+  console.log(req.cookies["connect.sid"]);
   if (!req.session) {
     var rm = new CommonModels.ReturnModel();
     rm.code = 401;
@@ -76,7 +79,7 @@ app.get("/api/admin/*", function(req, res, next) {
       if (
         decoded &&
         decoded.exp * 1000 > new Date() &&
-        decoded.exp * 1000 - new Date() < 60 * 1000
+        decoded.exp * 1000 - new Date() < 15 * 1000
       ) {
         redis_client.get(req.sessionID + ":username").then(session_username => {
           if (session_username === decoded.username) {

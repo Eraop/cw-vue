@@ -18,4 +18,4 @@ exports.redis_options = {
   ttl: 60 * 60 * 24 //Session的有效期为24小时
 };
 exports.secret_key = "eraop";
-exports.expires_in = 120 * 1000;
+exports.expires_in = 60 * 60; //秒
