@@ -1,11 +1,13 @@
 var express = require("express");
+const app = express();
 var router = express.Router();
 var bodyParser = require("body-parser");
 //获取JSON解析器中间件
 var jsonParser = bodyParser.json();
-
 //url-encoded解析器
 // var urlencodedParser = bodyParser.urlencoded({ extended: false });
+
+var redis_client = require("../redis.js");
 
 var admin_user = require("../admin/user.js");
 var admin_role = require("../admin/role.js");
@@ -32,8 +34,9 @@ router.post("/login", jsonParser, function(req, res, next) {
           LoginUser.username = user.username;
           LoginUser.user = user;
           LoginUser.token = token;
-          req.session.LoginUser = LoginUser;
-          })
+          // req.session.LoginUser = LoginUser;
+          redis_client.set(req.sessionID + ":username", user.username);
+        })
         .catch(err => {
           console.log(err);
           rm.code = -1;
@@ -46,7 +49,7 @@ router.post("/login", jsonParser, function(req, res, next) {
     res.json(rm);
   });
 });
-router.post("/refresh_token", function(req, res) {
+router.get("/refresh_token", function(req, res) {
   var token = req.headers["x-access-token"];
   // verify the existing token
   var rm = new CommonModels.ReturnModel();

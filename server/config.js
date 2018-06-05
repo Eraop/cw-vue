@@ -12,6 +12,10 @@ exports.database = {
   port: "3306",
   database: "wf_vue"
 };
-
+exports.redis_options = {
+  host: "127.0.0.1",
+  port: "6379",
+  ttl: 60 * 60 * 24 //Session的有效期为24小时
+};
 exports.secret_key = "eraop";
-exports.expires_in = 60;
+exports.expires_in = 120 * 1000;

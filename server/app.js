@@ -1,11 +1,27 @@
 const express = require("express");
 const app = express();
 var config = require("./config.js");
+var redis_client = require("./redis.js");
+var session = require("express-session");
+var cookieParser = require("cookie-parser");
+app.use(
+  session({
+    secret: config.secret_key,
+    cookie: { secure: false, maxAge: 1000 * 60 }
+  })
+);
+app.use(cookieParser());
+// var RedisStore = require("connect-redis")(session);
+// app.use(
+//   session({
+//     secret: config.secret_key,
+//     store: new RedisStore(config.redis_options),
+//     resave: false
+//   })
+// );
+
 var tokenUtil = require("./auth/token.js");
 var CommonModels = require("./models/CommonModels.js");
-var session = require("express-session");
-app.use(session({ secret: config.secret_key }));
-
 //设置跨域访问
 app.all("*", function(req, res, next) {
   if (
@@ -22,9 +38,23 @@ app.all("*", function(req, res, next) {
     );
     res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
     res.header("Access-Control-Allow-Credentials", "true");
+    res.header("Access-Control-Expose-Headers", "x-access-token");
   }
 
   next();
+});
+app.get("/", function(req, res, next) {
+  if (req.session && req.session.views) {
+    req.session.views++;
+    res.status(201);
+    res.setHeader("Content-Type", "text/html");
+    res.write("<p>views: " + req.session.views + "</p>");
+    res.write("<p>expires in: " + req.session.cookie.maxAge / 1000 + "s</p>");
+    res.end();
+  } else {
+    req.session.views = 1;
+    res.end("welcome to the session demo. refresh!");
+  }
 });
 
 app.get("/api/", function(req, res) {
@@ -33,25 +63,36 @@ app.get("/api/", function(req, res) {
 
 app.get("/api/admin/*", function(req, res, next) {
   var token = req.headers["x-access-token"];
-  var decoded = tokenUtil.decodedToken(token);
-  console.log(decoded.exp * 1000 - new Date() < 30 * 1000);
-  console.log(decoded.exp * 1000 - new Date());
-  if (
-    decoded &&
-    decoded.exp * 1000 > new Date() &&
-    decoded.exp * 1000 - new Date() < 30 * 1000
-  ) {
-    var LoginUser = req.session.LoginUser;
-    var valid = LoginUser && LoginUser.username === token;
-    if (LoginUser && LoginUser.username === decoded.username) {
-      token = tokenUtil.createToken(LoginUser.username);
-      LoginUser.token = token;
-      res.setHeader("x-access-token", token);
-    }
+  if (!req.session) {
+    var rm = new CommonModels.ReturnModel();
+    rm.code = 401;
+    rm.msg = "token信息错误";
+    res.json(rm);
   }
+
   tokenUtil.checkToken(token).then(result => {
     if (result && result.success) {
-      next();
+      var decoded = tokenUtil.decodedToken(token);
+      if (
+        decoded &&
+        decoded.exp * 1000 > new Date() &&
+        decoded.exp * 1000 - new Date() < 60 * 1000
+      ) {
+        redis_client.get(req.sessionID + ":username").then(session_username => {
+          if (session_username === decoded.username) {
+            token = tokenUtil.createToken(session_username);
+            res.setHeader("x-access-token", token);
+            next();
+          } else {
+            var rm = new CommonModels.ReturnModel();
+            rm.code = 401;
+            rm.msg = "token信息错误";
+            res.json(rm);
+          }
+        });
+      } else {
+        next();
+      }
     } else {
       var rm = new CommonModels.ReturnModel();
       rm.code = 401;

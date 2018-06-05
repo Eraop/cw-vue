@@ -17,6 +17,9 @@ export default {
       // 在这里把用户名和token保存起来
       localStorage.setItem("currentUser_name", user_name);
       localStorage.setItem("currentUser_token", user_token);
+    },
+    setToken(state, { user_token }) {
+      localStorage.setItem("currentUser_token", user_token);
     }
   },
   actions: {

@@ -42,9 +42,9 @@ axios.interceptors.request.use(
 //添加响应拦截器
 axios.interceptors.response.use(
   function(res) {
-    debugger
+    console.log(res);
     //对响应数据做些事
-    if (res.data.code === 401) {
+    if (res.data && res.data.code === 401) {
       store.commit("setUser", {
         user_name: "",
         user_token: ""
@@ -53,23 +53,16 @@ axios.interceptors.response.use(
         path: "login",
         query: { redirect: router.currentRoute.fullPath }
       });
+    } else if (
+      res.headers &&
+      res.headers["x-access-token"] &&
+      res.headers["x-access-token"] !== store.state.user.currentUser.UserToken
+    ) {
+      // 后台刷新了token
+      store.commit("setToken", {
+        user_token: res.headers["x-access-token"]
+      });
     }
-    //  else if (res.data.code === 400) {
-    //   axios
-    //     .get("/api/auth/refresh_token")
-    //     .then(res => {
-    //       store.commit("setUser", {
-    //         user_name: store.state.user.currentUser.UserName,
-    //         user_token: res.data.token
-    //       });
-    //     })
-    //     .catch(err => {
-    //       router.replace({
-    //         path: "login",
-    //         query: { redirect: router.currentRoute.fullPath }
-    //       });
-    //     });
-    // }
     return res;
   },
   function(error) {
