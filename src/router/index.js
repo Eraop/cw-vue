@@ -31,7 +31,7 @@ const router = new Router({
       meta: {
         title: "登录",
         auth: false,
-        hideheader: true
+        hide: true
       }
     },
     {
@@ -83,7 +83,7 @@ const router = new Router({
       meta: {
         title: "后台管理",
         auth: true,
-        hideheader: true
+        hide: true
       },
       children: [
         {

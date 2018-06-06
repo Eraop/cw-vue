@@ -1,10 +1,10 @@
 <template>
   <div class="main-container" id="app">
-    <cw-header v-show="!this.$route.meta.hideheader"></cw-header>
+    <cw-header v-if="!this.$route.meta.hide"></cw-header>
     <div class="body-container">
       <router-view/>
     </div>
-    <cw-footer></cw-footer>
+    <cw-footer v-if="!this.$route.meta.hide"></cw-footer>
   </div>
 </template>
 
