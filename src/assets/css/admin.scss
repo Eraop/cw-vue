@@ -41,11 +41,18 @@
   color: #ffffff;
   opacity: 0.86;
 }
+
+.sidebar .nav > li > a:hover,
+.sidebar .nav > li > a:focus {
+  background-color: transparent;
+}
 .sidebar .nav li:hover > a {
   background: rgba(255, 255, 255, 0.13);
   opacity: 1;
   color: #ffffff;
 }
+
+
 .sidebar .nav li.active > a {
   color: #ffffff;
   opacity: 1;
@@ -54,16 +61,17 @@
 .sidebar .nav [data-toggle="collapse"] ~ div > ul > li > a {
   padding-left: 60px;
 }
-.sidebar .nav p {
+.sidebar .nav span {
   margin: 0;
   line-height: 30px;
   font-size: 12px;
-  font-weight: 600;
+  // font-weight: 600;
   text-transform: uppercase;
   white-space: nowrap;
   position: relative;
+  display: block;
 }
-.sidebar .nav p .caret {
+.sidebar .nav span .caret {
   top: 12px;
   position: absolute;
   right: 0;
