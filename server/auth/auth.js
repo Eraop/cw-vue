@@ -22,9 +22,11 @@ router.post("/login", jsonParser, function(req, res, next) {
       rm.code = 0;
       rm.msg = "登录成功";
       var token = tokenUtil.createToken(user.username);
+      // var sid = req.sessionID;
       rm.data = {
         username: user.username,
         token: token
+        // sid: sid
       };
       // 获取角色
       admin_role
@@ -35,19 +37,22 @@ router.post("/login", jsonParser, function(req, res, next) {
           LoginUser.user = user;
           LoginUser.token = token;
           req.session.username = user.username;
-          console.log(req.session.cookie["connect.sid"]);
-          redis_client.set(req.sessionID + ":username", user.username);
+          req.session.token = token;
+          // 存储redis
+          // redis_client.set(sid + ":username", user.username);
+          res.json(rm);
         })
         .catch(err => {
           console.log(err);
           rm.code = -1;
           rm.msg = "用户权限异常，请联系管理员";
+          res.json(rm);
         });
     } else {
       rm.code = 1;
       rm.msg = "账号或密码错误";
+      res.json(rm);
     }
-    res.json(rm);
   });
 });
 router.get("/refresh_token", function(req, res) {

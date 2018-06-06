@@ -35,6 +35,11 @@
 </template> 
 <script>
 export default {
+  name: "Login",
+  data() {
+    return {
+    };
+  },
   beforeCreate() {
     document.getElementsByTagName("body")[0].className = "login-body";
   },
@@ -45,19 +50,20 @@ export default {
   },
   methods: {
     login() {
-      this.$store
+      var $this = this;
+      $this.$store
         .dispatch("login", {
-          user_name: this.$refs.name.value,
-          user_pass: this.$refs.password.value
+          user_name: $this.$refs.name.value,
+          user_pass: $this.$refs.password.value
         })
         .then(res => {
           if (res.status == 200 && res.data) {
             if (res.data.code === 0) {
-              var redirect = this.$route.query.redirect;
+              var redirect = $this.$route.query.redirect;
               if (redirect) {
-                this.$router.push({ path: redirect });
+                $this.$router.push({ path: redirect });
               } else {
-                this.$router.push({ name: "admin" });
+                $this.$router.push({ name: "admin" });
               }
             } else {
               alert(res.data.msg);

@@ -10,6 +10,9 @@ export default {
       get UserToken() {
         return localStorage.getItem("currentUser_token");
       }
+      // get SID() {
+      //   return localStorage.getItem("currentUser_sid");
+      // }
     }
   },
   mutations: {
@@ -17,6 +20,7 @@ export default {
       // 在这里把用户名和token保存起来
       localStorage.setItem("currentUser_name", user_name);
       localStorage.setItem("currentUser_token", user_token);
+      // localStorage.setItem("currentUser_sid", user_sid);
     },
     setToken(state, { user_token }) {
       localStorage.setItem("currentUser_token", user_token);
@@ -40,11 +44,12 @@ export default {
                   context.commit("setUser", {
                     user_name: res.data.data.username,
                     user_token: res.data.data.token
+                    // user_sid: res.data.data.sid
                   });
+                  resolve(res);
                 }
               }
             }
-            resolve(res);
           })
           .catch(error => {
             reject(error);

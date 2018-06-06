@@ -2,7 +2,7 @@
  * @Author: Eraop 
  * @Date: 2018-06-01 15:22:50 
  * @Last Modified by: Eraop
- * @Last Modified time: 2018-06-04 15:55:09
+ * @Last Modified time: 2018-06-06 09:50:51
  */
 var jwt = require("jsonwebtoken");
 var config = require("../config.js");
@@ -15,7 +15,7 @@ var tokenUtil = {
         username: username
       },
       config.secret_key,
-      { expiresIn: config.expires_in }
+      { expiresIn: config.token_expires_in }
     );
   },
   checkToken: function(token) {
