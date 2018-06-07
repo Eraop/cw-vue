@@ -1,260 +1,262 @@
 <template>
-  <div>
-    <div class="wrapper">
-      <div class="sidebar" data-color="orange">
-        <div class="logo">
-          <a href="#" class="logo-text">
-            Creative Tim
-          </a>
+  <el-row class="container">
+    <el-col :span="24" class="header">
+      <el-col :span="10" class="logo" :class="isCollapse?'logo-collapse-width':'logo-width'">
+        {{isCollapse?'CW':sysName}}
+      </el-col>
+      <!-- <el-col :span="10">
+        <div class="tools" @click.prevent="collapse">
+          <i class="fa fa-align-justify"></i>
         </div>
-        <div class="logo logo-mini">
-          <a href="#" class="logo-text">
-            Ct
-          </a>
+      </el-col> -->
+      <el-col :span="4" class="userinfo">
+        <el-dropdown trigger="hover">
+          <span class="el-dropdown-link userinfo-inner"><img :src="this.sysUserAvatar" /> {{sysUserName}}</span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item>我的消息</el-dropdown-item>
+            <el-dropdown-item>设置</el-dropdown-item>
+            <el-dropdown-item divided @click.native="logout">退出登录</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </el-col>
+    </el-col>
+    <el-col :span="24" class="main">
+      <aside>
+
+        <!--导航菜单-->
+        <el-menu :default-active="$route.name" class="el-menu-vertical-demo">
+
+          <!-- <el-menu-item v-for="(item,index) in menus" :key="index">
+            <i :class="item.icon"></i>
+            <span slot="title">{{item.name}}</span>
+          </el-menu-item> -->
+
+          <el-menu-item v-for="(item,index) in menus" :index="item.link">
+            <router-link tag="span" :to="{name:item.link}">
+              <i :class="item.icon"></i>
+              {{item.name}}
+            </router-link>
+          </el-menu-item>
+        </el-menu>
+      </aside>
+      <section class="content-container">
+        <div class="grid-content bg-purple-light">
+          <el-col :span="24" class="breadcrumb-container">
+            <strong class="title">{{$route.meta.title}}</strong>
+            <el-breadcrumb separator="/" class="breadcrumb-inner">
+              <el-breadcrumb-item v-for="item in $route.matched" :key="item.path">
+                {{ item.meta.title }}
+              </el-breadcrumb-item>
+            </el-breadcrumb>
+          </el-col>
+          <el-col :span="24" class="content-wrapper">
+            <transition name="fade" mode="out-in">
+              <router-view></router-view>
+            </transition>
+          </el-col>
         </div>
-        <div class="sidebar-wrapper ps-container ps-theme-default" data-ps-id="71ee49ef-518e-ac64-3fe1-e6eb02f8ff49">
-          <div class="user">
-            <div class="photo">
-              <img src="picture/default-avatar.png">
-            </div>
-            <div class="info">
-              <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                Tania Andrew
-                <b class="caret"></b>
-              </a>
-              <div class="collapse" id="collapseExample">
-                <ul class="nav">
-                  <li>
-                    <a href="#">My Profile</a>
-                  </li>
-                  <li>
-                    <a href="#">Edit Profile</a>
-                  </li>
-                  <li>
-                    <a href="#">Settings</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <ul class="nav">
-            <li class="active">
-              <a>
-                <i class="pe-7s-graph"></i>
-                <span>Dashboard</span>
-              </a>
-            </li>
-            <li>
-              <a data-toggle="collapse" href="#componentsExamples">
-                <i class="pe-7s-plugin"></i>
-                <span>Components
-                  <b class="caret"></b>
-                </span>
-              </a>
-              <div class="collapse" id="componentsExamples">
-                <ul class="nav">
-                  <li>
-                    <a>Buttons</a>
-                  </li>
-                  <li>
-                    <a>Grid System</a>
-                  </li>
-                  <li>
-                    <a>Icons</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-          </ul>
-          <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 3px;">
-            <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
-          </div>
-          <div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px;">
-            <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div>
-          </div>
-        </div>
-        <div class="sidebar-background" style="background-image: url(/static/images/admin/full-screen-image-3.jpg) "></div>
-      </div>
-
-      <div class="main-panel ps-container ps-theme-default ps-active-y" data-ps-id="298d7e7e-18ae-9bee-1e39-5b82c65d7415">
-        <nav class="navbar navbar-default">
-          <div class="container-fluid">
-            <div class="navbar-minimize">
-              <button id="minimizeSidebar" class="btn btn-warning btn-fill btn-round btn-icon">
-                <i class="fa fa-ellipsis-v visible-on-sidebar-regular"></i>
-                <i class="fa fa-navicon visible-on-sidebar-mini"></i>
-              </button>
-            </div>
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="#">Dashboard PRO</a>
-            </div>
-            <div class="collapse navbar-collapse">
-
-              <form class="navbar-form navbar-left navbar-search-form" role="search">
-                <div class="input-group">
-                  <span class="input-group-addon">
-                    <i class="fa fa-search"></i>
-                  </span>
-                  <input value="" class="form-control" placeholder="Search..." type="text">
-                </div>
-              </form>
-
-              <ul class="nav navbar-nav navbar-right">
-                <li>
-                  <a href="charts.html">
-                    <i class="fa fa-line-chart"></i>
-                    <span>Stats</span>
-                  </a>
-                </li>
-
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-gavel"></i>
-                    <p class="hidden-md hidden-lg">
-                      Actions
-                      <b class="caret"></b>
-                    </p>
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <a href="#">Create New Post</a>
-                    </li>
-                    <li>
-                      <a href="#">Manage Something</a>
-                    </li>
-                    <li>
-                      <a href="#">Do Nothing</a>
-                    </li>
-                    <li>
-                      <a href="#">Submit to live</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                      <a href="#">Another Action</a>
-                    </li>
-                  </ul>
-                </li>
-
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-bell-o"></i>
-                    <span class="notification">5</span>
-                    <p class="hidden-md hidden-lg">
-                      Notifications
-                      <b class="caret"></b>
-                    </p>
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <a href="#">Notification 1</a>
-                    </li>
-                    <li>
-                      <a href="#">Notification 2</a>
-                    </li>
-                    <li>
-                      <a href="#">Notification 3</a>
-                    </li>
-                    <li>
-                      <a href="#">Notification 4</a>
-                    </li>
-                    <li>
-                      <a href="#">Another notification</a>
-                    </li>
-                  </ul>
-                </li>
-
-                <li class="dropdown dropdown-with-icons">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-list"></i>
-                    <p class="hidden-md hidden-lg">
-                      More
-                      <b class="caret"></b>
-                    </p>
-                  </a>
-                  <ul class="dropdown-menu dropdown-with-icons">
-                    <li>
-                      <a href="#">
-                        <i class="pe-7s-mail"></i> Messages
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="pe-7s-help1"></i> Help Center
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="pe-7s-tools"></i> Settings
-                      </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                      <a href="#">
-                        <i class="pe-7s-lock"></i> Lock Screen
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" class="text-danger">
-                        <i class="pe-7s-close-circle"></i>
-                        Log out
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-
-              </ul>
-            </div>
-          </div>
-        </nav>
-
-        <div class="content">
-          <div class="container-fluid">
-
-          </div>
-        </div>
-
-        <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 3px;">
-          <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
-        </div>
-        <div class="ps-scrollbar-y-rail" style="top: 0px; height: 943px; right: 3px;">
-          <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 533px;"></div>
-        </div>
-      </div>
-
-    </div>
-    <cw-setting></cw-setting>
-  </div>
+      </section>
+    </el-col>
+  </el-row>
 </template>
+
 <script>
-import "../../assets/js/admin.js";
-
-import setting from "../../components/Setting.vue";
-
 export default {
-  components: {
-    cwSetting: setting
+  data() {
+    return {
+      menus: [],
+      sysName: "CW-VUE",
+      isCollapse: false,
+      sysUserName: "",
+      sysUserAvatar: "",
+      form: {
+        name: "",
+        region: "",
+        date1: "",
+        date2: "",
+        delivery: false,
+        type: [],
+        resource: "",
+        desc: ""
+      }
+    };
   },
   created: function() {
     return this.$http.get("/api/admin/menu").then(res => {
       if (res.status == 200) {
         if (res.data !== "") {
-        } else {
-          this.$router.push({ name: "notfound" });
+          this.menus = res.data;
         }
       }
     });
+  },
+  methods: {
+    onSubmit() {
+      console.log("submit!");
+    },
+    handleopen() {
+      //console.log('handleopen');
+    },
+    handleclose() {
+      //console.log('handleclose');
+    },
+    handleselect: function(a, b) {},
+    //退出登录
+    logout: function() {
+      var _this = this;
+      this.$confirm("确认退出吗?", "提示", {
+        //type: 'warning'
+      })
+        .then(() => {
+          _this.$router.push("/login");
+        })
+        .catch(() => {});
+    },
+    //折叠导航栏
+    collapse: function() {
+      this.isCollapse = !this.isCollapse;
+    },
+    showMenu(i, status) {
+      this.$refs.menuCollapsed.getElementsByClassName(
+        "submenu-hook-" + i
+      )[0].style.display = status ? "block" : "none";
+    }
+  },
+  mounted() {
+    debugger
+    this.sysUserName = this.$store.state.user.currentUser.UserName || "";
+    this.sysUserAvatar = this.$store.state.user.currentUser.UserAvatar || "";
   }
 };
 </script>
 
-<style lang="scss" src ="../../assets/css/admin.scss"></style>
 
-
-<style src="../../../static/css/pe-icon-7-stroke.css"></style>
+<style scoped lang="scss">
+.container {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  width: 100%;
+  padding-right: 0px;
+  padding-left: 0px;
+  .header {
+    height: 60px;
+    line-height: 60px;
+    background: #20a0ff;
+    color: #fff;
+    .userinfo {
+      text-align: right;
+      padding-right: 35px;
+      float: right;
+      .userinfo-inner {
+        cursor: pointer;
+        color: #fff;
+        img {
+          width: 40px;
+          height: 40px;
+          border-radius: 20px;
+          margin: 10px 0px 10px 10px;
+          float: right;
+        }
+      }
+    }
+    .logo {
+      //width:230px;
+      height: 60px;
+      font-size: 22px;
+      padding-left: 20px;
+      padding-right: 20px;
+      border-color: rgba(238, 241, 146, 0.3);
+      border-right-width: 1px;
+      border-right-style: solid;
+      img {
+        width: 40px;
+        float: left;
+        margin: 10px 10px 10px 18px;
+      }
+      .txt {
+        color: #fff;
+      }
+    }
+    .logo-width {
+      width: 230px;
+    }
+    .logo-collapse-width {
+      width: 60px;
+    }
+    .tools {
+      padding: 0px 23px;
+      width: 14px;
+      height: 60px;
+      line-height: 60px;
+      cursor: pointer;
+    }
+  }
+  .main {
+    display: flex;
+    // background: #324057;
+    position: absolute;
+    top: 60px;
+    bottom: 0px;
+    overflow: hidden;
+    aside {
+      flex: 0 0 230px;
+      width: 230px;
+      // position: absolute;
+      // top: 0px;
+      // bottom: 0px;
+      .el-menu {
+        height: 100%;
+      }
+      .collapsed {
+        width: 60px;
+        .item {
+          position: relative;
+        }
+        .submenu {
+          position: absolute;
+          top: 0px;
+          left: 60px;
+          z-index: 99999;
+          height: auto;
+          display: none;
+        }
+      }
+    }
+    .menu-collapsed {
+      flex: 0 0 60px;
+      width: 60px;
+    }
+    .menu-expanded {
+      flex: 0 0 230px;
+      width: 230px;
+    }
+    .content-container {
+      // background: #f1f2f7;
+      flex: 1;
+      // position: absolute;
+      // right: 0px;
+      // top: 0px;
+      // bottom: 0px;
+      // left: 230px;
+      overflow-y: scroll;
+      padding: 20px;
+      .breadcrumb-container {
+        //margin-bottom: 15px;
+        .title {
+          width: 200px;
+          float: left;
+          color: #475669;
+        }
+        .breadcrumb-inner {
+          float: right;
+        }
+      }
+      .content-wrapper {
+        background-color: #fff;
+        box-sizing: border-box;
+      }
+    }
+  }
+}
+</style>

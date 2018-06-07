@@ -152,12 +152,9 @@ app.get("/api/admin/*", function(req, res, next) {
     });
   }
 });
-app.get("/api/admin/menu", function(req, res, next) {
-  res.send("menu");
-});
-
 app.use("/api/news", require("./news.js"));
 app.use("/api/auth", require("./auth/auth.js"));
+app.use("/api/admin", require("./admin/admin.js"));
 
 app.listen("8002", () => {
   console.log("success listen at port:8002......");

@@ -8,6 +8,10 @@ import NotFound from "@/views/NotFound";
 import NewsDetail from "@/views/NewsDetail";
 import Login from "@/views/Login";
 import AdminIndex from "@/views/admin/Index";
+import AdminNews from "@/views/admin/News";
+import AdminMenu from "@/views/admin/Menu";
+import AdminUser from "@/views/admin/User";
+import AdminAbout from "@/views/admin/About";
 
 Vue.use(Router);
 
@@ -89,7 +93,39 @@ const router = new Router({
         {
           path: "menu",
           name: "admin_menu",
-          component: News
+          component: AdminMenu,
+          meta: {
+            title: "菜单列表",
+            auth: true,
+            hide: true
+          },
+        },  {
+          path: "about",
+          name: "admin_about",
+          component: AdminAbout,
+          meta: {
+            title: "关于我们",
+            auth: true,
+            hide: true
+          },
+        },  {
+          path: "news",
+          name: "admin_news",
+          component: AdminNews,
+          meta: {
+            title: "新闻列表",
+            auth: true,
+            hide: true
+          },
+        },  {
+          path: "menu",
+          name: "admin_user",
+          component: AdminUser,
+          meta: {
+            title: "用户列表",
+            auth: true,
+            hide: true
+          },
         }
       ]
     },

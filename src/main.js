@@ -7,9 +7,13 @@ import router from "./router";
 import axios from "axios";
 import moment from "moment";
 import "bootstrap/dist/css/bootstrap.min.css";
+import 'font-awesome/css/font-awesome.css'
 import $ from "jquery";
 window.jQuery = $;
 require("bootstrap");
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
 
 // 引入组件
 import header from "./components/Header.vue";
@@ -46,6 +50,8 @@ axios.interceptors.response.use(
     if (res.data && res.data.code === 401) {
       store.commit("setUser", {
         user_name: "",
+        user_avatar: "",
+        user_roles: "",
         user_token: ""
       });
       router.replace({

@@ -23,21 +23,28 @@ router.post("/login", jsonParser, function(req, res, next) {
       rm.msg = "登录成功";
       var token = tokenUtil.createToken(user.username);
       // var sid = req.sessionID;
-      rm.data = {
-        username: user.username,
-        token: token
-        // sid: sid
-      };
+
+      req.session.username = user.username;
+      req.session.useravatar = user.avatar;
+      req.session.token = token;
+      req.session.userid = user.id;
+
       // 获取角色
       admin_role
         .findRolesByUserId(user.id)
         .then(data => {
-          LoginUser.roles = data;
-          LoginUser.username = user.username;
-          LoginUser.user = user;
-          LoginUser.token = token;
-          req.session.username = user.username;
-          req.session.token = token;
+          var roles = "";
+          data.forEach(element => {
+            roles += (roles === "" ? "" : ",") + element.name;
+          });
+          req.session.roles = roles;
+          rm.data = {
+            username: user.username,
+            useravatar: user.avatar,
+            userroles: roles,
+            token: token
+            // sid: sid
+          };
           // 存储redis
           // redis_client.set(sid + ":username", user.username);
           res.json(rm);
