@@ -1,23 +1,85 @@
 // 基础样式 - 不限制在当前使用
+// 初始化代码
+// body {
+//   margin: 0;
+//   padding: 0;
+//   background: #fff;
+//   font-family: "Open Sans", sans-serif;
+// }
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6 {
+//   margin: 0;
+//   font-family: "Montserrat", sans-serif;
+// }
+// p {
+//   margin: 0;
+//   letter-spacing: 1px;
+//   color: #777777;
+//   line-height: 1.8em;
+// }
+// ul {
+//   margin: 0;
+//   padding: 0;
+//   color: #777777;
+// }
+// p,
+// ul,
+// ol {
+//   letter-spacing: 1px;
+// }
 
 /* -- 变量定义 -- */
 $colors: (
-  red: (base: #ff0000),
-  orange: (base: #ffa500),
-  yellow: (base: #ffff00),
-  green: (base: #008000),
-  blue: (base: #0000ff),
-  purple: (base: #800080),
-  white: (base: #ffffff),
-  black: (base: #000000),
-  dark: (base: #343a40, focus: #1d2124),
-  success: (base: #28a745, foucs: #1e7e34),
-  warning: (base: #ffc107, focus: #d39e00),
-  danger: (base: #dc3545, foucs: #bd2130),
-  info: (base: #17a2b8, foucs: #117a8b)
+  red: (
+    base: #ff0000
+  ),
+  orange: (
+    base: #ffa500
+  ),
+  yellow: (
+    base: #ffff00
+  ),
+  green: (
+    base: #008000
+  ),
+  blue: (
+    base: #0000ff
+  ),
+  purple: (
+    base: #800080
+  ),
+  white: (
+    base: #ffffff
+  ),
+  black: (
+    base: #000000
+  ),
+  dark: (
+    base: #343a40,
+    focus: #1d2124
+  ),
+  success: (
+    base: #28a745,
+    foucs: #1e7e34
+  ),
+  warning: (
+    base: #ffc107,
+    focus: #d39e00
+  ),
+  danger: (
+    base: #dc3545,
+    foucs: #bd2130
+  ),
+  info: (
+    base: #17a2b8,
+    foucs: #117a8b
+  )
 );
-
-/* 生成颜色*/
+/* 生成颜色 */
 @each $name, $color in $colors {
   .text-#{$name} {
     color: map-get($color, base) !important;
@@ -29,15 +91,11 @@ $colors: (
     }
   }
 }
+.padding {
+  padding: 15px;
+}
 
-$sizes: (
-  5,
-  10,
-  15,
-  20,
-  25,
-  30
-);
+$sizes: (5, 10, 15, 20, 25, 30);
 @each $size in $sizes {
   .padding-#{$size} {
     padding: $size + px;
@@ -51,6 +109,7 @@ $sizes: (
   .padding-left-#{$size} {
     padding-left: $size + px;
   }
+
   .padding-top-#{$size} {
     padding-top: $size + px;
   }
@@ -82,37 +141,7 @@ $sizes: (
     margin-bottom: $size + px;
   }
 }
-body {
-  margin: 0;
-  padding: 0;
-  background: #fff;
-  font-family: "Open Sans", sans-serif;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0;
-  font-family: "Montserrat", sans-serif;
-}
-p {
-  margin: 0;
-  letter-spacing: 1px;
-  color: #777777;
-  line-height: 1.8em;
-}
-ul {
-  margin: 0;
-  padding: 0;
-  color: #777777;
-}
-p,
-ul,
-ol {
-  letter-spacing: 1px;
-}
+
 .in-block {
   display: inline-block !important;
 }

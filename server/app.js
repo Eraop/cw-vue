@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 var config = require("./config.js");
+var auth = require("./auth/auth.js");
+var common = require("./common.js");
 var redis_client = require("./redis.js");
 var cookieParser = require("cookie-parser");
 var session = require("express-session");
@@ -117,40 +119,50 @@ app.get("/api/", function(req, res) {
 //   }
 // });
 
+// app.get("/api/admin/*", function(req, res, next) {
+//   var token = req.headers["x-access-token"];
+//   // 检查session是否有效
+//   if (!req.session || !req.session.username) {
+//     var rm = new CommonModels.ReturnModel();
+//     rm.code = 401;
+//     rm.msg = "登录过期";
+//     res.json(rm);
+//   } else {
+//     //检查token是否有效
+//     tokenUtil.checkToken(token).then(result => {
+//       if (result && result.success) {
+//         var decoded = tokenUtil.decodedToken(token);
+//         if (
+//           decoded &&
+//           decoded.exp * 1000 > new Date() &&
+//           decoded.exp * 1000 - new Date() <
+//             (config.token_expires_in / 2) * 1000 &&
+//           decoded.username === req.session.username
+//         ) {
+//           token = tokenUtil.createToken(decoded.username);
+//           res.setHeader("x-access-token", token);
+//           next();
+//         } else {
+//           next();
+//         }
+//       } else {
+//         var rm = new CommonModels.ReturnModel();
+//         rm.code = 401;
+//         rm.msg = "token信息错误";
+//         res.json(rm);
+//       }
+//     });
+//   }
+// });
+
 app.get("/api/admin/*", function(req, res, next) {
-  var token = req.headers["x-access-token"];
-  // 检查session是否有效
-  if (!req.session || !req.session.username) {
-    var rm = new CommonModels.ReturnModel();
-    rm.code = 401;
-    rm.msg = "登录过期";
-    res.json(rm);
-  } else {
-    //检查token是否有效
-    tokenUtil.checkToken(token).then(result => {
-      if (result && result.success) {
-        var decoded = tokenUtil.decodedToken(token);
-        if (
-          decoded &&
-          decoded.exp * 1000 > new Date() &&
-          decoded.exp * 1000 - new Date() <
-            (config.token_expires_in / 2) * 1000 &&
-          decoded.username === req.session.username
-        ) {
-          token = tokenUtil.createToken(decoded.username);
-          res.setHeader("x-access-token", token);
-          next();
-        } else {
-          next();
-        }
-      } else {
-        var rm = new CommonModels.ReturnModel();
-        rm.code = 401;
-        rm.msg = "token信息错误";
-        res.json(rm);
-      }
-    });
-  }
+  common.checkState(req, res, next).then(result => {
+    if (result && result.code === 200) {
+      next();
+    } else {
+      res.json(result);
+    }
+  });
 });
 app.use("/api/news", require("./news.js"));
 app.use("/api/auth", require("./auth/auth.js"));

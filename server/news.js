@@ -4,19 +4,15 @@ var router = express.Router();
 //引入数据库包
 var db = require("./db.js");
 var CommonModels = require("./models/CommonModels.js");
-
+var config = require("./config.js");
 // 查询列表页
 router.get("/list", function(req, res, next) {
-  var start = 0;
-  var size = 0;
-  var pageIndex = 1;
-  if (req.query.pageIndex !== undefined && req.query.pageSize !== undefined) {
-    size = parseInt(req.query.pageSize);
-    pageIndex = parseInt(req.query.pageIndex);
-    start = (pageIndex - 1) * size;
-  } else {
-    return;
-  }
+  var size = req.query.pageSize
+    ? parseInt(req.query.pageSize)
+    : config.page_size;
+  var pageIndex = req.query.pageIndex ? parseInt(req.query.pageIndex) : 1;
+  var start = (pageIndex - 1) * size;
+
   var page = new CommonModels.PageModel();
   // 查询所属channel下的cms_article
   var sql = "SELECT * FROM cms_article order by last_update,id desc limit ?,?";

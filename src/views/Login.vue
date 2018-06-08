@@ -37,10 +37,14 @@
 export default {
   name: "Login",
   data() {
-    return {
-    };
+    return {};
   },
   beforeCreate() {
+    this.$store.dispatch("checkState").then(res => {
+      if (res) {
+        this.$router.push({ name: "admin" });
+      }
+    });
     document.getElementsByTagName("body")[0].className = "login-body";
   },
   beforeDestroy: function() {

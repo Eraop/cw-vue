@@ -23,3 +23,4 @@ exports.redis_options = {
 exports.secret_key = "eraop";
 exports.token_expires_in = token_expires_in;
 exports.session_expires_in = session_expires_in;
+exports.page_size = 10;

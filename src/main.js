@@ -5,14 +5,13 @@ import Vuex from "vuex";
 import App from "./App";
 import router from "./router";
 import axios from "axios";
-import moment from "moment";
 import "bootstrap/dist/css/bootstrap.min.css";
-import 'font-awesome/css/font-awesome.css'
+import "font-awesome/css/font-awesome.css";
 import $ from "jquery";
 window.jQuery = $;
 require("bootstrap");
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
+import ElementUI from "element-ui";
+import "element-ui/lib/theme-chalk/index.css";
 Vue.use(ElementUI);
 
 // 引入组件
@@ -23,6 +22,8 @@ import loading from "./components/Loading.vue";
 
 //引入自定义配置
 import config from "./config.js";
+//引入自定义过滤器
+import "./filter";
 //vuex
 import store from "./store/store.js";
 
@@ -48,14 +49,9 @@ axios.interceptors.response.use(
   function(res) {
     //对响应数据做些事
     if (res.data && res.data.code === 401) {
-      store.commit("setUser", {
-        user_name: "",
-        user_avatar: "",
-        user_roles: "",
-        user_token: ""
-      });
+      store.commit("removeUser");
       router.replace({
-        path: "login",
+        name: "login",
         query: { redirect: router.currentRoute.fullPath }
       });
     } else if (
@@ -84,14 +80,6 @@ Vue.component("cw-footer", footer);
 Vue.component("cw-pager", pager);
 Vue.component("cw-loading", loading);
 Vue.config.productionTip = false;
-
-// 全局过滤器
-Vue.filter("formatDate", function(value) {
-  return moment(value).format("YYYY-MM-DD");
-});
-Vue.filter("formatTime", function(value) {
-  return moment(value).format("YYYY-MM-DD hh:mm:ss");
-});
 
 router.beforeEach((to, from, next) => {
   if (to.meta.auth) {

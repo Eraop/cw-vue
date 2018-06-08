@@ -3,6 +3,7 @@ import axios from "axios";
 
 export default {
   state: {
+    currentUserState: false,
     currentUser: {
       get UserName() {
         return localStorage.getItem("currentUser_name");
@@ -22,7 +23,11 @@ export default {
     }
   },
   mutations: {
+    setState(state, { user_state }) {
+      state.currentUserState = user_state;
+    },
     setUser(state, { user_name, user_token, user_avatar, user_roles }) {
+      state.currentUserState = true;
       // 在这里把用户名和token保存起来
       localStorage.setItem("currentUser_name", user_name);
       localStorage.setItem("currentUser_avatar", user_avatar);
@@ -32,6 +37,13 @@ export default {
     },
     setToken(state, { user_token }) {
       localStorage.setItem("currentUser_token", user_token);
+    },
+    removeUser(state) {
+      state.currentUserState = false;
+      localStorage.removeItem("currentUser_name");
+      localStorage.removeItem("currentUser_avatar");
+      localStorage.removeItem("currentUser_roles");
+      localStorage.removeItem("currentUser_token");
     }
   },
   actions: {
@@ -62,6 +74,39 @@ export default {
           .catch(error => {
             reject(error);
           });
+      });
+    },
+    logout(context) {
+      return new Promise((resolve, reject) => {
+        axios
+          .get("/api/auth/logout")
+          .then(res => {
+            if (res.status == 200 && res.data) {
+              if (res.data.code === 0) {
+                context.commit("removeUser");
+                resolve(res);
+              }
+            }
+          })
+          .catch(error => {
+            reject(error);
+          });
+      });
+    },
+    checkState(context) {
+      return new Promise((resolve, reject) => {
+        if (context.state && context.state.currentUserState) {
+          axios
+            .get("/api/auth/checkState")
+            .then(res => {
+              resolve(true);
+            })
+            .catch(error => {
+              resolve(false);
+            });
+        } else {
+          resolve(false);
+        }
       });
     }
   }

@@ -8,10 +8,11 @@ import NotFound from "@/views/NotFound";
 import NewsDetail from "@/views/NewsDetail";
 import Login from "@/views/Login";
 import AdminIndex from "@/views/admin/Index";
-import AdminNews from "@/views/admin/News";
+import AdminNews from "@/views/admin/AdminNews";
 import AdminMenu from "@/views/admin/Menu";
 import AdminUser from "@/views/admin/User";
 import AdminAbout from "@/views/admin/About";
+import AddNews from "@/views/admin/AddNews";
 
 Vue.use(Router);
 
@@ -98,8 +99,9 @@ const router = new Router({
             title: "菜单列表",
             auth: true,
             hide: true
-          },
-        },  {
+          }
+        },
+        {
           path: "about",
           name: "admin_about",
           component: AdminAbout,
@@ -107,8 +109,9 @@ const router = new Router({
             title: "关于我们",
             auth: true,
             hide: true
-          },
-        },  {
+          }
+        },
+        {
           path: "news",
           name: "admin_news",
           component: AdminNews,
@@ -116,8 +119,19 @@ const router = new Router({
             title: "新闻列表",
             auth: true,
             hide: true
-          },
-        },  {
+          }
+        },
+        {
+          path: "news/add",
+          name: "admin_news_add",
+          component: AddNews,
+          meta: {
+            title: "新增新闻",
+            auth: true,
+            hide: true
+          }
+        },
+        {
           path: "menu",
           name: "admin_user",
           component: AdminUser,
@@ -125,7 +139,7 @@ const router = new Router({
             title: "用户列表",
             auth: true,
             hide: true
-          },
+          }
         }
       ]
     },
