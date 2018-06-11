@@ -14,7 +14,7 @@
         </div>
       </el-form-item>
       <el-form-item>
-        <el-button @click="viewHtml" class="pull-left" type="primary" icon="el-icon-document">预览</el-button>
+        <el-button @click="getHtml" class="pull-left" type="primary" icon="el-icon-document">预览</el-button>
         <el-button type="primary" class="pull-right" @click="onSubmit">保存</el-button>
         <el-button class="pull-right">取消</el-button>
       </el-form-item>
@@ -33,34 +33,41 @@ export default {
   components: { MarkdownEditor, TinymceEditor },
   data() {
     return {
-      type: 0,
+      type: 1,
       title: "",
       content: "",
       html: ""
     };
   },
   methods: {
-    viewHtml() {
-      if (this.type === 0) {
-        this.html = this.content;
-      } else {
+    md2html(d) {
+      return new Promise((resolve, reject) => {
         import("showdown").then(showdown => {
           const converter = new showdown.Converter();
-          this.html = converter.makeHtml(this.content);
+          resolve(converter.makeHtml(d));
         });
-      }
+      });
+    },
+    getHtml() {
+      this.type === 0
+        ? (this.html = this.content)
+        : this.md2html(this.content).then(res => {
+            this.html = res;
+          });
     },
     onSubmit() {
-      return this.$http
-        .post("/api/admin/news/save", JSON.stringify({
-          title: this.title,
-          html: this.html
-        }))
-        .then(res => {
-          if (res.status == 200) {
-            this.$router.push({ name: "admin_news" });
-          }
-        });
+      Promise.all(this.getHtml).then(res => {
+        return this.$http
+          .post("/api/admin/news/save", {
+            title: this.title,
+            html: this.html
+          })
+          .then(res => {
+            if (res.status == 200) {
+              this.$router.push({ name: "admin_news" });
+            }
+          });
+      });
     }
   }
 };
