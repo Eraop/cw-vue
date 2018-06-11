@@ -1,15 +1,15 @@
 <template>
-    <div class="simplemde-container" :style="{'min-height':height+'px',zIndex:zIndex}">
-        <textarea :id="id">
-        </textarea>
-    </div>
+  <div class="simplemde-container" :style="{'min-height':height+'px',zIndex:zIndex}">
+    <textarea :id="id">
+    </textarea>
+  </div>
 </template>
 
 <script>
 import "simplemde/dist/simplemde.min.css";
 import SimpleMDE from "simplemde";
 export default {
-  name: "simplemde-md",
+  name: "MarkdownEditor",
   props: {
     value: String,
     id: {
@@ -50,7 +50,7 @@ export default {
   mounted() {
     this.simplemde = new SimpleMDE({
       element: document.getElementById(
-        this.id || "markdown-editor-" + new Date()
+        this.id || "markdown-editor-" + +new Date()
       ),
       autoDownloadFontAwesome: false,
       autofocus: this.autofocus,

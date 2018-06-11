@@ -67,8 +67,8 @@ export default {
                   user_token: res.data.data.token
                   // user_sid: res.data.data.sid
                 });
-                resolve(res);
               }
+              resolve(res);
             }
           })
           .catch(error => {

@@ -44,7 +44,7 @@ app.all("*", function(req, res, next) {
     res.header("Access-Control-Allow-Origin", req.headers.origin);
     res.header(
       "Access-Control-Allow-Headers",
-      "sid,x-access-token,authorization,X-Requested-With,Content-Type"
+      "x-access-token,authorization,X-Requested-With,Content-Type"
     );
     res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
     res.header("Access-Control-Allow-Credentials", "true");
