@@ -13,6 +13,7 @@ import AdminMenu from "@/views/admin/Menu";
 import AdminUser from "@/views/admin/User";
 import AdminAbout from "@/views/admin/About";
 import AddNews from "@/views/admin/AddNews";
+import AdminContactUs from "@/views/admin/ContactUs";
 
 Vue.use(Router);
 
@@ -112,6 +113,16 @@ const router = new Router({
           }
         },
         {
+          path: "contactus",
+          name: "admin_contactus",
+          component: AdminContactUs,
+          meta: {
+            title: "联系我们",
+            auth: true,
+            hide: true
+          }
+        },
+        {
           path: "news",
           name: "admin_news",
           component: AdminNews,
@@ -132,7 +143,7 @@ const router = new Router({
           }
         },
         {
-          path: "menu",
+          path: "user",
           name: "admin_user",
           component: AdminUser,
           meta: {

@@ -1,6 +1,7 @@
 var config = require("./config.js");
 var tokenUtil = require("./auth/token.js");
 var CommonModels = require("./models/CommonModels.js");
+var moment = require("moment");
 
 function checkState(req, res, next) {
   return new Promise((resolve, reject) => {
@@ -46,3 +47,7 @@ function checkState(req, res, next) {
 }
 
 exports.checkState = checkState;
+
+exports.formatTime = function(value) {
+  return moment(value).format("YYYY-MM-DD hh:mm:ss");
+};

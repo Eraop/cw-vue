@@ -15,7 +15,7 @@ router.get("/list", function(req, res, next) {
 
   var page = new CommonModels.PageModel();
   // 查询所属channel下的cms_article
-  var sql = "SELECT * FROM cms_article order by last_update,id desc limit ?,?";
+  var sql = "SELECT a.*,b.username FROM cms_article a LEFT JOIN core_user b ON a.user_id =b.id order by concat(a.last_update,a.id) desc limit ?,?";
   var param = [start, size];
   // 查询所属channel下的cms_article的总数
   var countSql = "SELECT count(1) as sum FROM cms_article";
@@ -24,7 +24,7 @@ router.get("/list", function(req, res, next) {
   if (req.query.channel_id !== undefined) {
     var channel_id = parseInt(req.query.channel_id);
     sql =
-      "SELECT * FROM cms_article where channel_id = ? order by last_update,id desc limit ?,?";
+      "SELECT a.*,b.username FROM cms_article a LEFT JOIN core_user b ON a.user_id =b.id  where a.channel_id = ? order by concat(a.last_update,a.id) desc  limit ?,?";
     param = [channel_id, start, size];
     countSql =
       "SELECT count(1) as sum FROM cms_article where channel_id = ? limit 1";
@@ -62,7 +62,7 @@ router.get("/channel", function(req, res, next) {
 // 获取news详细信息
 router.get("/detail/:id", function(req, res, next) {
   db.query(
-    "SELECT * FROM cms_article where id= ? limit 1",
+    "SELECT a.*,b.username FROM cms_article a LEFT JOIN core_user b ON a.user_id =b.id where a.id= ? limit 1",
     [req.params.id],
     function(err, result) {
       if (err) {

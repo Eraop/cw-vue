@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="breadcrumb">
+    <div>
       <button type="button" class="btn btn-primary" @click="addNews">
-        <i class="fa fa-plus"></i> 新增(Markdown)</button>
+        <i class="fa fa-plus"></i> 新增</button>
     </div>
     <cw-loading :loading="loading"></cw-loading>
     <el-table ref="multipleTable" :data="list" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange" v-show="!loading">
@@ -11,13 +11,13 @@
       <el-table-column label="发布时间" width="200">
         <template slot-scope="scope">{{ scope.row.create_date | formatTime }}</template>
       </el-table-column>
-      <el-table-column prop="userid" label="姓名" width="120">
+      <el-table-column prop="username" label="姓名" width="120">
       </el-table-column>
       <el-table-column prop="description" label="描述">
       </el-table-column>
-      <el-table-column label="操作">
+      <el-table-column label="操作" width="200">
         <template slot-scope="scope">
-          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+          <el-button size="mini" @click="handleEdit( scope.row.id)">编辑</el-button>
           <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
         </template>
       </el-table-column>
@@ -48,17 +48,17 @@ export default {
       multipleSelection: []
     };
   },
-  created: function() {
+  created: function () {
     this.getPage();
   },
   methods: {
-    pageChange: function(pageIndex) {
+    pageChange: function (pageIndex) {
       this.pageIndex = pageIndex;
       this.getPage();
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
     },
-    getPage: function() {
+    getPage: function () {
       this.loading = true;
       return this.$http
         .get("/api/news/list", {
@@ -91,14 +91,13 @@ export default {
     handleSelectionChange(val) {
       this.multipleSelection = val;
     },
-    handleEdit(index, row) {
-      console.log(index, row);
+    handleEdit(id) {
+      this.$router.push({ name: "admin_news_add", params: { id: id } });
     },
     handleDelete(index, row) {
       console.log(index, row);
     },
     addNews() {
-      debugger;
       this.$router.push({ name: "admin_news_add" });
     }
   }

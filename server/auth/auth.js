@@ -7,8 +7,7 @@ var jsonParser = bodyParser.json();
 //url-encoded解析器
 // var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-var redis_client = require("../redis.js");
-
+// var redis_client = require("../redis.js");
 var admin_user = require("../admin/user.js");
 var admin_role = require("../admin/role.js");
 var CommonModels = require("../models/CommonModels.js");

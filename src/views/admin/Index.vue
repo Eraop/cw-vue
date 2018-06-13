@@ -26,7 +26,7 @@
         <!--导航菜单-->
         <el-menu :default-active="$route.name" class="el-menu-vertical-demo">
           <el-menu-item v-for="(item,index) in menus" :index="item.link" :key="index">
-            <router-link tag="span" :to="{name:item.link}">
+            <router-link tag="span" :to="{name:item.link}" @click.native='checkUrl(item.link)'>
               <i :class="item.icon"></i>
               {{item.name}}
             </router-link>
@@ -75,7 +75,7 @@ export default {
       }
     };
   },
-  created: function() {
+  created: function () {
     return this.$http.get("/api/admin/menu").then(res => {
       if (res.status == 200) {
         if (res.data !== "") {
@@ -85,6 +85,11 @@ export default {
     });
   },
   methods: {
+    checkUrl: function (url) {
+      // if (url === this.$route.name) {
+      //   this.$router.go(0);
+      // }
+    },
     onSubmit() {
       console.log("submit!");
     },
@@ -94,9 +99,9 @@ export default {
     handleclose() {
       //console.log('handleclose');
     },
-    handleselect: function(a, b) {},
+    handleselect: function (a, b) { },
     //退出登录
-    logout: function() {
+    logout: function () {
       this.$confirm("确认退出吗?", "提示", {
         type: "warning"
       })
@@ -107,10 +112,10 @@ export default {
             }
           });
         })
-        .catch(() => {});
+        .catch(() => { });
     },
     //折叠导航栏
-    collapse: function() {
+    collapse: function () {
       this.isCollapse = !this.isCollapse;
     },
     showMenu(i, status) {

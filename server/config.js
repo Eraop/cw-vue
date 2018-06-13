@@ -8,11 +8,11 @@
 const session_expires_in = 60 * 30; //session过期时间 秒
 const token_expires_in = 60 * 60; //token过期时间 秒
 exports.database = {
-  host: "localhost",
+  host: "47.97.107.213",
   user: "root",
-  password: "123456",
+  password: "ve123456",
   port: "3306",
-  database: "wf_vue"
+  database: "cw_vue"
 };
 // redis 配置
 exports.redis_options = {

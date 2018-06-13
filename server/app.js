@@ -1,9 +1,9 @@
 const express = require("express");
 const app = express();
 var config = require("./config.js");
-var auth = require("./auth/auth.js");
+// var auth = require("./auth/auth.js");
 var common = require("./common.js");
-var redis_client = require("./redis.js");
+// var redis_client = require("./redis.js");
 var cookieParser = require("cookie-parser");
 var session = require("express-session");
 // 存储session
@@ -155,7 +155,7 @@ app.get("/api/", function(req, res) {
 //   }
 // });
 
-app.get("/api/admin/*", function(req, res, next) {
+app.all("/api/admin/*", function(req, res, next) {
   common.checkState(req, res, next).then(result => {
     if (result && result.code === 200) {
       next();
