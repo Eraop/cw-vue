@@ -20,7 +20,7 @@ exports.redis_options = {
   port: "6379",
   ttl: session_expires_in
 };
-exports.secret_key = "eraop";
+exports.secret_key = "eraop_secret_key";
 exports.token_expires_in = token_expires_in;
 exports.session_expires_in = session_expires_in;
 exports.page_size = 10;

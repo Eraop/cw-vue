@@ -6,7 +6,6 @@
       <li data-target="#homeCarousel" data-slide-to="1"></li>
       <li data-target="#homeCarousel" data-slide-to="2"></li>
       <li data-target="#homeCarousel" data-slide-to="3"></li>
-      <li data-target="#homeCarousel" data-slide-to="4"></li>
     </ol>
     <!-- 轮播（Carousel）项目 -->
     <div class="carousel-inner">
@@ -40,12 +39,6 @@ var list = [
   {
     imageUrl: "/static/images/banner_1.jpg",
     imageTitle: "Become Strong And Healthy",
-    imageDescription:
-      "TrainHard is the right place to start new life as an athletic, strong and healthy person with a strong will."
-  },
-  {
-    imageUrl: "/static/images/banner_3.jpg",
-    imageTitle: "Build Your Body With Us",
     imageDescription:
       "TrainHard is the right place to start new life as an athletic, strong and healthy person with a strong will."
   },

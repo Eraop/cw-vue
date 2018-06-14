@@ -15,6 +15,10 @@ import AdminAbout from "@/views/admin/About";
 import AddNews from "@/views/admin/AddNews";
 import AdminContactUs from "@/views/admin/ContactUs";
 
+// const ContactUs = ()=>import(/* webpackChunkName: "ContactUs" */ "@/views/ContactUs.vue");
+// const ContactUs = r => require.ensure([], () => r(require('@/views/ContactUs')), 'contactus')
+
+
 Vue.use(Router);
 
 const router = new Router({

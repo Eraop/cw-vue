@@ -30,8 +30,8 @@ app.use(
 // );
 
 app.use(cookieParser());
-var tokenUtil = require("./auth/token.js");
-var CommonModels = require("./models/CommonModels.js");
+// var tokenUtil = require("./auth/token.js");
+// var CommonModels = require("./models/CommonModels.js");
 //设置跨域访问
 app.all("*", function(req, res, next) {
   if (
@@ -168,6 +168,6 @@ app.use("/api/news", require("./news.js"));
 app.use("/api/auth", require("./auth/auth.js"));
 app.use("/api/admin", require("./admin/admin.js"));
 
-app.listen("8002", () => {
-  console.log("success listen at port:8002......");
+app.listen("5678", () => {
+  console.log("success listen at port:5678......");
 });
