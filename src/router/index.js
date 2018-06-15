@@ -1,23 +1,44 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "@/views/Home";
-import About from "@/views/About";
-import ContactUs from "@/views/ContactUs";
-import News from "@/views/News";
-import NotFound from "@/views/NotFound";
-import NewsDetail from "@/views/NewsDetail";
-import Login from "@/views/Login";
-import AdminIndex from "@/views/admin/Index";
-import AdminNews from "@/views/admin/AdminNews";
-import AdminMenu from "@/views/admin/Menu";
-import AdminUser from "@/views/admin/User";
-import AdminAbout from "@/views/admin/About";
-import AddNews from "@/views/admin/AddNews";
-import AdminContactUs from "@/views/admin/ContactUs";
-
-// const ContactUs = ()=>import(/* webpackChunkName: "ContactUs" */ "@/views/ContactUs.vue");
+// import About from "@/views/About";
+// import ContactUs from "@/views/ContactUs";
+// import News from "@/views/News";
+// import NotFound from "@/views/NotFound";
+// import NewsDetail from "@/views/NewsDetail";
+// import Login from "@/views/Login";
+// import AdminIndex from "@/views/admin/Index";
+// import AdminNews from "@/views/admin/AdminNews";
+// import AdminMenu from "@/views/admin/Menu";
+// import AdminUser from "@/views/admin/User";
+// import AdminAbout from "@/views/admin/About";
+// import AddNews from "@/views/admin/AddNews";
+// import AdminContactUs from "@/views/admin/ContactUs";
+ 
 // const ContactUs = r => require.ensure([], () => r(require('@/views/ContactUs')), 'contactus')
-
+const About = () => import(/* webpackChunkName: "About" */ "@/views/About");
+const ContactUs = () =>
+  import(/* webpackChunkName: "ContactUs" */ "@/views/ContactUs");
+const News = () => import(/* webpackChunkName: "News" */ "@/views/News");
+const NotFound = () =>
+  import(/* webpackChunkName: "NotFound" */ "@/views/NotFound");
+const NewsDetail = () =>
+  import(/* webpackChunkName: "NewsDetail" */ "@/views/NewsDetail");
+const Login = () => import(/* webpackChunkName: "Login" */ "@/views/Login");
+const AdminIndex = () =>
+  import(/* webpackChunkName: "AdminIndex" */ "@/views/admin/Index");
+const AdminNews = () =>
+  import(/* webpackChunkName: "AdminNews" */ "@/views/admin/AdminNews");
+const AdminMenu = () =>
+  import(/* webpackChunkName: "AdminMenu" */ "@/views/admin/Menu");
+const AdminUser = () =>
+  import(/* webpackChunkName: "AdminUser" */ "@/views/admin/User");
+const AdminAbout = () =>
+  import(/* webpackChunkName: "AdminAbout" */ "@/views/admin/About");
+const AddNews = () =>
+  import(/* webpackChunkName: "AddNews" */ "@/views/admin/AddNews");
+const AdminContactUs = () =>
+  import(/* webpackChunkName: "AdminContactUs" */ "@/views/admin/ContactUs");
 
 Vue.use(Router);
 

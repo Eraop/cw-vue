@@ -36,6 +36,8 @@ app.use(cookieParser());
 app.all("*", function(req, res, next) {
   if (
     req.headers.origin == "http://localhost:1234" ||
+    req.headers.origin == "http://47.97.107.213:80" || 
+    req.headers.origin == "http://47.97.107.213" || 
     req.headers.origin == "http://eraop.com" ||
     req.headers.origin == "https://eraop.com" ||
     req.headers.origin == "http://www.eraop.com" ||
