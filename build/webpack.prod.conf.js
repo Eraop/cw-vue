@@ -10,7 +10,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-
+const AutoDllPlugin = require('autodll-webpack-plugin');
 const env = require('../config/prod.env')
 
 const webpackConfig = merge(baseWebpackConfig, {
@@ -111,6 +111,48 @@ const webpackConfig = merge(baseWebpackConfig, {
       minChunks: 3
     }),
 
+    new AutoDllPlugin({
+      path:"/static/js",
+      inject: true, // will inject the DLL bundles to index.html
+      filename: '[name].min.js',
+      debug: true,
+      entry: {
+        vendor_vue: [
+          "vue", "vuex", "vue-router"
+        ]
+      },
+      plugins: [
+        new webpack.optimize.UglifyJsPlugin()
+      ]
+    }),
+    new AutoDllPlugin({
+      path:"/static/js",
+      inject: true, // will inject the DLL bundles to index.html
+      filename: '[name].min.js',
+      debug: true,
+      entry: {
+        vendor_common: [
+          "axios", "jquery", "bootstrap", "moment"
+        ]
+      },
+      plugins: [
+        new webpack.optimize.UglifyJsPlugin()
+      ]
+    }),
+    new AutoDllPlugin({
+      path:"/static/js",
+      inject: true, // will inject the DLL bundles to index.html
+      filename: '[name].min.js',
+      debug: true,
+      entry: {
+        vendor_element: [
+          "element-ui"
+        ]
+      },
+      plugins: [
+        new webpack.optimize.UglifyJsPlugin()
+      ]
+    }),
     // copy custom static assets
     new CopyWebpackPlugin([
       {
