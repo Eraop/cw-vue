@@ -11,9 +11,9 @@
               <div class="login-agileits-top">
                 <div>
                   <p>User Name </p>
-                  <input type="text" ref="name" class="name" name="username" placeholder="User Name">
+                  <input type="text" ref="name" class="name" name="username" placeholder="User Name" @keyup.enter="login">
                   <p>Password</p>
-                  <input type="password" ref="password" class="password" name="Password" placeholder="********">
+                  <input type="password" ref="password" class="password" name="Password" placeholder="********" @keyup.enter="login">
                   <label class="anim">
                     <input type="checkbox" class="checkbox">
                     <span> Remember me ?</span>
@@ -47,7 +47,7 @@ export default {
     });
     document.getElementsByTagName("body")[0].className = "login-body";
   },
-  beforeDestroy: function() {
+  beforeDestroy: function () {
     document
       .getElementsByTagName("body")[0]
       .removeAttribute("class", "login-body");

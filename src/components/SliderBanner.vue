@@ -1,12 +1,12 @@
 <template>
   <div id="homeCarousel" class="carousel slide carousel-fade" data-ride="carousel">
     <!-- 轮播（Carousel）指标 -->
-    <ol class="carousel-indicators">
+    <!-- <ol class="carousel-indicators">
       <li data-target="#homeCarousel" data-slide-to="0" class="active"></li>
       <li data-target="#homeCarousel" data-slide-to="1"></li>
       <li data-target="#homeCarousel" data-slide-to="2"></li>
       <li data-target="#homeCarousel" data-slide-to="3"></li>
-    </ol>
+    </ol> -->
     <!-- 轮播（Carousel）项目 -->
     <div class="carousel-inner">
       <div class="item" v-for="(item,index) in list" :key="index" :class="{active:index===0}">
@@ -30,29 +30,35 @@
 </template>
 <script>
 var list = [
-  {
-    imageUrl: "/static/images/banner_2.jpg",
-    imageTitle: "Exceptional Life Fitness",
+  // {
+  //   imageUrl: "/static/images/banner_2.jpg",
+  //   imageTitle: "Exceptional Life Fitness",
+  //   imageDescription:
+  //     "TrainHard is the right place to start new life as an athletic, strong and healthy person with a strong will."
+  // },
+  // {
+  //   imageUrl: "/static/images/banner_1.jpg",
+  //   imageTitle: "Become Strong And Healthy",
+  //   imageDescription:
+  //     "TrainHard is the right place to start new life as an athletic, strong and healthy person with a strong will."
+  // },
+  // {
+  //   imageUrl: "/static/images/banner_4.jpg",
+  //   imageTitle: "Exceptional Life Fitness",
+  //   imageDescription:
+  //     "TrainHard is the right place to start new life as an athletic, strong and healthy person with a strong will."
+  // },
+  // {
+  //   imageUrl: "/static/images/banner_5.jpg",
+  //   imageTitle: "Build Your Body With Us",
+  //   imageDescription:
+  //     "TrainHard is the right place to start new life as an athletic, strong and healthy person with a strong will."
+  // }
+    {
+    imageUrl: "/static/images/default.jpg",
+    imageTitle: "",
     imageDescription:
-      "TrainHard is the right place to start new life as an athletic, strong and healthy person with a strong will."
-  },
-  {
-    imageUrl: "/static/images/banner_1.jpg",
-    imageTitle: "Become Strong And Healthy",
-    imageDescription:
-      "TrainHard is the right place to start new life as an athletic, strong and healthy person with a strong will."
-  },
-  {
-    imageUrl: "/static/images/banner_4.jpg",
-    imageTitle: "Exceptional Life Fitness",
-    imageDescription:
-      "TrainHard is the right place to start new life as an athletic, strong and healthy person with a strong will."
-  },
-  {
-    imageUrl: "/static/images/banner_5.jpg",
-    imageTitle: "Build Your Body With Us",
-    imageDescription:
-      "TrainHard is the right place to start new life as an athletic, strong and healthy person with a strong will."
+      ""
   }
 ];
 export default {
@@ -67,7 +73,7 @@ export default {
  <style lang="scss" scoped>
 .carousel-inner .item img {
   width: 100%;
-  height: 800px;
+  height: 600px;
 }
 
 .carousel-caption {

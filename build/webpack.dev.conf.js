@@ -9,7 +9,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
-const AutoDllPlugin = require('autodll-webpack-plugin');
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
@@ -58,16 +57,6 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       template: 'index.html',
       inject: true,
       favicon: path.resolve('favicon.ico')
-    }),
-    new AutoDllPlugin({
-      inject: true, // will inject the DLL bundles to index.html
-      filename: '[name].dll.js',
-      debug: true,
-      entry: {
-        vendor: [
-          "vue", "vuex", "axios", "vue-router", "element-ui", "jquery", "bootstrap", "moment"
-        ]
-      }
     }),
     // copy custom static assets
     new CopyWebpackPlugin([

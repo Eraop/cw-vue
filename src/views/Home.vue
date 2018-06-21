@@ -5,42 +5,42 @@
     <div class="section-container">
       <div class="container">
         <div class="section-container-head">
-          <h3 class="section-container-head-title text-black">What We
-            <span class="text-dark">Do?</span>
+          <h3 class="section-container-head-title text-black">
+            <span class="text-dark">What </span>I Do<span class="text-dark">?</span>
           </h3>
         </div>
         <div class="d-flex">
           <div class="d-flex-left">
-            <h4>CrossFit and TrainHard GYM </h4>
-            <p class="details">Nullam pulvinar vulputate aliquam. Pellentesque venenatis ut mi ac porta. Praesent interdum nibh libero, id malesuada libero aliquet quis. Donec at odio nibh.</p>
+            <h4>I'm a software engineer.</h4>
+            <p class="details">Faithfulness, honesty and principles, and always do things consistently and pursue better things.</p>
             <ul class="d-flex-left-list">
               <li>
                 <div class="col-md-4 d-flex-left-list-img">
-                  <img src="/static/images/1.jpg" alt="" class="img-responsive" />
+                  <img src="/static/images/focus.jpg" alt="" class="img-responsive" />
                 </div>
                 <div class="col-md-8 in-block">
-                  <h5>ELEMENTS</h5>
-                  <p>Suspendisse maximus leo vel facilisis porta. Aliquam posuere mollis auctor. Nunc eget massa eleifend, finibus.</p>
+                  <h5>FOCUS</h5>
+                  <p> Java, .Net, Database, Frontend.</p>
                 </div>
                 <div class="clearfix"> </div>
               </li>
               <li>
                 <div class="col-md-4 d-flex-left-list-img">
-                  <img src="/static/images/2.jpg" alt="" class="img-responsive" />
+                  <img src="/static/images/study.jpg" alt="" class="img-responsive" />
                 </div>
                 <div class="col-md-8 in-block">
-                  <h5>BOOT CAMP</h5>
-                  <p>Suspendisse maximus leo vel facilisis porta. Aliquam posuere mollis auctor. Nunc eget massa eleifend, finibus.</p>
+                  <h5>STUDY</h5>
+                  <p>Study hard, avoid problems, and be willing to learn from others.</p>
                 </div>
                 <div class="clearfix"> </div>
               </li>
               <li>
                 <div class="col-md-4 d-flex-left-list-img">
-                  <img src="/static/images/3.jpg" alt="" class="img-responsive" />
+                  <img src="/static/images/teamwork.jpg" alt="" class="img-responsive" />
                 </div>
                 <div class="col-md-8 in-block">
-                  <h5>CROSSFIT</h5>
-                  <p>Suspendisse maximus leo vel facilisis porta. Aliquam posuere mollis auctor. Nunc eget massa eleifend, finibus.</p>
+                  <h5>TEAM WORK</h5>
+                  <p>I like team work, strong team spirit and positive working attitude.</p>
                 </div>
                 <div class="clearfix"> </div>
               </li>
@@ -57,8 +57,8 @@
     <div class="section-container background-fixed point-section">
       <div class="container">
         <div class="section-container-head">
-          <h3 class="section-container-head-title text-white">Our
-            <span>Classes</span>
+          <h3 class="section-container-head-title text-white">
+            <span>My</span> Projects
           </h3>
         </div>
         <div class="row">
@@ -91,30 +91,31 @@
     <div class="section-container team-section">
       <div class="container">
         <div class="section-container-head">
-          <h3 class="section-container-head-title">Our
-            <span>Team</span>
+          <h3 class="section-container-head-title">Contact
+            <span>Me</span>
           </h3>
         </div>
         <div class="row">
           <div class="col-xs-12 col-sm-4">
             <div class="team-grid pull-left">
-              <img src="/static/images/1.png" class="img-circle">
-              <h3>Eraop</h3>
-              <p>Cras tortor ipsum, gravida vitae finibus non, bibendum quis turpis. Cras semper accumsan metus, et aliquet diam vestibulum ut. </p>
+              <!-- <img src="/static/images/1.png" class="img-circle"> -->
+              <i class="fa fa-qq fa-fw link-img"></i>
+              <h3>QQ</h3>
+              <!-- <p>Cras tortor ipsum, gravida vitae finibus non, bibendum quis turpis. Cras semper accumsan metus, et aliquet diam vestibulum ut. </p> -->
             </div>
           </div>
           <div class="col-xs-12 col-sm-4">
             <div class="team-grid pull-left">
-              <img src="/static/images/3.png" class="img-circle">
-              <h3>Thompson</h3>
-              <p>Cras tortor ipsum, gravida vitae finibus non, bibendum quis turpis. Cras semper accumsan metus, et aliquet diam vestibulum ut. </p>
+              <!-- <img src="/static/images/3.png" class="img-circle"> -->
+              <i class="fa fa-envelope fa-fw link-img"></i>
+              <h3>Email</h3>
             </div>
           </div>
           <div class="col-xs-12 col-sm-4">
             <div class="team-grid pull-left">
-              <img src="/static/images/2.png" class="img-circle">
-              <h3>Mary watson</h3>
-              <p>Cras tortor ipsum, gravida vitae finibus non, bibendum quis turpis. Cras semper accumsan metus, et aliquet diam vestibulum ut. </p>
+              <!-- <img src="/static/images/2.png" class="img-circle"> -->
+              <i class="fa fa-weibo fa-fw link-img"></i>
+              <h3>Weibo</h3>
             </div>
           </div>
           <div class="clearfix"></div>
@@ -178,6 +179,10 @@ export default {
       font-size: 14px;
       color: #777;
     }
+    .d-flex-left-list {
+      padding: 0;
+    }
+
     .d-flex-left-list li {
       margin: 20px 0px;
       display: block;
@@ -194,7 +199,7 @@ export default {
     }
   }
   .d-flex-right {
-    background: url(/static/images/wel.jpg) no-repeat;
+    background: url(/static/images/t4.jpg) no-repeat;
     background-size: cover;
     background-position: center;
     flex: 1;
@@ -232,18 +237,21 @@ export default {
     text-align: center;
     padding: 40px 10px;
     background: #000;
+    width: 100%;
+    color: #c7c7c7;
     h3 {
       text-transform: uppercase;
-      color: #ffc107;
       font-size: 19px;
       font-weight: 600;
       margin: 20px 0 0;
     }
     p {
       font-size: 14px;
-      color: #999;
       margin: 10px 0;
       line-height: 24px;
+    }
+    .link-img {
+      font-size: 80px;
     }
   }
 }

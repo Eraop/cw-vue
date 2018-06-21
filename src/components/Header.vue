@@ -23,10 +23,10 @@
 								<router-link class="effect" :to="{name:'home'}" exact>Home</router-link>
 							</li>
 							<li>
-								<router-link class="effect" :to="{name:'about'}">About</router-link>
+								<router-link class="effect" :to="{name:'news'}">Blog</router-link>
 							</li>
 							<li>
-								<router-link class="effect" :to="{name:'news'}">News</router-link>
+								<router-link class="effect" :to="{name:'about'}">About</router-link>
 							</li>
 							<li>
 								<router-link class="effect" :to="{name:'contactus'}">Contact Us</router-link>

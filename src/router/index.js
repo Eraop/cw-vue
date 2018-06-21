@@ -14,7 +14,7 @@ import Home from "@/views/Home";
 // import AdminAbout from "@/views/admin/About";
 // import AddNews from "@/views/admin/AddNews";
 // import AdminContactUs from "@/views/admin/ContactUs";
- 
+
 // const ContactUs = r => require.ensure([], () => r(require('@/views/ContactUs')), 'contactus')
 const About = () => import(/* webpackChunkName: "About" */ "@/views/About");
 const ContactUs = () =>
@@ -39,6 +39,8 @@ const AddNews = () =>
   import(/* webpackChunkName: "AddNews" */ "@/views/admin/AddNews");
 const AdminContactUs = () =>
   import(/* webpackChunkName: "AdminContactUs" */ "@/views/admin/ContactUs");
+const AdminChannel = () =>
+  import(/* webpackChunkName: "AdminContactUs" */ "@/views/admin/AdminChannel");
 
 Vue.use(Router);
 
@@ -153,6 +155,16 @@ const router = new Router({
           component: AdminNews,
           meta: {
             title: "新闻列表",
+            auth: true,
+            hide: true
+          }
+        },
+        {
+          path: "channel",
+          name: "admin_channel",
+          component: AdminChannel,
+          meta: {
+            title: "新闻分类",
             auth: true,
             hide: true
           }

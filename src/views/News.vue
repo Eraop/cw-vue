@@ -3,11 +3,11 @@
     <div class="main-banner"></div>
     <div class="inner-padding">
       <div class="container">
-        <div class="section-container-head">
+        <!-- <div class="section-container-head">
           <h3>Company
             <span>News</span>
           </h3>
-        </div>
+        </div> -->
         <div class="section-container-content">
           <div class="row">
             <div id="channel_nav" :class="{'fixed-nav':fixedNav}">
@@ -135,7 +135,7 @@ export default {
         document.body.clientWidth ||
         document.body.offsetWidth ||
         document.body.scrollWidth;
-      if (scrollTop >= 270 && width >= 768) {
+      if (scrollTop >= 140 && width >= 768) {
         this.fixedNav = true;
       } else {
         this.fixedNav = false;
