@@ -28,9 +28,9 @@
 							<li>
 								<router-link class="effect" :to="{name:'about'}">About</router-link>
 							</li>
-							<li>
+							<!-- <li>
 								<router-link class="effect" :to="{name:'contactus'}">Contact Us</router-link>
-							</li>
+							</li> -->
 							<li>
 								<router-link class="effect" :to="{name:'login'}">Log In</router-link>
 							</li>

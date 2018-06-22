@@ -90,7 +90,7 @@ const router = new Router({
       name: "newsdetail",
       component: NewsDetail,
       meta: {
-        auth: true
+        auth: false
       }
     },
     {

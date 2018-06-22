@@ -58,6 +58,9 @@ $colors: (
   black: (
     base: #000000
   ),
+  darkgray: (
+    base: #373d41
+  ),
   dark: (
     base: #343a40,
     focus: #1d2124
@@ -90,11 +93,13 @@ $colors: (
       color: map-get($color, focus) !important;
     }
   }
+  .bg-#{$name} {
+    background-color: map-get($color, base) !important;
+  }
 }
 .padding {
   padding: 15px;
 }
-
 $sizes: (5, 10, 15, 20, 25, 30);
 @each $size in $sizes {
   .padding-#{$size} {
@@ -109,7 +114,6 @@ $sizes: (5, 10, 15, 20, 25, 30);
   .padding-left-#{$size} {
     padding-left: $size + px;
   }
-
   .padding-top-#{$size} {
     padding-top: $size + px;
   }
@@ -141,7 +145,6 @@ $sizes: (5, 10, 15, 20, 25, 30);
     margin-bottom: $size + px;
   }
 }
-
 .in-block {
   display: inline-block !important;
 }

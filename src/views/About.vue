@@ -30,10 +30,10 @@ export default {
   -moz-background-size: cover;
   -o-background-size: cover;
   -ms-background-size: cover;
-  min-height: 350px;
+  min-height: 200px;
 }
-.inner-padding   {
-  padding: 10em 0;
+.inner-padding {
+  padding: 3em 0;
 
   .section-container-head {
     margin-bottom: 5em;
