@@ -6,7 +6,8 @@
       <div class="container">
         <div class="section-container-head">
           <h3 class="section-container-head-title text-black">
-            <span class="text-dark">What </span>I Do<span class="text-dark">?</span>
+            <span class="text-dark">What </span>I Do
+            <span class="text-dark">?</span>
           </h3>
         </div>
         <div class="d-flex">
@@ -57,33 +58,42 @@
     <div class="section-container background-fixed point-section">
       <div class="container">
         <div class="section-container-head">
-          <h3 class="section-container-head-title text-white">
+          <h3 class="section-container-head-title text-black">
             <span>My</span> Projects
           </h3>
         </div>
         <div class="row">
           <div class="col-md-4">
             <div class="point-grid">
-              <h5>Sunday, 13.00</h5>
-              <h4>AEROBIC CAPACITY</h4>
-              <h6>Trainer: Andrew Ross</h6>
+              <h5>2018/05 - 2018/06</h5>
+              <h4>Eraop Personal Website</h4>
+              <h6>Vuejs + Vuex + Axios + ElementUI + Scss + Webpack</h6>
+              <h6>Nodejs + Express + MySQL + Redis + PM2</h6>
+              <h6>Json Web Token</h6>
             </div>
           </div>
           <div class="col-md-4">
             <div class="point-grid">
-              <h5>Monday, 13.00</h5>
-              <h4>GYMNASTICS PRO</h4>
-              <h6>Trainer: Steve Smith</h6>
+              <h5>2017/12 - 2018/05</h5>
+              <h4>Java Web Framework</h4>
+              <h6>Java + SpringBoot + Mybatis + MySQL + Tomcat</h6>
+              <h6>Thymeleaf + Layer + Bootstrap + jQuery + Scss</h6>
+              <h6>Nginx + Keepalived + Redis</h6>
             </div>
           </div>
           <div class="col-md-4">
             <div class="point-grid">
-              <h5>Tuesday, 13.00</h5>
-              <h4>BEGINNERS LEVEL</h4>
-              <h6>Trainer: Jessy Raider</h6>
+              <h5>2017/01 - 2018/06</h5>
+              <h4>YQ System</h4>
+              <h6>C# + ASP.NET MVC + Entity Framework</h6>
+              <h6>jQuery + Bootstrap + Scss + Knockout</h6>
+              <h6>MySQL/Oracle + Redis + IIS</h6>
             </div>
           </div>
           <div class="clearfix"></div>
+          <div class="col-md-12 text-center more-link">
+            <a>READ MORE</a>
+          </div>
         </div>
       </div>
     </div>
@@ -91,7 +101,7 @@
     <div class="section-container team-section">
       <div class="container">
         <div class="section-container-head">
-          <h3 class="section-container-head-title">Contact
+          <h3 class="section-container-head-title text-white">Contact
             <span>Me</span>
           </h3>
         </div>
@@ -101,7 +111,7 @@
               <!-- <img src="/static/images/1.png" class="img-circle"> -->
               <i class="fa fa-qq fa-fw link-img"></i>
               <h3>QQ</h3>
-              <!-- <p>Cras tortor ipsum, gravida vitae finibus non, bibendum quis turpis. Cras semper accumsan metus, et aliquet diam vestibulum ut. </p> -->
+              <p>493214262</p>
             </div>
           </div>
           <div class="col-xs-12 col-sm-4">
@@ -109,6 +119,7 @@
               <!-- <img src="/static/images/3.png" class="img-circle"> -->
               <i class="fa fa-envelope fa-fw link-img"></i>
               <h3>Email</h3>
+              <p>493214262@qq.com</p>
             </div>
           </div>
           <div class="col-xs-12 col-sm-4">
@@ -116,6 +127,7 @@
               <!-- <img src="/static/images/2.png" class="img-circle"> -->
               <i class="fa fa-weibo fa-fw link-img"></i>
               <h3>Weibo</h3>
+              <p>回忆不曾断点</p>
             </div>
           </div>
           <div class="clearfix"></div>
@@ -199,15 +211,15 @@ export default {
     }
   }
   .d-flex-right {
-    background: url(/static/images/t4.jpg) no-repeat;
+    background: url(/static/images/me.jpg) no-repeat;
     background-size: cover;
     background-position: center;
     flex: 1;
     -ms-flex: 1;
   }
   .point-grid {
-    background: rgba(82, 82, 82, 0.5);
-    padding: 4em 4em;
+    background: rgba(82, 82, 82, 0.78);
+    padding: 4em 0em;
     transition: 0.5s all;
     text-align: center;
 
@@ -220,7 +232,7 @@ export default {
     h6 {
       font-style: italic;
       color: #fff;
-      font-size: 16px;
+      font-size: 12px;
       letter-spacing: 1px;
     }
     h4 {
@@ -236,7 +248,7 @@ export default {
   .team-grid {
     text-align: center;
     padding: 40px 10px;
-    background: #000;
+    // background: #000;
     width: 100%;
     color: #c7c7c7;
     h3 {
@@ -256,13 +268,35 @@ export default {
   }
 }
 .point-section {
-  background: url(/static/images/banner_5.jpg) no-repeat;
+  background: url(/static/images/projecs.jpg) no-repeat;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   -ms-background-size: cover;
   padding: 5em 0;
+}
+.team-section {
+  background-color: #373d41;
+}
+.more-link {
+  padding-top: 2em;
+  a {
+    background: transparent;
+    padding: 10px 50px;
+    border-radius: 20px;
+    color: #716f73;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  a:hover {
+    background: #716f73;
+    padding: 10px 50px;
+    border-radius: 20px;
+    color: #ffc107;
+    text-decoration: none;
+    cursor: pointer;
+  }
 }
 </style>
 

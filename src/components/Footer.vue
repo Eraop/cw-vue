@@ -1,7 +1,7 @@
 <template>
 	<div class="foot-container" id="footer">
 		<p class="copyright">©2018
-			<router-link class="effect" :to="{name:'home'}" exact>Eraop</router-link> All Rights Reserved | Design by Eraop</p>
+			<router-link class="effect text-white" :to="{name:'home'}" exact>Eraop</router-link> All Rights Reserved | Design by Eraop</p>
 	</div>
 </template>
 <script>
