@@ -1,7 +1,11 @@
 <template>
   <div class="foot-container" id="footer">
-    <p class="copyright" :class="{'bg-white text-darkgray':!isHome,'bg-darkgray text-white':isHome}" >©2018
-      <router-link class="effect" :class="{'text-darkgray':!isHome,'text-white':isHome}" :to="{name:'home'}" exact>Eraop</router-link> All Rights Reserved | Design by Eraop</p>
+    <div class="copyright" :class="{'bg-white text-darkgray':!isHome,'bg-darkgray text-white':isHome}">©2018
+      <router-link class="effect" :class="{'text-darkgray':!isHome,'text-white':isHome}" :to="{name:'home'}" exact>Eraop</router-link> {{$t('message.foot.copyright')}}
+      <br>
+      <span>{{$t('message.foot.record')}}</span>
+    </div>
+
   </div>
 </template>
 <script>

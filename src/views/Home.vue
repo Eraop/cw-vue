@@ -6,22 +6,21 @@
       <div class="container">
         <div class="section-container-head">
           <h3 class="section-container-head-title text-black">
-            <span class="text-dark">What </span>I Do
-            <span class="text-dark">?</span>
+            <span class="text-dark" v-html="$t('message.home.professional.title')"></span>
           </h3>
         </div>
         <div class="d-flex">
           <div class="d-flex-left">
-            <h4>I'm a software engineer.</h4>
-            <p class="details">Faithfulness, honesty and principles, and always do things consistently and pursue better things.</p>
+            <h4>{{$t('message.home.professional.details.text')}}</h4>
+            <p class="details">{{$t('message.home.professional.details.desc')}}</p>
             <ul class="d-flex-left-list">
               <li>
                 <div class="col-md-4 d-flex-left-list-img">
                   <img src="/static/images/focus.jpg" alt="" class="img-responsive" />
                 </div>
                 <div class="col-md-8 in-block">
-                  <h5>FOCUS</h5>
-                  <p> Java, .Net, Database, Frontend.</p>
+                  <h5>{{$t('message.home.professional.details.specialty.focus.text')}}</h5>
+                  <p>{{$t('message.home.professional.details.specialty.focus.desc')}}</p>
                 </div>
                 <div class="clearfix"> </div>
               </li>
@@ -30,8 +29,8 @@
                   <img src="/static/images/study.jpg" alt="" class="img-responsive" />
                 </div>
                 <div class="col-md-8 in-block">
-                  <h5>STUDY</h5>
-                  <p>Study hard, avoid problems, and be willing to learn from others.</p>
+                  <h5>{{$t('message.home.professional.details.specialty.study.text')}}</h5>
+                  <p>{{$t('message.home.professional.details.specialty.study.desc')}}</p>
                 </div>
                 <div class="clearfix"> </div>
               </li>
@@ -40,8 +39,8 @@
                   <img src="/static/images/teamwork.jpg" alt="" class="img-responsive" />
                 </div>
                 <div class="col-md-8 in-block">
-                  <h5>TEAM WORK</h5>
-                  <p>I like team work, strong team spirit and positive working attitude.</p>
+                  <h5>{{$t('message.home.professional.details.specialty.team.text')}}</h5>
+                  <p>{{$t('message.home.professional.details.specialty.team.desc')}}</p>
                 </div>
                 <div class="clearfix"> </div>
               </li>
@@ -59,7 +58,7 @@
       <div class="container">
         <div class="section-container-head">
           <h3 class="section-container-head-title text-black">
-            <span>My</span> Projects
+            <span v-html="$t('message.home.project.title')"></span>
           </h3>
         </div>
         <div class="row">
@@ -101,8 +100,8 @@
     <div class="section-container team-section">
       <div class="container">
         <div class="section-container-head">
-          <h3 class="section-container-head-title text-white">Contact
-            <span>Me</span>
+          <h3 class="section-container-head-title text-white">
+            <span v-html="$t('message.home.contact.title')"></span>
           </h3>
         </div>
         <div class="row">

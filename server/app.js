@@ -6,6 +6,7 @@ var common = require("./common.js");
 // var redis_client = require("./redis.js");
 var cookieParser = require("cookie-parser");
 var session = require("express-session");
+var crypto = require("crypto");
 // 存储session
 app.use(
   session({
@@ -59,6 +60,46 @@ app.all("*", function(req, res, next) {
 app.get("/api/", function(req, res) {
   res.send("Hello World");
 });
+
+
+//微信路径token验证  
+app.get("/api/check",function(req, res, next) {
+  var signature =  req.query.signature ;  
+  var echostr = req.query.echostr ;  
+  var timestamp =  req.query.timestamp;  
+  var nonce = req.query.nonce ;  
+  var oriArray = new Array();  
+  oriArray[0] = nonce;  
+  oriArray[1] = timestamp;  
+  oriArray[2] = "zxsoft0123456789";  
+  oriArray.sort();  
+  var original = oriArray.join('');  
+  var scyptoString = sha1(original);  
+  if (signature == scyptoString) {  
+      res.end(echostr);  
+      console.log("signature=" +signature);  
+      console.log("echostr="+echostr);  
+      console.log("timestamp="+timestamp);  
+      console.log("nonce="+nonce);  
+      console.log("scyptoString="+scyptoString);   
+  } else {  
+      res.end("false" + "加密后："+scyptoString+"|微信传：signature="+signature+",echostr="+echostr+",timestamp="+timestamp+",nonce="+nonce);  
+      console.log("Failed!");   
+  }  
+});
+
+
+//微信接口的哈希加密方法  
+function sha1(str) {  
+  var md5sum = crypto.createHash("sha1");  
+  md5sum.update(str);  
+  str = md5sum.digest("hex");  
+  return str;  
+}  
+
+
+
+
 
 // 存储在redis
 // app.get("/api/admin/*", function(req, res, next) {
@@ -170,6 +211,6 @@ app.use("/api/news", require("./news.js"));
 app.use("/api/auth", require("./auth/auth.js"));
 app.use("/api/admin", require("./admin/admin.js"));
 
-app.listen("5678", () => {
-  console.log("success listen at port:5678......");
+app.listen("80", () => {
+  console.log("success listen at port:80......");
 });

@@ -17,10 +17,8 @@ export default {
       get UserToken() {
         return localStorage.getItem("currentUser_token");
       }
-      // get SID() {
-      //   return localStorage.getItem("currentUser_sid");
-      // }
-    }
+    },
+    language: localStorage.getItem("language")
   },
   mutations: {
     setState(state, { user_state }) {
@@ -44,6 +42,9 @@ export default {
       localStorage.removeItem("currentUser_avatar");
       localStorage.removeItem("currentUser_roles");
       localStorage.removeItem("currentUser_token");
+    },
+    setLanguage(state, { language }) {
+      localStorage.setItem("language", language);
     }
   },
   actions: {

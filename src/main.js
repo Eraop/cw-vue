@@ -12,7 +12,7 @@ window.jQuery = $;
 require("bootstrap");
 import ElementUI from "element-ui";
 Vue.use(ElementUI);
-
+import i18n from "./locale/index";
 // 引入组件
 import header from "./components/Header.vue";
 import footer from "./components/Footer.vue";
@@ -81,13 +81,13 @@ Vue.component("cw-loading", loading);
 Vue.config.productionTip = false;
 
 router.beforeEach((to, from, next) => {
+  // if (to.meta.title) {
+  //   document.title = to.meta.title + " - " + config.META_TITLE;
+  // }
   if (to.meta.auth) {
     // 判断该路由是否需要登录权限
     // 通过vuex state获取当前的token是否存在
     if (store.state.user.currentUser.UserToken) {
-      if (to.meta.title) {
-        document.title = to.meta.title + " - " + config.META_TITLE;
-      }
       next();
     } else {
       next({
@@ -110,6 +110,7 @@ new Vue({
   el: "#app",
   router,
   store,
+  i18n,
   components: {
     App
   },

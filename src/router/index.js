@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "@/views/Home";
+import Home from "@/views/Home"; 
 // import About from "@/views/About";
 // import ContactUs from "@/views/ContactUs";
 // import News from "@/views/News";
@@ -42,13 +42,13 @@ const AdminContactUs = () =>
 const AdminChannel = () =>
   import(/* webpackChunkName: "AdminContactUs" */ "@/views/admin/AdminChannel");
 
-Vue.use(Router);
-
+Vue.use(Router); 
 const router = new Router({
   // mode: "history",
   linkActiveClass: "active",
   routes: [
     {
+      // path: "/(" + lang + "/)?",
       path: "/",
       name: "home",
       component: Home,
