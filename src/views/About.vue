@@ -4,7 +4,7 @@
     <div class="inner-padding">
       <div class="container">
         <div class="section-container-head">
-          <h3>{{$t('message.about.title')}}</h3>
+          <h3 v-html="$t('message.about.title')"></h3>
         </div>
         <div class="section-container-content text-center">
           <h3 class="text-warning bold margin-v-15"></h3>
@@ -40,7 +40,6 @@ export default {
       color: #262c38;
       letter-spacing: 1px;
       position: relative;
-      font-weight: 600;
       text-align: center;
 
       &::after {

@@ -97,6 +97,22 @@ function sha1(str) {
   return str;  
 }  
 
+app.all("/api/admin/*", function(req, res, next) {
+  common.checkState(req, res, next).then(result => {
+    if (result && result.code === 200) {
+      next();
+    } else {
+      res.json(result);
+    }
+  });
+});
+app.use("/api/news", require("./news.js"));
+app.use("/api/auth", require("./auth/auth.js"));
+app.use("/api/admin", require("./admin/admin.js"));
+
+app.listen("5678", () => {
+  console.log("success listen at port:5678......");
+});
 
 
 
@@ -198,19 +214,3 @@ function sha1(str) {
 //   }
 // });
 
-app.all("/api/admin/*", function(req, res, next) {
-  common.checkState(req, res, next).then(result => {
-    if (result && result.code === 200) {
-      next();
-    } else {
-      res.json(result);
-    }
-  });
-});
-app.use("/api/news", require("./news.js"));
-app.use("/api/auth", require("./auth/auth.js"));
-app.use("/api/admin", require("./admin/admin.js"));
-
-app.listen("80", () => {
-  console.log("success listen at port:80......");
-});

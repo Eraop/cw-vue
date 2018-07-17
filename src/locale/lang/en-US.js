@@ -8,7 +8,7 @@ const lang = {
     login: "Log in"
   },
   about: {
-    title: "About Us",
+    title: "About <b>Me</b>",
     content: `
     Faithfulness, honesty and principles, and always do things consistently and pursue better things;<br />
     Willing to learn, not to evade problems, willing to learn from others with an open mind;<br />
@@ -51,6 +51,10 @@ const lang = {
   foot: {
     copyright: "All Rights Reserved | Design by Eraop",
     record: ""
+  },
+  pager: {
+    prev: "Previous",
+    next: "Next"
   }
 };
 

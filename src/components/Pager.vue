@@ -2,14 +2,14 @@
  * @Author: Eraop 
  * @Date: 2018-05-24 19:55:30 
  * @Last Modified by: Eraop
- * @Last Modified time: 2018-05-27 14:55:01
+ * @Last Modified time: 2018-07-17 11:29:11
  */
 
 <template>
     <nav>
         <ul class="pagination pull-right" :class="{'hidden':total<=0}">
             <li :class="{'disabled': current == 1}">
-                <a @click="setCurrent(current - 1)"> 上一页 </a>
+                <a @click="setCurrent(current - 1)"> {{$t('message.pager.prev')}} </a>
             </li>
             <!-- <li :class="{'active': current == 1}">
                 <a @click="setCurrent(1)"> 1 </a>
@@ -21,7 +21,7 @@
                 <a @click="setCurrent(page)"> {{page}} </a>
             </li> -->
             <li :class="{'disabled': current == page}">
-                <a @click="setCurrent(current + 1)"> 下一页 </a>
+                <a @click="setCurrent(current + 1)"> {{$t('message.pager.next')}} </a>
             </li>
         </ul>
     </nav>

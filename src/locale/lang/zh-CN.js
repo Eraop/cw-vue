@@ -46,7 +46,11 @@ const lang = {
   },
   foot: {
     copyright: "版权所有",
-    record: "皖公网安备 **********号"
+    record: "皖ICP备18013678号"
+  },
+  pager: {
+    prev: "上一页",
+    next: "下一页"
   }
 };
 
