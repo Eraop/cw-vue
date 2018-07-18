@@ -184,23 +184,7 @@ export default {
         } else {
           v.style.display = "none";
         }
-      });
-      // for (var i = 0; i < list; i++) {
-      //   var v = list[i];
-      //   if (p * 3 > i || i >= (p - 1) * 3) {
-      //     v.style.dislpay = "block";
-      //   } else {
-      //     v.style.dislpay = "none";
-      //   }
-      // }
-      // list.forEach((item, index) => {
-      //   if (p * 3 > index || index >= (p - 1) * 3) {
-      //     item.style.dislpay = "block";
-      //   } else {
-      //     item.style.dislpay = "none";
-      //   }
-      // });
-
+      });  
     }
   }
 };
@@ -367,7 +351,7 @@ export default {
     border-radius: 50%;
     text-indent: 0.15em;
     line-height: 1;
-    background-color: #fff;
+    background-color: #b1b1b1;
     cursor: pointer;
   }
   input[type="radio"]:checked + label::before {
