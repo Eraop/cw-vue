@@ -47,10 +47,8 @@
             </ul>
           </div>
           <div class="d-flex-right">
-
           </div>
         </div>
-
       </div>
     </div>
     <!-- //About us -->
@@ -61,7 +59,7 @@
             <span v-html="$t('message.home.project.title')"></span>
           </h3>
         </div>
-        <div class="row">
+        <div class="row" ref="projects">
           <div class="col-md-4">
             <div class="point-grid">
               <h5>2018/05 - 2018/06</h5>
@@ -89,9 +87,42 @@
               <h6>MySQL/Oracle + Redis + IIS</h6>
             </div>
           </div>
-          <div class="clearfix"></div>
+          <div class="col-md-4" style="display:none;">
+            <div class="point-grid">
+              <h5>2017/10 - 2018/01</h5>
+              <h4>GB System</h4>
+              <h6>C# + ASP.NET MVC + Entity Framework</h6>
+              <h6>jQuery + Bootstrap + Scss + IIS + Git</h6>
+              <h6>MySQL + Elasticsearch</h6>
+            </div>
+          </div>
+          <div class="col-md-4" style="display:none;">
+            <div class="point-grid">
+              <h5>2017/11 - 2018/02</h5>
+              <h4>File Management System</h4>
+              <h6>Java + SpringBoot + Thymeleaf + Mybatis</h6>
+              <h6>Layer + Bootstrap + jQuery + Scss</h6>
+              <h6>MySQL + Tomcat</h6>
+            </div>
+          </div>
+          <div class="col-md-4" style="display:none;">
+            <div class="point-grid">
+              <h5>2015/07 - 2016/04</h5>
+              <h4>Yameee Ordering System</h4>
+              <h6>C# + ASP.NET MVC + Entity Framework</h6>
+              <h6>jQuery + Bootstrap + Scss</h6>
+              <h6>Sql Server + SVN + IIS</h6>
+            </div>
+          </div>
+        </div>
+        <div class="row">
           <div class="col-md-12 text-center more-link">
-            <a>READ MORE</a>
+            <!-- <i class="fa fa-circle" ref="project_page" @click="page(1)"></i>
+            <i class="fa fa-circle-o" ref="project_page" @click="page(2)"></i> -->
+            <input type="radio" id="page1" checked name="page" @click="page(1)" />
+            <label class="fa fa-circle" for="page1"></label>
+            <input type="radio" id="page2" name="page" @click="page(2)" />
+            <label class="fa fa-circle" for="page2"></label>
           </div>
         </div>
       </div>
@@ -143,6 +174,34 @@ export default {
   name: "Home",
   components: {
     sliderBanner
+  }, methods: {
+    page: function (p) {
+      var list = this.$refs.projects.children;
+      var count = list.length;
+      Array.prototype.forEach.call(list, function (v, i) {
+        if (p * 3 > i && i >= (p - 1) * 3) {
+          v.style.display = "block";
+        } else {
+          v.style.display = "none";
+        }
+      });
+      // for (var i = 0; i < list; i++) {
+      //   var v = list[i];
+      //   if (p * 3 > i || i >= (p - 1) * 3) {
+      //     v.style.dislpay = "block";
+      //   } else {
+      //     v.style.dislpay = "none";
+      //   }
+      // }
+      // list.forEach((item, index) => {
+      //   if (p * 3 > index || index >= (p - 1) * 3) {
+      //     item.style.dislpay = "block";
+      //   } else {
+      //     item.style.dislpay = "none";
+      //   }
+      // });
+
+    }
   }
 };
 </script>
@@ -295,6 +354,29 @@ export default {
     color: #ffc107;
     text-decoration: none;
     cursor: pointer;
+  }
+
+  input[type="radio"] + label::before {
+    content: "\a0"; /*不换行空格*/
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 12px;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.4em;
+    border-radius: 50%;
+    text-indent: 0.15em;
+    line-height: 1;
+    background-color: #fff;
+    cursor: pointer;
+  }
+  input[type="radio"]:checked + label::before {
+    background-color: #5d4500;
+    background-clip: content-box;
+  }
+  input[type="radio"] {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
   }
 }
 </style>
