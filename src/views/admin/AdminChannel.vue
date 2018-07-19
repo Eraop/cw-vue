@@ -15,12 +15,17 @@
     </div>
 </template>
 <script>
+import { Table, TableColumn } from "element-ui";
 export default {
     name: "AdminChannel",
     data() {
         return {
             channels: []
         }
+    },
+    components: {
+        ElTable: Table,
+        ElTableColumn: TableColumn
     },
     beforeCreate: function () {
         this.$http.get("/api/news/channel").then(res => {
@@ -38,4 +43,4 @@ export default {
         },
     }
 }
-</script>
+</script> 

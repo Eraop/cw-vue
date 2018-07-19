@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import { Row, Col, Table, TableColumn, Button } from "element-ui";
 export default {
   name: "AdminNews",
   data() {
@@ -47,6 +48,13 @@ export default {
       loading: true,
       multipleSelection: []
     };
+  },
+  components: {
+    ElRow: Row,
+    ElCol: Col,
+    ElTable: Table,
+    ElTableColumn: TableColumn,
+    ElButton: Button
   },
   created: function () {
     this.getPage();
@@ -102,4 +110,4 @@ export default {
     }
   }
 };
-</script>
+</script> 

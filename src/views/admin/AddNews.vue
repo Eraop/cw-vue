@@ -39,10 +39,10 @@
 </template>
 
 <script>
+import { Form, Col, Button, FormItem, Option, Select, Input } from "element-ui";
 import TinymceEditor from "../../components/editor/Tinymce";
 export default {
   name: "AddNews",
-  components: { TinymceEditor },
   data() {
     return {
       channels: [],
@@ -74,6 +74,16 @@ export default {
         ]
       }
     };
+  },
+  components: {
+    TinymceEditor,
+    ElCol: Col,
+    ElForm: Form,
+    ElButton: Button,
+    ElFormItem: FormItem,
+    ElOption: Option,
+    ElSelect: Select,
+    ElInput: Input
   },
   beforeCreate: function () {
     if (this.$route.params.id && this.$route.params.id > 0) {
@@ -118,4 +128,4 @@ export default {
     }
   }
 };
-</script>
+</script> 

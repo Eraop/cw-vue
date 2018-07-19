@@ -54,11 +54,11 @@ var list = [
   //   imageDescription:
   //     "TrainHard is the right place to start new life as an athletic, strong and healthy person with a strong will."
   // }
-    {
+  {
     imageUrl: "/static/images/default.jpg",
+    lowUrl: "/static/images/default_small.jpg",
     imageTitle: "",
-    imageDescription:
-      ""
+    imageDescription: ""
   }
 ];
 export default {

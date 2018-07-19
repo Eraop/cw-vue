@@ -42,11 +42,11 @@
 </template>
 
 <script>
+import { Form, Col, Button, FormItem, Option, Select, Input } from "element-ui";
 import MarkdownEditor from "../../components/editor/Markdown";
 import TinymceEditor from "../../components/editor/Tinymce";
 export default {
   name: "AddNews",
-  components: { MarkdownEditor, TinymceEditor },
   data() {
     return {
       type: 0,
@@ -58,6 +58,16 @@ export default {
         channel_id: 1
       }
     };
+  },
+  components: {
+    MarkdownEditor,
+    TinymceEditor,
+    ElForm: Form,
+    ElButton: Button,
+    ElFormItem: FormItem,
+    ElOption: Option,
+    ElSelect: Select,
+    ElInput: Input
   },
   beforeCreate: function () {
     this.$http.get("/api/news/channel").then(res => {
@@ -95,4 +105,4 @@ export default {
     }
   }
 };
-</script>
+</script> 

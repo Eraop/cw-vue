@@ -9,9 +9,7 @@ import router from "./router";
 import axios from "axios";
 import $ from "jquery";
 window.jQuery = $;
-require("bootstrap");
-import ElementUI from "element-ui";
-Vue.use(ElementUI);
+require("bootstrap"); 
 import i18n from "./locale/index";
 // 引入组件
 import header from "./components/Header.vue";

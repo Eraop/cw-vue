@@ -55,6 +55,7 @@
 </template>
 
 <script>
+import { Row, Col, Breadcrumb, BreadcrumbItem, Menu, MenuItem, Dropdown, DropdownItem, DropdownMenu } from "element-ui";
 export default {
   data() {
     return {
@@ -74,6 +75,17 @@ export default {
         desc: ""
       }
     };
+  },
+  components: {
+    ElRow: Row,
+    ElCol: Col,
+    ElBreadcrumb: Breadcrumb,
+    ElBreadcrumbItem: BreadcrumbItem,
+    ElMenu: Menu,
+    ElMenuItem: MenuItem,
+    ElDropdown: Dropdown,
+    ElDropdownItem: DropdownItem,
+    ElDropdownMenu: DropdownMenu
   },
   created: function () {
     return this.$http.get("/api/admin/menu").then(res => {
@@ -129,9 +141,7 @@ export default {
     this.sysUserAvatar = this.$store.state.user.currentUser.UserAvatar || "";
   }
 };
-</script>
-
-
+</script> 
 <style scoped lang="scss">
 @import "../../assets/css/admin.scss";
 </style>

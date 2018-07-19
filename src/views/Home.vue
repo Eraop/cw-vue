@@ -52,7 +52,7 @@
       </div>
     </div>
     <!-- //About us -->
-    <div class="section-container background-fixed point-section">
+    <div class="section-container background-fixed point-section" ref="projectSec">
       <div class="container">
         <div class="section-container-head">
           <h3 class="section-container-head-title text-black">
@@ -186,6 +186,9 @@ export default {
         }
       });
     }
+  }, mounted: function () {
+    var projectSec = this.$refs.projectSec;
+    projectSec.style.backgroundImage = "url(/static/images/project.jpg)";
   }
 };
 </script>
@@ -310,7 +313,7 @@ export default {
   }
 }
 .point-section {
-  background: url(/static/images/project.jpg) no-repeat;
+  background: url(/static/images/project_small.jpg) no-repeat;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;

@@ -1,7 +1,7 @@
 // 自定义配置
 // const API_BASEURL = "//localhost:5678";
-// const API_BASEURL = "http://47.97.107.213:5678";
-const API_BASEURL = "https://api.eraop.com";
+const API_BASEURL = "http://47.97.107.213:5678";
+// const API_BASEURL = "https://api.eraop.com";
 const PAGE_SIZE = 10;
 const META_TITLE = "Eraop";
 export default {

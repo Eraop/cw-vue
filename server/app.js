@@ -37,12 +37,14 @@ app.use(cookieParser());
 app.all("*", function(req, res, next) {
   if (
     req.headers.origin == "http://localhost:1234" ||
-    req.headers.origin == "http://47.97.107.213:80" || 
-    req.headers.origin == "http://47.97.107.213" || 
+    req.headers.origin == "http://47.97.107.213:80" ||
+    req.headers.origin == "http://47.97.107.213" ||
     req.headers.origin == "http://eraop.com" ||
     req.headers.origin == "https://eraop.com" ||
     req.headers.origin == "http://www.eraop.com" ||
-    req.headers.origin == "https://www.eraop.com"
+    req.headers.origin == "https://www.eraop.com" ||
+    req.headers.origin == "http://api.eraop.com" ||
+    req.headers.origin == "https://api.eraop.com"
   ) {
     res.header("Access-Control-Allow-Origin", req.headers.origin);
     res.header(
@@ -61,41 +63,51 @@ app.get("/api/", function(req, res) {
   res.send("Hello World");
 });
 
-
-//微信路径token验证  
-app.get("/api/check",function(req, res, next) {
-  var signature =  req.query.signature ;  
-  var echostr = req.query.echostr ;  
-  var timestamp =  req.query.timestamp;  
-  var nonce = req.query.nonce ;  
-  var oriArray = new Array();  
-  oriArray[0] = nonce;  
-  oriArray[1] = timestamp;  
-  oriArray[2] = "zxsoft0123456789";  
-  oriArray.sort();  
-  var original = oriArray.join('');  
-  var scyptoString = sha1(original);  
-  if (signature == scyptoString) {  
-      res.end(echostr);  
-      console.log("signature=" +signature);  
-      console.log("echostr="+echostr);  
-      console.log("timestamp="+timestamp);  
-      console.log("nonce="+nonce);  
-      console.log("scyptoString="+scyptoString);   
-  } else {  
-      res.end("false" + "加密后："+scyptoString+"|微信传：signature="+signature+",echostr="+echostr+",timestamp="+timestamp+",nonce="+nonce);  
-      console.log("Failed!");   
-  }  
+//微信路径token验证
+app.get("/api/check", function(req, res, next) {
+  var signature = req.query.signature;
+  var echostr = req.query.echostr;
+  var timestamp = req.query.timestamp;
+  var nonce = req.query.nonce;
+  var oriArray = new Array();
+  oriArray[0] = nonce;
+  oriArray[1] = timestamp;
+  oriArray[2] = "zxsoft0123456789";
+  oriArray.sort();
+  var original = oriArray.join("");
+  var scyptoString = sha1(original);
+  if (signature == scyptoString) {
+    res.end(echostr);
+    console.log("signature=" + signature);
+    console.log("echostr=" + echostr);
+    console.log("timestamp=" + timestamp);
+    console.log("nonce=" + nonce);
+    console.log("scyptoString=" + scyptoString);
+  } else {
+    res.end(
+      "false" +
+        "加密后：" +
+        scyptoString +
+        "|微信传：signature=" +
+        signature +
+        ",echostr=" +
+        echostr +
+        ",timestamp=" +
+        timestamp +
+        ",nonce=" +
+        nonce
+    );
+    console.log("Failed!");
+  }
 });
 
-
-//微信接口的哈希加密方法  
-function sha1(str) {  
-  var md5sum = crypto.createHash("sha1");  
-  md5sum.update(str);  
-  str = md5sum.digest("hex");  
-  return str;  
-}  
+//微信接口的哈希加密方法
+function sha1(str) {
+  var md5sum = crypto.createHash("sha1");
+  md5sum.update(str);
+  str = md5sum.digest("hex");
+  return str;
+}
 
 app.all("/api/admin/*", function(req, res, next) {
   common.checkState(req, res, next).then(result => {
@@ -113,9 +125,6 @@ app.use("/api/admin", require("./admin/admin.js"));
 app.listen("5678", () => {
   console.log("success listen at port:5678......");
 });
-
-
-
 
 // 存储在redis
 // app.get("/api/admin/*", function(req, res, next) {
@@ -213,4 +222,3 @@ app.listen("5678", () => {
 //     });
 //   }
 // });
-
