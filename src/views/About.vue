@@ -22,13 +22,13 @@ export default {
 </script>
 <style lang="scss" scoped>
 .main-banner {
-  background: url(/static/images/banner_5.jpg) no-repeat 0px 0px;
+  background: url(/static/images/default.jpg) no-repeat 0px 0px;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   -ms-background-size: cover;
-  min-height: 200px;
+  min-height: 350px;
 }
 .inner-padding {
   padding: 3em 0;

@@ -58,7 +58,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .main-banner {
-  background: url(/static/images/banner_3.jpg) no-repeat 0px 0px;
+  background: url(/static/images/default.jpg) no-repeat 0px 0px;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;

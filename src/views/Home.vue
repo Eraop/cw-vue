@@ -80,20 +80,11 @@
           </div>
           <div class="col-md-4">
             <div class="point-grid">
-              <h5>2017/01 - 2018/06</h5>
+              <h5>2016/04 - 2018/06</h5>
               <h4>YQ System</h4>
               <h6>C# + ASP.NET MVC + Entity Framework</h6>
               <h6>jQuery + Bootstrap + Scss + Knockout</h6>
               <h6>MySQL/Oracle + Redis + IIS</h6>
-            </div>
-          </div>
-          <div class="col-md-4" style="display:none;">
-            <div class="point-grid">
-              <h5>2017/10 - 2018/01</h5>
-              <h4>GB System</h4>
-              <h6>C# + ASP.NET MVC + Entity Framework</h6>
-              <h6>jQuery + Bootstrap + Scss + IIS + Git</h6>
-              <h6>MySQL + Elasticsearch</h6>
             </div>
           </div>
           <div class="col-md-4" style="display:none;">
@@ -103,6 +94,15 @@
               <h6>Java + SpringBoot + Thymeleaf + Mybatis</h6>
               <h6>Layer + Bootstrap + jQuery + Scss</h6>
               <h6>MySQL + Tomcat</h6>
+            </div>
+          </div>
+          <div class="col-md-4" style="display:none;">
+            <div class="point-grid">
+              <h5>2017/10 - 2018/01</h5>
+              <h4>GB System</h4>
+              <h6>C# + ASP.NET MVC + Entity Framework</h6>
+              <h6>jQuery + Bootstrap + Scss + IIS + Git</h6>
+              <h6>MySQL + Elasticsearch</h6>
             </div>
           </div>
           <div class="col-md-4" style="display:none;">
@@ -184,7 +184,7 @@ export default {
         } else {
           v.style.display = "none";
         }
-      });  
+      });
     }
   }
 };
@@ -310,7 +310,7 @@ export default {
   }
 }
 .point-section {
-  background: url(/static/images/projecs.jpg) no-repeat;
+  background: url(/static/images/project.jpg) no-repeat;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
