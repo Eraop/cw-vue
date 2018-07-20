@@ -50,7 +50,7 @@ router.get("/list", function(req, res, next) {
 });
 // 查询所有channel
 router.get("/channel", function(req, res, next) {
-  db.query("SELECT * FROM cms_channel where is_visible", function(err, result) {
+  db.query("SELECT * FROM cms_channel where is_visible = 1", function(err, result) {
     if (err) {
       console.log("[SELECT ERROR] - ", err.message);
       return;

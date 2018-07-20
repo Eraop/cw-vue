@@ -44,7 +44,8 @@ app.all("*", function(req, res, next) {
     req.headers.origin == "http://www.eraop.com" ||
     req.headers.origin == "https://www.eraop.com" ||
     req.headers.origin == "http://api.eraop.com" ||
-    req.headers.origin == "https://api.eraop.com"
+    req.headers.origin == "https://api.eraop.com" ||
+    req.headers.origin == "https://eraop.netlify.com"
   ) {
     res.header("Access-Control-Allow-Origin", req.headers.origin);
     res.header(

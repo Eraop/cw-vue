@@ -5,9 +5,7 @@
 				<div class="navbar-header navbar-left">
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav">
 						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
+						<i class="fa fa-bars fa-fw"></i>
 					</button>
 					<h1>
 						<router-link class="navbar-brand" :to="{name:'home'}">
@@ -103,6 +101,43 @@ export default {
       text-decoration: none;
       background-color: #ffc107;
     }
+  }
+}
+.navbar-toggle {
+  border: 0;
+  color: #fff;
+  padding: 0;
+  margin-top: 0;
+  margin-right: 15px;
+  margin-bottom: 0;
+  &:hover {
+    background-color: transparent;
+  }
+}
+.navbar-left .navbar-toggle.collapsed {
+  i.fa-bars::before {
+    content: "\f0c9";
+  }
+}
+.navbar-left .navbar-toggle {
+  i.fa-bars:before {
+    content: "\f00d";
+  }
+}
+.logo {
+  margin-top: -20px;
+}
+@media (max-width: 767px) {
+  .navbar-brand {
+    height: 20px;
+  }
+  .logo {
+    position: absolute;
+    top: 8px;
+    margin-top: 0px;
+  }
+  .navbar-default .navbar-collapse {
+    border-color: #868686;
   }
 }
 </style>

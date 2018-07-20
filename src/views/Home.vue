@@ -136,7 +136,7 @@
           </h3>
         </div>
         <div class="row">
-          <div class="col-xs-12 col-sm-4">
+          <div class="col-xs-4">
             <div class="team-grid pull-left">
               <!-- <img src="/static/images/1.png" class="img-circle"> -->
               <i class="fa fa-qq fa-fw link-img"></i>
@@ -144,7 +144,7 @@
               <p>493214262</p>
             </div>
           </div>
-          <div class="col-xs-12 col-sm-4">
+          <div class="col-xs-4">
             <div class="team-grid pull-left">
               <!-- <img src="/static/images/3.png" class="img-circle"> -->
               <i class="fa fa-envelope fa-fw link-img"></i>
@@ -152,7 +152,7 @@
               <p>493214262@qq.com</p>
             </div>
           </div>
-          <div class="col-xs-12 col-sm-4">
+          <div class="col-xs-4">
             <div class="team-grid pull-left">
               <!-- <img src="/static/images/2.png" class="img-circle"> -->
               <i class="fa fa-weibo fa-fw link-img"></i>
@@ -409,10 +409,16 @@ export default {
   .section-container .section-container-head .section-container-head-title {
     font-size: 2.5em;
   }
-}
-@media (max-width: 568px) {
-  .section-container .section-container-head .section-container-head-title {
-    font-size: 2.5em;
+  .section-container .team-grid {
+    h3 {
+      font-size: 19px;
+    }
+    p {
+      font-size: 14px;
+    }
+    .link-img {
+      font-size: 60px;
+    }
   }
 }
 @media (max-width: 480px) {
@@ -446,6 +452,17 @@ export default {
     .d-flex-left-list li .d-flex-left-list-img {
       width: 100%;
       padding: 0 1em;
+    }
+  }
+ .section-container .team-grid {
+    h3 {
+      font-size: 14px;
+    }
+    p {
+      font-size: 12px;
+    }
+    .link-img {
+      font-size: 40px;
     }
   }
 }

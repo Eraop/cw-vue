@@ -21,11 +21,11 @@
                   <input type="submit" value="Login" @click="login">
                 </div>
               </div>
-              <div class="login-bottom">
+              <!-- <div class="login-bottom">
                 <h6>
                   <a href="#">Forgot password?</a>
                 </h6>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>

@@ -15,7 +15,7 @@
     </div>
 </template>
 <script>
-import { Table, TableColumn } from "element-ui";
+import { Table, TableColumn, Button } from "element-ui";
 export default {
     name: "AdminChannel",
     data() {
@@ -25,7 +25,8 @@ export default {
     },
     components: {
         ElTable: Table,
-        ElTableColumn: TableColumn
+        ElTableColumn: TableColumn,
+        ElButton: Button
     },
     beforeCreate: function () {
         this.$http.get("/api/news/channel").then(res => {
