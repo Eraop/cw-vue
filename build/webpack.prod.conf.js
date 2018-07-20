@@ -128,16 +128,16 @@ const webpackConfig = merge(baseWebpackConfig, {
       },
       plugins: [new webpack.optimize.UglifyJsPlugin()]
     }),
-    new AutoDllPlugin({
-      path: "/static/js",
-      inject: true, // will inject the DLL bundles to index.html
-      filename: "[name].min.js",
-      debug: true,
-      entry: {
-        moment: ["moment"]
-      },
-      plugins: [new webpack.optimize.UglifyJsPlugin()]
-    }),
+    // new AutoDllPlugin({
+    //   path: "/static/js",
+    //   inject: true, // will inject the DLL bundles to index.html
+    //   filename: "[name].min.js",
+    //   debug: true,
+    //   entry: {
+    //     moment: ["moment"]
+    //   },
+    //   plugins: [new webpack.optimize.UglifyJsPlugin()]
+    // }),
     new AutoDllPlugin({
       path: "/static/js",
       inject: true, // will inject the DLL bundles to index.html
