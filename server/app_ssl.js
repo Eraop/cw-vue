@@ -35,27 +35,14 @@ app.use(
 app.use(cookieParser());
 //设置跨域访问
 app.all("*", function(req, res, next) {
-  if (
-    req.headers.origin == "http://localhost:1234" ||
-    req.headers.origin == "http://47.97.107.213:80" ||
-    req.headers.origin == "http://47.97.107.213" ||
-    req.headers.origin == "http://eraop.com" ||
-    req.headers.origin == "https://eraop.com" ||
-    req.headers.origin == "http://www.eraop.com" ||
-    req.headers.origin == "https://www.eraop.com" ||
-    req.headers.origin == "http://api.eraop.com" ||
-    req.headers.origin == "https://api.eraop.com" ||
-    req.headers.origin == "https://eraop.netlify.com"
-  ) {
-    res.header("Access-Control-Allow-Origin", req.headers.origin);
-    res.header(
-      "Access-Control-Allow-Headers",
-      "x-access-token,authorization,X-Requested-With,Content-Type"
-    );
-    res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
-    res.header("Access-Control-Allow-Credentials", "true");
-    res.header("Access-Control-Expose-Headers", "x-access-token");
-  }
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "x-access-token,authorization,X-Requested-With,Content-Type"
+  );
+  res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header("Access-Control-Expose-Headers", "x-access-token");
 
   next();
 });
