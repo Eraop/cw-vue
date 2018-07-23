@@ -180,6 +180,16 @@ const router = new Router({
           }
         },
         {
+          path: "news/edit/:id",
+          name: "admin_news_edit",
+          component: AddNews,
+          meta: {
+            title: "编辑新闻",
+            auth: true,
+            hide: true
+          }
+        },
+        {
           path: "user",
           name: "admin_user",
           component: AdminUser,

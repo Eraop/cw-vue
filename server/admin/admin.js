@@ -60,4 +60,20 @@ router.get("/news/detail/:id", function(req, res, next) {
       res.json(rm);
     });
 });
+
+router.get("/news/deleteOne", function(req, res, next) {
+  var rm = new CommonModels.ReturnModel();
+  admin_news
+    .deleteOne(req.query.id)
+    .then(t => {
+      rm.code = 200;
+      rm.data = t;
+      res.json(rm);
+    })
+    .catch(err => {
+      rm.code = 404;
+      rm.data = null;
+      res.json(rm);
+    });
+});
 module.exports = router;
