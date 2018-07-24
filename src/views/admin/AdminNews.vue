@@ -13,12 +13,12 @@
       </el-table-column>
       <el-table-column prop="username" label="姓名" width="120">
       </el-table-column>
-      <el-table-column prop="description" label="描述">
+      <el-table-column prop="title" label="标题">
       </el-table-column>
       <el-table-column label="操作" width="200">
         <template slot-scope="scope">
-          <el-button size="mini" @click="handleEdit( scope.row.id)">编辑</el-button>
-          <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+          <el-button size="mini" @click="handleEdit(scope.row.id)">编辑</el-button>
+          <el-button size="mini" type="danger" @click="handleDelete(scope.row.id,$event)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -33,7 +33,11 @@
 </template>
 
 <script>
-import { Row, Col, Table, TableColumn, Button } from "element-ui";
+import { Row, Col, Table, TableColumn, Button, MessageBox, Message, Loading } from "element-ui";
+var $confirm = MessageBox.confirm;
+var $msgbox = MessageBox;
+var $alert = MessageBox.alert;
+var $message = Message;
 export default {
   name: "AdminNews",
   data() {
@@ -54,7 +58,10 @@ export default {
     ElCol: Col,
     ElTable: Table,
     ElTableColumn: TableColumn,
-    ElButton: Button
+    ElButton: Button,
+    ElMessageBox: MessageBox,
+    ElMessage: Message,
+    ElLoading: Loading
   },
   created: function () {
     this.getPage();
@@ -100,10 +107,26 @@ export default {
       this.multipleSelection = val;
     },
     handleEdit(id) {
-      this.$router.push({ name: "admin_news_add", params: { id: id } });
+      this.$router.push({ name: "admin_news_edit", params: { id: id } });
     },
-    handleDelete(index, row) {
-      console.log(index, row);
+    handleDelete(id, event) {
+      $confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$http.get("/api/admin/news/deleteOne?id=" + id).then(res => {
+          if (res.status == 200) {
+            this.getPage();
+            $message({
+              type: 'success',
+              message: '删除成功'
+            });
+          } else {
+            $message.error('删除失败，稍后再试');
+          }
+        });
+      });
     },
     addNews() {
       this.$router.push({ name: "admin_news_add" });

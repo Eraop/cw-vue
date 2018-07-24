@@ -57,16 +57,30 @@ exports.saveNews = saveNews;
 
 exports.findOne = function(id) {
   return new Promise((resolve, reject) => {
-    db.query(
-      "SELECT * FROM cms_article where id= ? limit 1",
-      [id],
-      function(err, result) {
-        if (err) {
-          console.log("[SELECT ERROR] - ", err.message);
-          reject(err);
-        }
-        resolve(result.length > 0 ? result[0] : null);
+    db.query("SELECT * FROM cms_article where id = ? limit 1", [id], function(
+      err,
+      result
+    ) {
+      if (err) {
+        console.log("[SELECT ERROR] - ", err.message);
+        reject(err);
       }
-    );
+      resolve(result.length > 0 ? result[0] : null);
+    });
+  });
+};
+
+exports.deleteOne = function(id) {
+  return new Promise((resolve, reject) => {
+    db.query("DELETE FROM cms_article where id = ?", [id], function(
+      err,
+      result
+    ) {
+      if (err) {
+        console.log("[DELETE ERROR] - ", err.message);
+        reject(err);
+      }
+      resolve(result.affectedRows > 0);
+    });
   });
 };
