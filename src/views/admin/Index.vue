@@ -25,11 +25,9 @@
 
         <!--导航菜单-->
         <el-menu :default-active="$route.name" class="el-menu-vertical-demo">
-          <el-menu-item v-for="(item,index) in menus" :index="item.link" :key="index">
-            <router-link tag="span" :to="{name:item.link}" @click.native='checkUrl(item.link)'>
-              <i :class="item.icon"></i>
-              {{item.name}}
-            </router-link>
+          <el-menu-item v-for="(item,index) in menus" :index="item.link" :key="index" @click.native="checkUrl(item.link)">
+            <i :class="item.icon"></i>
+            {{item.name}}
           </el-menu-item>
         </el-menu>
       </aside>
@@ -45,7 +43,9 @@
           </el-col>
           <el-col :span="24" class="content-wrapper">
             <transition name="fade" mode="out-in">
+               <keep-alive>
               <router-view></router-view>
+               </keep-alive>
             </transition>
           </el-col>
         </div>
@@ -97,21 +97,14 @@ export default {
     });
   },
   methods: {
-    checkUrl: function (url) {
-      // if (url === this.$route.name) {
-      //   this.$router.go(0);
-      // }
+    checkUrl: function (name) {
+      if (name === this.$route.name) {
+      } else {
+        this.$router.push({
+          name: name
+        })
+      }
     },
-    onSubmit() {
-      console.log("submit!");
-    },
-    handleopen() {
-      //console.log('handleopen');
-    },
-    handleclose() {
-      //console.log('handleclose');
-    },
-    handleselect: function (a, b) { },
     //退出登录
     logout: function () {
       this.$confirm("确认退出吗?", "提示", {

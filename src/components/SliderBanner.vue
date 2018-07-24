@@ -10,13 +10,16 @@
     <!-- 轮播（Carousel）项目 -->
     <div class="carousel-inner">
       <div class="item" v-for="(item,index) in list" :key="index" :class="{active:index===0}">
-        <img :src="item.imageUrl" :alt="item.imageTitle">
+        <!-- <img v-lazy="item.imageUrl" :alt="item.imageTitle" :data-loading='item.lowUrl'> -->
+        <div v-lazy-container="{ selector: 'img' }">
+          <img :data-src="item.imageUrl" :data-loading='item.lowUrl'>
+        </div>
         <div class="carousel-caption">
           <h3 v-text="item.imageTitle"></h3>
           <p v-text="item.imageDescription"></p>
         </div>
       </div>
-    </div>
+    </div> 
     <!-- 轮播（Carousel）导航 -->
     <!-- <a class="left carousel-control" href="#homeCarousel" role="button" data-slide="prev">
       <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>

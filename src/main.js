@@ -9,21 +9,21 @@ import router from "./router";
 import axios from "axios";
 import $ from "jquery";
 window.jQuery = $;
-require("bootstrap"); 
+require("bootstrap");
 import i18n from "./locale/index";
 // 引入组件
 import header from "./components/Header.vue";
 import footer from "./components/Footer.vue";
 import pager from "./components/Pager.vue";
 import loading from "./components/Loading.vue";
-
+import VueLazyload from "vue-lazyload";
+Vue.use(VueLazyload);
 //引入自定义配置
 import config from "./config.js";
 //引入自定义过滤器
 import "./filter";
 //vuex
 import store from "./store/store.js";
-
 axios.defaults.baseURL = config.API_BASEURL;
 axios.defaults.withCredentials = true;
 
@@ -45,7 +45,7 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   function(res) {
     //对响应数据做些事
-    if (res.data && res.data.code === 401) {
+    if (res.data && res.data.code && res.data.code === 401) {
       store.commit("removeUser");
       router.replace({
         name: "login",

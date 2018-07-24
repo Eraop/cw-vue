@@ -1,5 +1,8 @@
 <template>
   <div class="main-login" id="mainLogin">
+    <div class="main-login-bg" v-lazy-container="{ selector: 'img' }">
+      <img data-src="/static/images/login-bg.jpg" data-loading='/static/images/login-bg_small.jpg'>
+    </div>
     <div class="items-group">
       <div class="item">
         <div class="block text">
@@ -82,17 +85,18 @@ export default {
 </script>
 
 <style lang="scss">
-.login-body {
-  font-family: "Arsenal", sans-serif;
-  background: #fff;
-  background: url(/static/images/login-bg.jpg) repeat 0px 0px;
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-attachment: fixed;
+input:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px #443300 inset;
+  -webkit-box-shadow: 0 0 0px 1000px #443300 inset;
+  -webkit-text-fill-color: #f2f2f2;
 }
 .main-login {
+  .main-login-bg img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    min-height: 710px;
+  }
   .items-group {
     width: 100%;
     height: 100%;
@@ -152,14 +156,14 @@ export default {
           input[type="password"] {
             outline: none;
             font-size: 1em;
-            color: #000;
+            color: #fff;
             padding: 0.6em;
             margin: 0;
             width: 100%;
             border: none;
             -webkit-appearance: none;
             display: block;
-            background: #fff;
+            background: #443300;
             -webkit-border-radius: 2px;
             -moz-border-radius: 2px;
             -o-border-radius: 2px;
