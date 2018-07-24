@@ -60,7 +60,7 @@
           </h3>
         </div>
         <div class="row" ref="projects">
-          <div class="col-md-4">
+          <div class="col-md-4 fade-in">
             <div class="point-grid">
               <h5>2018/05 - 2018/06</h5>
               <h4>Eraop Personal Website</h4>
@@ -69,7 +69,7 @@
               <h6>Json Web Token</h6>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-4 fade-in">
             <div class="point-grid">
               <h5>2017/12 - 2018/05</h5>
               <h4>Java Web Framework</h4>
@@ -78,7 +78,7 @@
               <h6>Nginx + Keepalived + Redis</h6>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-4 fade-in">
             <div class="point-grid">
               <h5>2016/04 - 2018/06</h5>
               <h4>YQ System</h4>
@@ -87,7 +87,7 @@
               <h6>MySQL/Oracle + Redis + IIS</h6>
             </div>
           </div>
-          <div class="col-md-4" style="display:none;">
+          <div class="col-md-4 fade-in" style="display:none;">
             <div class="point-grid">
               <h5>2017/11 - 2018/02</h5>
               <h4>File Management System</h4>
@@ -96,7 +96,7 @@
               <h6>MySQL + Tomcat</h6>
             </div>
           </div>
-          <div class="col-md-4" style="display:none;">
+          <div class="col-md-4 fade-in" style="display:none;">
             <div class="point-grid">
               <h5>2017/10 - 2018/01</h5>
               <h4>GB System</h4>
@@ -105,7 +105,7 @@
               <h6>MySQL + Elasticsearch</h6>
             </div>
           </div>
-          <div class="col-md-4" style="display:none;">
+          <div class="col-md-4 fade-in" style="display:none;">
             <div class="point-grid">
               <h5>2015/07 - 2016/04</h5>
               <h4>Yameee Ordering System</h4>
@@ -174,11 +174,12 @@ export default {
   name: "Home",
   components: {
     sliderBanner
-  }, methods: {
-    page: function (p) {
+  },
+  methods: {
+    page: function(p) {
       var list = this.$refs.projects.children;
       var count = list.length;
-      Array.prototype.forEach.call(list, function (v, i) {
+      Array.prototype.forEach.call(list, function(v, i) {
         if (p * 3 > i && i >= (p - 1) * 3) {
           v.style.display = "block";
         } else {
@@ -186,13 +187,29 @@ export default {
         }
       });
     }
-  }, mounted: function () {
+  },
+  mounted: function() {
     var projectSec = this.$refs.projectSec;
     projectSec.style.backgroundImage = "url(/static/images/project.jpg)";
   }
 };
 </script>
 <style lang="scss" scoped>
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s ease-in 1 forwards;
+}
+
+.is-paused {
+  animation-play-state: paused;
+}
+
 .section-container {
   padding: 5em 0;
   .section-container-head {
@@ -454,7 +471,7 @@ export default {
       padding: 0 1em;
     }
   }
- .section-container .team-grid {
+  .section-container .team-grid {
     h3 {
       font-size: 14px;
     }
