@@ -86,8 +86,8 @@ export default {
 
 <style lang="scss">
 input:-webkit-autofill {
-  box-shadow: 0 0 0px 1000px #443300 inset;
-  -webkit-box-shadow: 0 0 0px 1000px #443300 inset;
+  box-shadow: 0 0 0px 1000px #8b5828 inset;
+  -webkit-box-shadow: 0 0 0px 1000px #8b5828 inset;
   -webkit-text-fill-color: #f2f2f2;
 }
 .main-login {
@@ -115,11 +115,11 @@ input:-webkit-autofill {
       visibility: visible;
 
       .block {
-        -webkit-box-shadow: 0px 0px 50px #333;
-        -moz-box-shadow: 0px 0px 50px #333;
-        -o-box-shadow: 0px 0px 50px #333;
-        -ms-box-shadow: 0px 0px 50px #333;
-        box-shadow: 0px 0px 50px #333;
+        -webkit-box-shadow: 0px 0px 50px #1a1918;
+        -moz-box-shadow: 0px 0px 50px #1a1918;
+        -o-box-shadow: 0px 0px 50px #1a1918;
+        -ms-box-shadow: 0px 0px 50px #1a1918;
+        box-shadow: 0px 0px 50px #1a1918;
         width: 400px;
         padding: 3.5em 3em;
         margin: 4em auto;
@@ -163,7 +163,7 @@ input:-webkit-autofill {
             border: none;
             -webkit-appearance: none;
             display: block;
-            background: #443300;
+            background: #8b5828;
             -webkit-border-radius: 2px;
             -moz-border-radius: 2px;
             -o-border-radius: 2px;
