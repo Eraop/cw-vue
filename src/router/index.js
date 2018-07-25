@@ -44,7 +44,7 @@ const AdminChannel = () =>
 
 Vue.use(Router); 
 const router = new Router({
-  // mode: "history",
+  mode: "history",
   linkActiveClass: "active",
   routes: [
     {

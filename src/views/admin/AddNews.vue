@@ -86,7 +86,6 @@ export default {
     ElInput: Input
   },
   beforeCreate: function () {
-    debugger
     if (this.$route.params.id && this.$route.params.id > 0) {
       // 编辑页面
       this.$http.get("/api/admin/news/detail/" + this.$route.params.id).then(res => {

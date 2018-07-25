@@ -167,9 +167,9 @@
 
   </div>
 </template>
+
 <script scoped>
 import sliderBanner from "../components/SliderBanner.vue";
-
 export default {
   name: "Home",
   components: {
