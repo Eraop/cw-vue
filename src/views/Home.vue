@@ -127,7 +127,6 @@
         </div>
       </div>
     </div>
-
     <div class="section-container team-section">
       <div class="container">
         <div class="section-container-head">
