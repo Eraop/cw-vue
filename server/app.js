@@ -35,11 +35,17 @@ app.use(cookieParser());
 // var CommonModels = require("./models/CommonModels.js");
 //设置跨域访问
 app.all("*", function(req, res, next) {
+  var orginList = [
+    "http://localhost:1234",
+    "http://api.eraop.com",
+    "https://api.eraop.com",
+    "https://eraop.com",
+    "https://www.eraop.com",
+    "https://eraop.netlify.com"
+  ];
   if (
-    req.headers.origin == "http://localhost:1234" ||
-    req.headers.origin == "http://api.eraop.com" ||
-    req.headers.origin == "https://api.eraop.com" ||
-    req.headers.origin == "https://eraop.netlify.com"
+    req.headers.origin != null &&
+    orginList.includes(req.headers.origin.toLowerCase())
   ) {
     res.header("Access-Control-Allow-Origin", req.headers.origin);
     res.header(

@@ -15,7 +15,8 @@ router.get("/list", function(req, res, next) {
 
   var page = new CommonModels.PageModel();
   // 查询所属channel下的cms_article
-  var sql = "SELECT a.*,b.username FROM cms_article a LEFT JOIN core_user b ON a.user_id =b.id order by concat(a.last_update,a.id) desc limit ?,?";
+  var sql =
+    "SELECT a.*,b.username FROM cms_article a LEFT JOIN core_user b ON a.user_id =b.id order by concat(a.last_update,a.id) desc limit ?,?";
   var param = [start, size];
   // 查询所属channel下的cms_article的总数
   var countSql = "SELECT count(1) as sum FROM cms_article";
@@ -50,13 +51,30 @@ router.get("/list", function(req, res, next) {
 });
 // 查询所有channel
 router.get("/channel", function(req, res, next) {
-  db.query("SELECT * FROM cms_channel where is_visible = 1", function(err, result) {
+  db.query("SELECT * FROM cms_channel where is_visible = 1", function(
+    err,
+    result
+  ) {
     if (err) {
       console.log("[SELECT ERROR] - ", err.message);
       return;
     }
     res.json(result);
   });
+});
+
+// 查询所有channel
+router.get("/recommend", function(req, res, next) {
+  db.query(
+    "SELECT * FROM cms_article  order by concat(last_update,id) desc  limit 0,5",
+    function(err, result) {
+      if (err) {
+        console.log("[SELECT ERROR] - ", err.message);
+        return;
+      }
+      res.json(result);
+    }
+  );
 });
 
 // 获取news详细信息

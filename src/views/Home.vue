@@ -60,60 +60,20 @@
           </h3>
         </div>
         <div class="row" ref="projects">
-          <div class="col-md-4 fade-in">
+          <div v-for="(item,index) in list" :key="index" class="col-md-4 fade-in" v-bind:style="{ display:index > 2 ? 'none':'block' }">
             <div class="point-grid">
-              <h5>2018/05 - 2018/06</h5>
-              <h4>Eraop Personal Website</h4>
-              <h6>Vuejs + Vuex + Axios + ElementUI + Scss + Webpack</h6>
-              <h6>Nodejs + Express + MySQL + Redis + PM2</h6>
-              <h6>Json Web Token</h6>
+              <h5>{{item.period}}</h5>
+              <h4>{{isEng?item.title_key:item.title}}</h4>
+              <h6 v-html="item.description"></h6>
             </div>
           </div>
-          <div class="col-md-4 fade-in">
+          <router-link :to="{name:'news'}" class="col-md-4 fade-in clickable" style="display:none;text-decoration: none;">
             <div class="point-grid">
-              <h5>2017/12 - 2018/05</h5>
-              <h4>Java Web Framework</h4>
-              <h6>Java + SpringBoot + Mybatis + MySQL + Tomcat</h6>
-              <h6>Thymeleaf + Layer + Bootstrap + jQuery + Scss</h6>
-              <h6>Nginx + Keepalived + Redis</h6>
+              <h5>{{isEng?"Past Projects":"历史项目"}}</h5>
+              <h4>{{isEng?"more projects":"查看更多"}}</h4>
+              <h6><i class="fa fa-ellipsis-h"></i></h6>
             </div>
-          </div>
-          <div class="col-md-4 fade-in">
-            <div class="point-grid">
-              <h5>2016/04 - 2018/06</h5>
-              <h4>YQ System</h4>
-              <h6>C# + ASP.NET MVC + Entity Framework</h6>
-              <h6>jQuery + Bootstrap + Scss + Knockout</h6>
-              <h6>MySQL/Oracle + Redis + IIS</h6>
-            </div>
-          </div>
-          <div class="col-md-4 fade-in" style="display:none;">
-            <div class="point-grid">
-              <h5>2017/11 - 2018/02</h5>
-              <h4>File Management System</h4>
-              <h6>Java + SpringBoot + Thymeleaf + Mybatis</h6>
-              <h6>Layer + Bootstrap + jQuery + Scss</h6>
-              <h6>MySQL + Tomcat</h6>
-            </div>
-          </div>
-          <div class="col-md-4 fade-in" style="display:none;">
-            <div class="point-grid">
-              <h5>2017/10 - 2018/01</h5>
-              <h4>GB System</h4>
-              <h6>C# + ASP.NET MVC + Entity Framework</h6>
-              <h6>jQuery + Bootstrap + Scss + IIS + Git</h6>
-              <h6>MySQL + Elasticsearch</h6>
-            </div>
-          </div>
-          <div class="col-md-4 fade-in" style="display:none;">
-            <div class="point-grid">
-              <h5>2015/07 - 2016/04</h5>
-              <h4>Yameee Ordering System</h4>
-              <h6>C# + ASP.NET MVC + Entity Framework</h6>
-              <h6>jQuery + Bootstrap + Scss</h6>
-              <h6>Sql Server + SVN + IIS</h6>
-            </div>
-          </div>
+          </router-link>
         </div>
         <div class="row">
           <div class="col-md-12 text-center more-link">
@@ -148,7 +108,7 @@
               <!-- <img src="/static/images/3.png" class="img-circle"> -->
               <i class="fa fa-envelope fa-fw link-img"></i>
               <h3>Email</h3>
-              <p>493214262@qq.com</p>
+              <p>admin@eraop.com</p>
             </div>
           </div>
           <div class="col-xs-4">
@@ -171,8 +131,25 @@
 import sliderBanner from "../components/SliderBanner.vue";
 export default {
   name: "Home",
+  data() {
+    return {
+      list: [],
+      pages: [],
+      isEng: true
+    };
+  },
   components: {
     sliderBanner
+  },
+  created: function() {
+    debugger;
+    this.isEng = this.$store.state.user.language == "en-US";
+    this.$http.get("/api/news/recommend").then(res => {
+      if (res.status == 200) {
+        console.log(res);
+        this.list = res.data;
+      }
+    });
   },
   methods: {
     page: function(p) {
@@ -283,6 +260,7 @@ export default {
     padding: 4em 0em;
     transition: 0.5s all;
     text-align: center;
+    height: 260px;
 
     h5 {
       font-style: italic;
@@ -295,6 +273,7 @@ export default {
       color: #fff;
       font-size: 12px;
       letter-spacing: 1px;
+      line-height: 30px;
     }
     h4 {
       color: #fff;
@@ -370,7 +349,7 @@ export default {
     border-radius: 50%;
     text-indent: 0.15em;
     line-height: 1;
-    background-color: #b1b1b1;
+    background-color: #d8d8d8;
     cursor: pointer;
   }
   input[type="radio"]:checked + label::before {

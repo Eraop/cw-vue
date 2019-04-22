@@ -161,8 +161,9 @@ $sizes: (5, 10, 15, 20, 25, 30);
   display: none !important;
 }
 
-
-
+.clickable {
+  cursor: pointer !important;
+}
 
 //关于浏览器出现滚动条和消失页面不滚动有了更加终极的解决方案
 // html {

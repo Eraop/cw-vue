@@ -47,30 +47,35 @@ export default {
     return {
       channels: [],
       article: {
-        id: '',
-        create_date: '',
-        last_update: '',
-        channel_id: '',
-        content: '',
-        title: '',
-        title_key: '',
-        user_id: '',
-        viewcount: '',
-        description: ''
+        id: "",
+        create_date: "",
+        last_update: "",
+        channel_id: "",
+        content: "",
+        title: "",
+        title_key: "",
+        user_id: "",
+        viewcount: "",
+        description: ""
       },
       rules: {
         title: [
-          { required: true, message: '请输入文章标题', trigger: 'blur' },
-          { min: 1, max: 200, message: '长度在 1 到 200 个字符', trigger: 'blur' }
+          { required: true, message: "请输入文章标题", trigger: "blur" },
+          {
+            min: 1,
+            max: 200,
+            message: "长度在 1 到 200 个字符",
+            trigger: "blur"
+          }
         ],
         description: [
-          { required: true, message: '请输入文章描述', trigger: 'blur' }
+          { required: true, message: "请输入文章描述", trigger: "blur" }
         ],
         content: [
-          { required: true, message: '请输入文章内容', trigger: 'blur' }
+          { required: true, message: "请输入文章内容", trigger: "blur" }
         ],
         channel_id: [
-          { required: true, message: '请选择类别', trigger: 'change' }
+          { required: true, message: "请选择类别", trigger: "change" }
         ]
       }
     };
@@ -85,18 +90,25 @@ export default {
     ElSelect: Select,
     ElInput: Input
   },
-  beforeCreate: function () {
+  watch: {
+    $route(to, from) {
+      this.$router.go(0);
+    }
+  },
+  beforeCreate: function() {
     if (this.$route.params.id && this.$route.params.id > 0) {
       // 编辑页面
-      this.$http.get("/api/admin/news/detail/" + this.$route.params.id).then(res => {
-        if (res.status == 200) {
-          if (res.data && res.data.code == 200) {
-            this.article = res.data.data;
-          } else if (res.data && res.data.code == 404) {
-            alert("文章已经不存在")
+      this.$http
+        .get("/api/admin/news/detail/" + this.$route.params.id)
+        .then(res => {
+          if (res.status == 200) {
+            if (res.data && res.data.code == 200) {
+              this.article = res.data.data;
+            } else if (res.data && res.data.code == 404) {
+              alert("文章已经不存在");
+            }
           }
-        }
-      });
+        });
     }
     this.$http.get("/api/news/channel").then(res => {
       if (res.status == 200) {
@@ -106,7 +118,7 @@ export default {
   },
   methods: {
     submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
+      this.$refs[formName].validate(valid => {
         if (valid) {
           return this.$http
             .post("/api/admin/news/save", this.article)
@@ -114,14 +126,13 @@ export default {
               if (res.status == 200) {
                 if (res.data && res.data.code === 200) {
                   this.$router.push({ name: "admin_news" });
-                }
-                else {
-                  alert('提交失败')
+                } else {
+                  alert("提交失败");
                 }
               }
             });
         } else {
-          console.log('error submit!!');
+          console.log("error submit!!");
           return false;
         }
       });

@@ -33,7 +33,16 @@
 </template>
 
 <script>
-import { Row, Col, Table, TableColumn, Button, MessageBox, Message, Loading } from "element-ui";
+import {
+  Row,
+  Col,
+  Table,
+  TableColumn,
+  Button,
+  MessageBox,
+  Message,
+  Loading
+} from "element-ui";
 var $confirm = MessageBox.confirm;
 var $msgbox = MessageBox;
 var $alert = MessageBox.alert;
@@ -63,17 +72,17 @@ export default {
     ElMessage: Message,
     ElLoading: Loading
   },
-  created: function () {
+  created: function() {
     this.getPage();
   },
   methods: {
-    pageChange: function (pageIndex) {
+    pageChange: function(pageIndex) {
       this.pageIndex = pageIndex;
       this.getPage();
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
     },
-    getPage: function () {
+    getPage: function() {
       this.loading = true;
       return this.$http
         .get("/api/news/list", {
@@ -110,20 +119,20 @@ export default {
       this.$router.push({ name: "admin_news_edit", params: { id: id } });
     },
     handleDelete(id, event) {
-      $confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
+      $confirm("此操作将永久删除该文件, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
       }).then(() => {
         this.$http.get("/api/admin/news/deleteOne?id=" + id).then(res => {
           if (res.status == 200) {
             this.getPage();
             $message({
-              type: 'success',
-              message: '删除成功'
+              type: "success",
+              message: "删除成功"
             });
           } else {
-            $message.error('删除失败，稍后再试');
+            $message.error("删除失败，稍后再试");
           }
         });
       });

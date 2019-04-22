@@ -5,7 +5,7 @@ exports.database = {
   user: "root",
   password: "123456",
   port: "3306",
-  database: "cw_vue"
+  database: "cw-vue"
 };
 // redis 配置
 exports.redis_options = {

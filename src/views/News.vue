@@ -30,7 +30,7 @@
                       <div class="card-body">
                         <!-- <div class="card-circle" style="background-image: url('/static/images/1.png')"></div> -->
                         <div class="card-title">{{item.title}}</div>
-                        <div class="card-description">{{item.description}}</div>
+                        <div class="card-description" v-html="item.description"></div>
                       </div>
                       <!-- <div class="card-hero">
                     <div class="card-image" style="background-image: url(/static/images/1.jpg);">
@@ -113,13 +113,13 @@ export default {
             channel_id: this.$route.params.id
           }
         })
-        .then(res=>{
+        .then(res => {
           if (res.status == 200) {
             this.list = res.data.items;
             this.total = res.data.total;
             this.pageSize = res.data.pageSize;
             this.pageIndex = res.data.pageIndex;
-            setTimeout(() =>{
+            setTimeout(() => {
               this.loading = false;
             }, 1000);
           }

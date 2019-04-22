@@ -6,6 +6,7 @@
   "private": true,
   "scripts": {
     "server": "node server/app",
+    "server-ssl": "node server/app_ssl",
     "server-debug": "node --debug-brk --inspect server/app",
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
