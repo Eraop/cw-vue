@@ -10,16 +10,16 @@
           <!-- login form -->
           <div class="login-form">
             <div class="agile-row">
-              <h1>登录</h1>
+              <h1>{{isEng?"Sign in":"登录"}}</h1>
               <div class="login-agileits-top">
                 <div>
-                  <p>User Name </p>
-                  <input type="text" ref="name" class="name" name="username" placeholder="User Name" @keyup.enter="login">
-                  <p>Password</p>
+                  <p>{{isEng?"User Name":"用户名"}}</p>
+                  <input type="text" ref="name" class="name" name="username" v-bind:placeholder="isEng?'User Name':'用户名'" @keyup.enter="login">
+                  <p>{{isEng?"Password":"密码"}}</p>
                   <input type="password" ref="password" class="password" name="Password" placeholder="********" @keyup.enter="login">
                   <label class="anim">
                     <input type="checkbox" class="checkbox">
-                    <span> Remember me ?</span>
+                    <span> {{isEng?"Remember me":"记住我"}} ?</span>
                   </label>
                   <input type="submit" value="Login" @click="login">
                 </div>
@@ -40,20 +40,30 @@
 export default {
   name: "Login",
   data() {
-    return {};
+    return {
+      isEng: true
+    };
   },
   beforeCreate() {
-    this.$store.dispatch("checkState").then(res => {
-      if (res) {
-        this.$router.push({ name: "admin" });
-      }
-    });
-    document.getElementsByTagName("body")[0].className = "login-body";
+    // 是否已登录验证，已登录则跳转
+    if (this.$store.state.user.currentUser.UserToken) {
+      this.$router.push({ path: '/admin' });
+    } else {
+      this.$store.dispatch("checkState").then(res => {
+        if (res) {
+          this.$router.push({ name: "admin" });
+        }
+      });
+      document.getElementsByTagName("body")[0].className = "login-body";
+    }
   },
   beforeDestroy: function () {
     document
       .getElementsByTagName("body")[0]
       .removeAttribute("class", "login-body");
+  },
+  created: function () {
+    this.isEng = this.$store.state.user.language == "en-US";
   },
   methods: {
     login() {

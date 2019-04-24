@@ -13,10 +13,10 @@
             <div id="channel_nav" :class="{'fixed-nav':fixedNav}">
               <ul class="section-container-nav nav nav-pills nav-stacked">
                 <li role="presentation">
-                  <router-link :to="{name:'news'}" exact>All News</router-link>
+                  <router-link :to="{name:'news'}" exact>{{isEng?"All Blogs":"所有博客"}}</router-link>
                 </li>
                 <li role="presentation" v-for="(item,index) in channels" :key="index">
-                  <router-link :to="{name:'news_channel',params:{id:item.id}}">{{item.name}}</router-link>
+                  <router-link :to="{name:'news_channel',params:{id:item.id}}">{{isEng?item.name_key:item.name}}</router-link>
                 </li>
               </ul>
             </div>
@@ -29,7 +29,7 @@
                       <!--Article-->
                       <div class="card-body">
                         <!-- <div class="card-circle" style="background-image: url('/static/images/1.png')"></div> -->
-                        <div class="card-title">{{item.title}}</div>
+                        <div class="card-title">{{isEng?item.title_key:item.title}}</div>
                         <div class="card-description" v-html="item.description"></div>
                       </div>
                       <!-- <div class="card-hero">
@@ -73,18 +73,13 @@ export default {
       channels: [],
       list: [],
       loading: true,
-      fixedNav: false
+      fixedNav: false,
+      isEng: true
     };
   },
-  beforeCreate: function() {
-    // this.getChannels();
-    this.$http.get("/api/news/channel").then(res => {
-      if (res.status == 200) {
-        this.channels = res.data;
-      }
-    });
-  },
-  created: function() {
+  created: function () {
+    this.isEng = this.$store.state.user.language == "en-US";
+    this.getChannels();
     this.getPage();
   },
   watch: {
@@ -92,18 +87,26 @@ export default {
       this.getPage();
     }
   },
-  mounted: function() {
+  mounted: function () {
     // 开启滚动监听
     window.addEventListener("scroll", this.handleScroll);
   },
   methods: {
-    pageChange: function(pageIndex) {
+    pageChange: function (pageIndex) {
       this.pageIndex = pageIndex;
       this.getPage();
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
     },
-    getPage: function() {
+    getChannels: function () {
+      return this.$http.get("/api/news/channel").then(res => {
+        if (res.status == 200) {
+          this.channels = res.data;
+          console.log(2)
+        }
+      });
+    },
+    getPage: function () {
       this.loading = true;
       return this.$http
         .get("/api/news/list", {
@@ -126,7 +129,7 @@ export default {
         });
     },
     // 滚动监听  滚动触发的效果写在这里
-    handleScroll: function() {
+    handleScroll: function () {
       var scrollTop =
         window.pageYOffset ||
         document.documentElement.scrollTop ||

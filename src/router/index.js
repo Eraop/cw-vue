@@ -63,8 +63,7 @@ const router = new Router({
       component: Login,
       meta: {
         title: "登录",
-        auth: false,
-        hide: true
+        auth: false
       }
     },
     {

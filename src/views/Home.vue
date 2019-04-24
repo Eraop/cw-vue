@@ -141,8 +141,7 @@ export default {
   components: {
     sliderBanner
   },
-  created: function() {
-    debugger;
+  created: function () {
     this.isEng = this.$store.state.user.language == "en-US";
     this.$http.get("/api/news/recommend").then(res => {
       if (res.status == 200) {
@@ -152,10 +151,10 @@ export default {
     });
   },
   methods: {
-    page: function(p) {
+    page: function (p) {
       var list = this.$refs.projects.children;
       var count = list.length;
-      Array.prototype.forEach.call(list, function(v, i) {
+      Array.prototype.forEach.call(list, function (v, i) {
         if (p * 3 > i && i >= (p - 1) * 3) {
           v.style.display = "block";
         } else {
@@ -164,7 +163,7 @@ export default {
       });
     }
   },
-  mounted: function() {
+  mounted: function () {
     var projectSec = this.$refs.projectSec;
     projectSec.style.backgroundImage = "url(/static/images/project.jpg)";
   }

@@ -13,9 +13,9 @@
         <el-dropdown trigger="hover">
           <span class="el-dropdown-link userinfo-inner"><img :src="this.sysUserAvatar" /> {{sysUserName}}</span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>我的消息</el-dropdown-item>
-            <el-dropdown-item>设置</el-dropdown-item>
-            <el-dropdown-item divided @click.native="logout">退出登录</el-dropdown-item>
+            <!-- <el-dropdown-item>我的消息</el-dropdown-item> -->
+            <!-- <el-dropdown-item>设置</el-dropdown-item> -->
+            <el-dropdown-item @click.native="logout">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </el-col>
@@ -43,9 +43,9 @@
           </el-col>
           <el-col :span="24" class="content-wrapper">
             <transition name="fade" mode="out-in">
-               <keep-alive>
-              <router-view></router-view>
-               </keep-alive>
+              <keep-alive>
+                <router-view></router-view>
+              </keep-alive>
             </transition>
           </el-col>
         </div>
@@ -55,12 +55,12 @@
 </template>
 
 <script>
-import { Row, Col, Breadcrumb, BreadcrumbItem, Menu, MenuItem, Dropdown, DropdownItem, DropdownMenu } from "element-ui";
+import { Row, Col, Breadcrumb, BreadcrumbItem, Menu, MenuItem, Dropdown, DropdownItem, DropdownMenu, MessageBox, Message } from "element-ui";
 export default {
   data() {
     return {
       menus: [],
-      sysName: "CW-VUE",
+      sysName: "Eraop",
       isCollapse: false,
       sysUserName: "",
       sysUserAvatar: "",
@@ -107,17 +107,24 @@ export default {
     },
     //退出登录
     logout: function () {
-      this.$confirm("确认退出吗?", "提示", {
+      MessageBox.confirm("确认退出吗?", "提示", {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
         type: "warning"
-      })
-        .then(() => {
-          this.$store.dispatch("logout").then(res => {
-            if (res.data.code === 0) {
-              this.$router.push({ name: "login" });
-            }
-          });
-        })
-        .catch(() => { });
+      }).then(() => {
+        this.$store.dispatch("logout").then(res => {
+          if (res.data.code === 0) {
+            Message({
+              type: 'success',
+              message: '退出成功!'
+            });
+            this.$router.push({ name: "login" });
+
+          }
+        });
+      }).catch(() => {
+        Message.error('退出失败');
+      });
     },
     //折叠导航栏
     collapse: function () {
