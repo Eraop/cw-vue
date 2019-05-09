@@ -10,16 +10,16 @@
           <!-- login form -->
           <div class="login-form">
             <div class="agile-row">
-              <h1>{{isEng?"Sign in":"登录"}}</h1>
+              <h1>{{!isCN?"Sign in":"登录"}}</h1>
               <div class="login-agileits-top">
                 <div>
-                  <p>{{isEng?"User Name":"用户名"}}</p>
-                  <input type="text" ref="name" class="name" name="username" v-bind:placeholder="isEng?'User Name':'用户名'" @keyup.enter="login">
-                  <p>{{isEng?"Password":"密码"}}</p>
+                  <p>{{!isCN?"User Name":"用户名"}}</p>
+                  <input type="text" ref="name" class="name" name="username" v-bind:placeholder="!isCN?'User Name':'用户名'" @keyup.enter="login">
+                  <p>{{!isCN?"Password":"密码"}}</p>
                   <input type="password" ref="password" class="password" name="Password" placeholder="********" @keyup.enter="login">
                   <label class="anim">
                     <input type="checkbox" class="checkbox">
-                    <span> {{isEng?"Remember me":"记住我"}} ?</span>
+                    <span> {{!isCN?"Remember me":"记住我"}} ?</span>
                   </label>
                   <input type="submit" value="Login" @click="login">
                 </div>
@@ -41,7 +41,7 @@ export default {
   name: "Login",
   data() {
     return {
-      isEng: true
+      isCN: false
     };
   },
   beforeCreate() {
@@ -63,7 +63,7 @@ export default {
       .removeAttribute("class", "login-body");
   },
   created: function () {
-    this.isEng = this.$store.state.user.language == "en-US";
+    this.isCN = this.$common.isCN();
   },
   methods: {
     login() {

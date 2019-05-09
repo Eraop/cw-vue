@@ -63,14 +63,14 @@
           <div v-for="(item,index) in list" :key="index" class="col-md-4 fade-in" v-bind:style="{ display:index > 2 ? 'none':'block' }">
             <div class="point-grid">
               <h5>{{item.period}}</h5>
-              <h4>{{isEng?item.title_key:item.title}}</h4>
+              <h4>{{!isCN?item.title_key:item.title}}</h4>
               <h6 v-html="item.description"></h6>
             </div>
           </div>
           <router-link :to="{name:'news'}" class="col-md-4 fade-in clickable" style="display:none;text-decoration: none;">
             <div class="point-grid">
-              <h5>{{isEng?"Past Projects":"历史项目"}}</h5>
-              <h4>{{isEng?"more projects":"查看更多"}}</h4>
+              <h5>{{!isCN?"Past Projects":"历史项目"}}</h5>
+              <h4>{{!isCN?"more projects":"查看更多"}}</h4>
               <h6><i class="fa fa-ellipsis-h"></i></h6>
             </div>
           </router-link>
@@ -135,17 +135,16 @@ export default {
     return {
       list: [],
       pages: [],
-      isEng: true
+      isCN: false
     };
   },
   components: {
     sliderBanner
   },
   created: function () {
-    this.isEng = this.$store.state.user.language == "en-US";
+    this.isCN = this.$common.isCN();
     this.$http.get("/api/news/recommend").then(res => {
       if (res.status == 200) {
-        console.log(res);
         this.list = res.data;
       }
     });

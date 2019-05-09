@@ -13,10 +13,10 @@
             <div id="channel_nav" :class="{'fixed-nav':fixedNav}">
               <ul class="section-container-nav nav nav-pills nav-stacked">
                 <li role="presentation">
-                  <router-link :to="{name:'news'}" exact>{{isEng?"All Blogs":"所有博客"}}</router-link>
+                  <router-link :to="{name:'news'}" exact>{{!isCN?"All Blogs":"所有博客"}}</router-link>
                 </li>
                 <li role="presentation" v-for="(item,index) in channels" :key="index">
-                  <router-link :to="{name:'news_channel',params:{id:item.id}}">{{isEng?item.name_key:item.name}}</router-link>
+                  <router-link :to="{name:'news_channel',params:{id:item.id}}">{{!isCN?item.name_key:item.name}}</router-link>
                 </li>
               </ul>
             </div>
@@ -29,7 +29,7 @@
                       <!--Article-->
                       <div class="card-body">
                         <!-- <div class="card-circle" style="background-image: url('/static/images/1.png')"></div> -->
-                        <div class="card-title">{{isEng?item.title_key:item.title}}</div>
+                        <div class="card-title">{{!isCN?item.title_key:item.title}}</div>
                         <div class="card-description" v-html="item.description"></div>
                       </div>
                       <!-- <div class="card-hero">
@@ -74,11 +74,11 @@ export default {
       list: [],
       loading: true,
       fixedNav: false,
-      isEng: true
+      isCN: false
     };
   },
   created: function () {
-    this.isEng = this.$store.state.user.language == "en-US";
+    this.isCN = this.$common.isCN();
     this.getChannels();
     this.getPage();
   },

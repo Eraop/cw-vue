@@ -20,6 +20,8 @@ import VueLazyload from "vue-lazyload";
 Vue.use(VueLazyload);
 //引入自定义配置
 import config from "./config.js";
+import common from "./common.js";
+Vue.prototype.$common = common;
 //引入自定义过滤器
 import "./filter";
 //vuex
