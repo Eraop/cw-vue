@@ -1,5 +1,7 @@
 <template>
   <div id="mainHome">
+    <canvas id="canvas"></canvas>
+
     <slider-banner></slider-banner>
     <!-- About us -->
     <div class="section-container">
@@ -63,7 +65,7 @@
           <div v-for="(item,index) in list" :key="index" class="col-md-4 fade-in" v-bind:style="{ display:index > 2 ? 'none':'block' }">
             <div class="point-grid">
               <h5>{{item.period}}</h5>
-              <h4>{{!isCN?item.title_key:item.title}}</h4>
+              <h4 class="text-e">{{!isCN?item.title_key:item.title}}</h4>
               <h6 v-html="item.description"></h6>
             </div>
           </div>
@@ -255,11 +257,10 @@ export default {
   }
   .point-grid {
     background: rgba(82, 82, 82, 0.78);
-    padding: 4em 0em;
+    padding: 2em 0em;
     transition: 0.5s all;
     text-align: center;
     height: 260px;
-
     h5 {
       font-style: italic;
       color: #ffc107;
@@ -281,6 +282,10 @@ export default {
       margin: 0.5em 0;
       font-weight: 600;
       text-transform: uppercase;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      height: 80px;
     }
   }
   .team-grid {
@@ -304,6 +309,9 @@ export default {
       font-size: 80px;
     }
   }
+  .row div{
+    z-index: 30;
+  }
 }
 .point-section {
   background: url(/static/images/project_small.jpg) no-repeat;
@@ -319,6 +327,7 @@ export default {
 }
 .more-link {
   padding-top: 2em;
+  z-index: 30;
   a {
     background: transparent;
     padding: 10px 50px;

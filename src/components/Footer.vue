@@ -1,16 +1,8 @@
 <template>
   <div class="foot-container" id="footer">
-    <div
-      class="copyright"
-      :class="{'bg-white text-darkgray':!isHome,'bg-darkgray text-white':isHome}"
-    >
+    <div class="copyright" :class="{'bg-white text-darkgray':!isHome,'bg-darkgray text-white':isHome}">
       ©{{getYear}}
-      <router-link
-        class="effect"
-        :class="{'text-darkgray':!isHome,'text-white':isHome}"
-        :to="{name:'home'}"
-        exact
-      >Eraop</router-link>
+      <router-link class="effect" :class="{'text-darkgray':!isHome,'text-white':isHome}" :to="{name:'home'}" exact>Eraop</router-link>
       {{$t('message.foot.copyright')}}
       <br>
       <span>{{$t('message.foot.record')}}</span>
@@ -25,7 +17,7 @@ export default {
     };
   },
   computed: {
-    getYear: function() {
+    getYear: function () {
       var date = new Date();
       return date.getFullYear();
     }
@@ -36,4 +28,4 @@ export default {
     }
   }
 };
-</script>
+</script> 

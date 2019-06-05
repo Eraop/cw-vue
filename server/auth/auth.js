@@ -79,4 +79,19 @@ router.get("/checkState", function(req, res, next) {
   });
 });
 
+router.get("/yqtools/check", function(req, res, next) {
+  var rm = new CommonModels.ReturnModel();
+  admin_user.findYqtoolsOne(req.query.name, function(data) {
+    if (data != undefined && data.state == 0) {
+      rm.msg = "权限正常";
+      rm.code = 0;
+      rm.data = data;
+    } else {
+      rm.msg = "没有权限";
+      rm.code = -1;
+    }
+    res.json(rm);
+  });
+});
+
 module.exports = router;
