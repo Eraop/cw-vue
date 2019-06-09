@@ -1,6 +1,6 @@
 <template>
   <div id="mainHome">
-    <canvas id="canvas"></canvas>
+    <canvas id="canvas" style=" position: fixed;  top: 0;  left: 0;  width: 100%;  height: 100%; z-index: 20"></canvas>
 
     <slider-banner></slider-banner>
     <!-- About us -->
@@ -309,7 +309,7 @@ export default {
       font-size: 80px;
     }
   }
-  .row div{
+  .row div {
     z-index: 30;
   }
 }

@@ -4,7 +4,7 @@
       <div class="container">
         <div class="section-container-head text-center">
           <h3 class="news-detail-title text-dark bold">{{model.title}} </h3>
-          <div class="text-dark margin-v-10 text-right">作者：{{model.username}} / 创建时间：{{model.create_date | formatTime}}</div>
+          <div class="text-dark margin-v-10 text-right">作者：{{model.username}}    创建时间：{{model.create_date | formatTime}}</div>
         </div>
         <div class="section-container-content">
           <p v-html="model.description"></p>
