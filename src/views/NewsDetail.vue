@@ -2,12 +2,13 @@
   <div id="mainNewsDetail">
     <div class="inner-padding">
       <div class="container">
-        <div class="section-container-head text-center">
-          <h3 class="news-detail-title text-dark bold">{{model.title}} </h3>
-          <div class="text-dark margin-v-10 text-right">作者：{{model.username}}    创建时间：{{model.create_date | formatTime}}</div>
+        <div class="section-container-head">
+          <h3 class="news-detail-title text-dark bold">{{!this.$common.isCN()?model.title_key:model.title}}</h3>
+          <!-- <div class="text-dark margin-v-10 text-right">创建时间：{{model.create_date | formatTime}}</div> -->
         </div>
         <div class="section-container-content">
-          <p v-html="model.description"></p>
+          <p>项目工期：<span>{{model.period}}</span></p>
+          <!-- <p v-html="model.description"></p> -->
           <p v-html="model.content"></p>
         </div>
         <div class="clearfix"> </div>
@@ -23,7 +24,7 @@ export default {
       model: ""
     };
   },
-  created: function() {
+  created: function () {
     return this.$http
       .get("/api/news/detail/" + this.$route.params.id)
       .then(res => {

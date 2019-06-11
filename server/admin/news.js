@@ -7,7 +7,7 @@ var saveNews = function(CMS_Article) {
     if (CMS_Article.id && CMS_Article.id > 0) {
       // 更新
       db.query(
-        "UPDATE `cms_article` SET  `last_update` = ?, `channel_id` = ?, `content` = ?, `title` = ?, `title_key` = ?, `user_id` = ?, `viewcount` = ?, `description` = ? WHERE `id` = ?;",
+        "UPDATE `cms_article` SET  `last_update` = ?, `channel_id` = ?, `content` = ?, `title` = ?, `title_key` = ?, `user_id` = ?, `viewcount` = ?, `description` = ?, `period` = ? WHERE `id` = ?;",
         [
           CMS_Article.last_update,
           CMS_Article.channel_id,
@@ -17,6 +17,7 @@ var saveNews = function(CMS_Article) {
           CMS_Article.user_id,
           CMS_Article.viewcount,
           CMS_Article.description,
+          CMS_Article.period,
           CMS_Article.id
         ],
         function(err, result) {
@@ -30,7 +31,7 @@ var saveNews = function(CMS_Article) {
     } else {
       // 新增
       db.query(
-        "INSERT INTO `cms_article`( `last_update`, `channel_id`, `content`, `title`, `title_key`, `user_id`, `viewcount`, `description`) VALUES (?,?,?,?,?,?,?,?)",
+        "INSERT INTO `cms_article`( `last_update`, `channel_id`, `content`, `title`, `title_key`, `user_id`, `viewcount`, `description`, `period`) VALUES (?,?,?,?,?,?,?,?)",
         [
           CMS_Article.last_update,
           CMS_Article.channel_id,
@@ -39,7 +40,8 @@ var saveNews = function(CMS_Article) {
           CMS_Article.title_key,
           CMS_Article.user_id,
           CMS_Article.viewcount,
-          CMS_Article.description
+          CMS_Article.description,
+          CMS_Article.period
         ],
         function(err, result) {
           if (err) {

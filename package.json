@@ -1,7 +1,7 @@
 {
   "name": "cw-vue",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "A personal website is developed with Vue.",
   "author": "Eraop",
   "private": true,
   "scripts": {

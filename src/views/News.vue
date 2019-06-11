@@ -38,7 +38,8 @@
                   </div> -->
                       <div class="card-footer">
                         <div class="card-footer-wrapper">
-                          <div class="card-tag pull-right">{{item.create_date | formatTime}}</div>
+                          <!-- <div class="card-tag pull-right">{{item.create_date | formatTime}}</div> -->
+                          <div class="card-tag pull-right">{{item.period}}</div>
                           <div class="card-medium"></div>
                         </div>
                       </div>

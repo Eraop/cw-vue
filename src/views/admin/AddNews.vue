@@ -7,6 +7,16 @@
         </el-form-item>
       </el-col>
       <el-col :span="12">
+        <el-form-item label="英文标题" prop="title_key">
+          <el-input v-model="article.title_key"></el-input>
+        </el-form-item>
+      </el-col>
+      <el-col :span="12">
+        <el-form-item label="项目时间" prop="period">
+          <el-input v-model="article.period"></el-input>
+        </el-form-item>
+      </el-col>
+      <el-col :span="12">
         <el-form-item label="类别" prop="channel_id">
           <el-select v-model="article.channel_id">
             <el-option v-for="item in channels" :key="item.id" :label="item.name" :value="item.id">
@@ -95,7 +105,7 @@ export default {
       this.$router.go(0);
     }
   },
-  beforeCreate: function() {
+  beforeCreate: function () {
     if (this.$route.params.id && this.$route.params.id > 0) {
       // 编辑页面
       this.$http
