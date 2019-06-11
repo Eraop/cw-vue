@@ -1,6 +1,12 @@
-# cw-vue
+# CW-VUE - A personal website is developed with Vue.
 
-> The company's website is developed through Vue.
+# Home page preview.
+
+![Home page](/static/images/eraop-home.png)
+
+# Login page preview.
+
+![Login page](/static/images/eraop-login.jpg)
 
 ## Build Setup
 
