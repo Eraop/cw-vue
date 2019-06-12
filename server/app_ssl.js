@@ -50,11 +50,11 @@ app.all("*", function(req, res, next) {
     res.header("Access-Control-Allow-Origin", req.headers.origin);
     res.header(
       "Access-Control-Allow-Headers",
-      "x-access-token,authorization,X-Requested-With,Content-Type"
+      "x-access-rememberme,x-access-token,authorization,X-Requested-With,Content-Type"
     );
     res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
     res.header("Access-Control-Allow-Credentials", "true");
-    res.header("Access-Control-Expose-Headers", "x-access-token");
+    res.header("Access-Control-Expose-Headers", "x-access-rememberme,x-access-token");
   }
   next();
 });

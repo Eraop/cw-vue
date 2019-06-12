@@ -36,6 +36,9 @@ axios.interceptors.request.use(
       // 判断是否存在token,如果存在的话,则每个http header都加上token
       config.headers["x-access-token"] = store.state.user.currentUser.UserToken;
     }
+    config.headers["x-access-rememberme"] = localStorage.getItem(
+      "x-access-rememberme"
+    );
     return config;
   },
   err => {

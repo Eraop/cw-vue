@@ -1,6 +1,6 @@
 /*
- * @Author: Eraop 
- * @Date: 2018-06-01 15:22:50 
+ * @Author: Eraop
+ * @Date: 2018-06-01 15:22:50
  * @Last Modified by: Eraop
  * @Last Modified time: 2018-06-06 09:50:51
  */
@@ -8,14 +8,19 @@ var jwt = require("jsonwebtoken");
 var config = require("../config.js");
 
 var tokenUtil = {
-  createToken: function(username) {
+  createToken: function(username, rememberme) {
     // 这是加密的key（密钥）
     return jwt.sign(
       {
         username: username
       },
       config.secret_key,
-      { expiresIn: config.token_expires_in }
+      {
+        expiresIn:
+          rememberme == "true"
+            ? config.token_expires_in_rememberme
+            : config.token_expires_in
+      }
     );
   },
   checkToken: function(token) {

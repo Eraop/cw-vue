@@ -18,7 +18,7 @@
   Math.TWO_PI = Math.PI * 2;
 
   // ========================================================================================
-  // Oscillator 
+  // Oscillator
   // ----------------------------------------------------------------------------------------
 
   function Oscillator(options) {
@@ -172,8 +172,7 @@
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.globalCompositeOperation = "lighter";
     // ctx.strokeStyle = "hsla(" + Math.round(hue.update()) + ",90%,50%,0.25)";
-    ctx.strokeStyle =
-      "hsla(" + Math.round(hue.update() * 5) + ",90%,50%,0.25)";
+    ctx.strokeStyle = "hsla(" + Math.round(hue.update() * 5) + ",90%,50%,0.25)";
     ctx.lineWidth = 1;
 
     if (ctx.frame % 60 == 0) {
@@ -238,7 +237,7 @@
         save();
         break;
       default:
-      // console.log(event.keyCode); 
+      // console.log(event.keyCode);
     }
   }
 
@@ -317,50 +316,53 @@
   })();
 
   window.onload = function() {
-    ctx = document.getElementById("canvas").getContext("2d");
-    ctx.stats = new Stats();
-    ctx.running = true;
-    ctx.frame = 1;
+    var canvas = document.getElementById("canvas");
+    if (canvas != undefined) {
+      ctx = canvas.getContext("2d");
+      ctx.stats = new Stats();
+      ctx.running = true;
+      ctx.frame = 1;
 
-    logo = new Image();
-    logo.src = "";
+      logo = new Image();
+      logo.src = "";
 
-    hue = new Oscillator({
-      phase: Math.random() * Math.TWO_PI,
-      amplitude: 85,
-      frequency: 0.0015,
-      offset: 285
-    });
+      hue = new Oscillator({
+        phase: Math.random() * Math.TWO_PI,
+        amplitude: 85,
+        frequency: 0.0015,
+        offset: 285
+      });
 
-    // letters("h1");
-    // letters("h2");
-    document.addEventListener("mousemove", init);
-    document.addEventListener("touchstart", init);
-    document.body.addEventListener("orientationchange", resize);
-    window.addEventListener("resize", resize);
-    window.addEventListener("keyup", keyup);
-    window.addEventListener("focus", start);
-    window.addEventListener("blur", stop);
+      // letters("h1");
+      // letters("h2");
+      document.addEventListener("mousemove", init);
+      document.addEventListener("touchstart", init);
+      document.body.addEventListener("orientationchange", resize);
+      window.addEventListener("resize", resize);
+      window.addEventListener("keyup", keyup);
+      window.addEventListener("focus", start);
+      window.addEventListener("blur", stop);
 
-    resize();
+      resize();
 
-    // if (window.DEBUG) {
-    //   var gui = new dat.GUI();
+      // if (window.DEBUG) {
+      //   var gui = new dat.GUI();
 
-    //   // gui.add(settings, 'debug');
-    //   settings.gui.add(settings, "trails", 1, 30).onChange(reset);
-    //   settings.gui.add(settings, "size", 25, 75).onFinishChange(reset);
-    //   settings.gui
-    //     .add(settings, "friction", 0.45, 0.55)
-    //     .onFinishChange(reset);
-    //   settings.gui
-    //     .add(settings, "dampening", 0.01, 0.4)
-    //     .onFinishChange(reset);
-    //   settings.gui
-    //     .add(settings, "tension", 0.95, 0.999)
-    //     .onFinishChange(reset);
+      //   // gui.add(settings, 'debug');
+      //   settings.gui.add(settings, "trails", 1, 30).onChange(reset);
+      //   settings.gui.add(settings, "size", 25, 75).onFinishChange(reset);
+      //   settings.gui
+      //     .add(settings, "friction", 0.45, 0.55)
+      //     .onFinishChange(reset);
+      //   settings.gui
+      //     .add(settings, "dampening", 0.01, 0.4)
+      //     .onFinishChange(reset);
+      //   settings.gui
+      //     .add(settings, "tension", 0.95, 0.999)
+      //     .onFinishChange(reset);
 
-    //   document.body.appendChild(ctx.stats.domElement);
-    // }
+      //   document.body.appendChild(ctx.stats.domElement);
+      // }
+    }
   };
 })(window);
