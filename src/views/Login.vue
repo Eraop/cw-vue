@@ -18,7 +18,7 @@
                   <p>{{!isCN?"Password":"密码"}}</p>
                   <input type="password" ref="password" class="password" name="Password" placeholder="********" @keyup.enter="login">
                   <label class="anim">
-                    <input type="checkbox" class="checkbox">
+                    <input type="checkbox" ref="rememberme" class="checkbox">
                     <span> {{!isCN?"Remember me":"记住我"}} ?</span>
                   </label>
                   <input type="submit" value="Login" @click="login">
@@ -37,6 +37,7 @@
   </div>
 </template> 
 <script>
+import { debuglog } from 'util';
 export default {
   name: "Login",
   data() {
@@ -68,6 +69,8 @@ export default {
   methods: {
     login() {
       var $this = this;
+      let rememberme = $this.$refs.rememberme.checked;
+      localStorage.setItem("x-access-rememberme", rememberme);
       $this.$store
         .dispatch("login", {
           user_name: $this.$refs.name.value,

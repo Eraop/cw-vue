@@ -17,11 +17,12 @@ var common = require("../common.js");
 router.post("/login", jsonParser, function(req, res, next) {
   var rm = new CommonModels.ReturnModel();
   admin_user.findOne(req.body.name, req.body.password, function(data) {
+    var rememberme = req.headers["x-access-rememberme"];
     var user = data;
     if (user) {
       rm.code = 0;
       rm.msg = "登录成功";
-      var token = tokenUtil.createToken(user.username);
+      var token = tokenUtil.createToken(user.username, rememberme);
       // var sid = req.sessionID;
 
       req.session.username = user.username;
