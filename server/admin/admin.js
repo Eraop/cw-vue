@@ -22,6 +22,7 @@ router.post("/news/save", jsonParser, function(req, res) {
   model.id = req.body.id;
   model.title = req.body.title;
   model.title_key = req.body.title_key;
+  model.period = req.body.period;
   model.create_date = common.formatTime(new Date());
   model.last_update = common.formatTime(new Date());
   model.user_id = req.session.userid;

@@ -64,6 +64,7 @@ export default {
         content: "",
         title: "",
         title_key: "",
+        period: "",
         user_id: "",
         viewcount: "",
         description: ""
