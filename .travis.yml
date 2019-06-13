@@ -22,7 +22,7 @@ after_script:
   - git clone --branch eraop-pages https://${eraop_rep} dist
   - git add .
   - git commit -m "Update tools"
-  - git push --force --quiet "https://${For_CI_Token}@${eraop_rep}" eraop-pages:eraop-pages
+  - git push --force --quiet "https://${For_CI_Token}@${eraop_rep}" master:eraop-pages
 
 #指定分支，只有指定的分支提交时才会运行脚本
 branches:
