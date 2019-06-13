@@ -41,6 +41,7 @@ app.all("*", function(req, res, next) {
     "https://api.eraop.com",
     "https://eraop.com",
     "https://www.eraop.com",
+    "https://eraop.github.io",
     "https://eraop.netlify.com"
   ];
   if (

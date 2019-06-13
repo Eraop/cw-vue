@@ -16,6 +16,7 @@ script:
 
 after_script:
   - cd ./dist
+  - echo "eraop.com" > CNAME
   - git init
   - git config user.name "eraop"
   - git config user.email "493214262@qq.com"
