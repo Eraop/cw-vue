@@ -22,7 +22,7 @@ after_script:
   - git clone --branch eraop-pages https://${eraop_rep} dist
   - git add .
   - git commit -m "Automatically update from travis-ci"
-  - git push --force --quiet "https://${For_CI_Token}@${eraop_pages_rep}" master:eraop-pages
+  - git push --force --quiet "https://${For_CI_Token}@${eraop_pages_rep}" master:master
 
 #指定分支，只有指定的分支提交时才会运行脚本
 branches:
