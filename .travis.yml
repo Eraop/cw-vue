@@ -33,4 +33,3 @@ env:
   global:
     - eraop_rep: github.com/eraop/eraop.git
     - eraop_pages_rep: github.com/eraop/eraop.git
-
